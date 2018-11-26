@@ -25,7 +25,7 @@ const AboutPage = () => {
       schema={{
         '@context': 'http://schema.org',
         '@type': 'AboutPage',
-        description: 'About Saunatime',
+        description: 'About LandTrust',
         name: 'About page',
       }}
     >
@@ -35,53 +35,67 @@ const AboutPage = () => {
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
-          <h1 className={css.pageTitle}>Experience the unique Finnish home sauna.</h1>
-          <img className={css.coverImage} src={image} alt="My first ice cream." />
+          <h1 className={css.pageTitle}>Who we are</h1>
+          <img className={css.coverImage} src={image} alt="outdoors" />
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>Did you know that Finland has 3.2 million saunas - almost one sauna per person!</p>
+              <p></p>
             </div>
 
             <div className={css.contentMain}>
               <h2>
-                Most of the Finnish saunas are located at the homes of individuals - indeed, most
-                people in Finland live in an apartment with sauna in it. In addition, lots of people
-                have lakeside summer cottages, which also typically come with a separate sauna
-                building near the waterfront.
+                Ownership
               </h2>
 
               <p>
-                To truly experience a Finnish sauna, you need to look beyond the public saunas, and
-                instead visit a real home or cottage sauna. Saunatime makes this possible for
-                everyone. All our saunas are owned by individuals willing to let tourists and other
-                curious visitors to enter their sacred spaces.
+              Private land ownership is a cornerstone principle of the American dream 
+              and one which we strongly support. We believe that by working with 
+              conservation-minded Landowners and responsible Sportsmen we’ll be able 
+              to build sustainable model to ensure conservation through the use of 
+              private lands.
               </p>
 
-              <h3 className={css.subtitle}>Are you a sauna owner?</h3>
+              <h3 className={css.subtitle}>Landowners</h3>
 
               <p>
-                Saunatime offers you a good way to earn some extra cash! If you're not using your
-                sauna every evening, why not rent it to other people while it's free. And even if
-                you are using your sauna every evening (we understand, it's so good), why not invite
-                other people to join you when the sauna is already warm! A shared sauna experience
-                is often a more fulfilling one.
+              LandTrust can’t exist without conservation-minded Landowners who 
+              believe that entrusting responsible Sportsmen with harvesting fish and
+              game from their land is essential to preserving fish, game, and the 
+              rich history of the American outdoorsman. If you’re a Landowner that 
+              fits that bill, whether you own 5 acres or 500,000 acres, we’d enjoy 
+              having you join our website. We’re in the process of launching and if 
+              you register we’ll also be seeking your guidance along the way as we 
+              build this company.
               </p>
 
-              <h3 id="contact" className={css.subtitle}>
-                Create your own marketplace like Saunatime
-              </h3>
+              <h2>Our Team</h2>
+              <h3 className={css.subtitle}>Nic De Castro</h3>
+
               <p>
-                Saunatime is brought to you by the good folks at{' '}
-                <ExternalLink href="http://sharetribe.com">Sharetribe</ExternalLink>. Would you like
-                to create your own marketplace platform a bit like Saunatime? Or perhaps a mobile
-                app? With Sharetribe it's really easy. If you have a marketplace idea in mind, do
-                get in touch!
+              Nic is a sales leader in the marketing technology industry with a 
+              breadth of experience both building businesses and selling products to 
+              the largest advertisers on the planet. He's lived in Boston, LA, 
+              Chicago, NYC, SF, Boulder, and Bozeman and has nearly broken 1M miles 
+              for work travel, but has been fortunate to sneak quite a bit of fun 
+              into those miles over the years. Nic grew up bird hunting and fishing 
+              in Southern California from a very young age. His love for the outdoors 
+              has led him to Montana where he's pursuing his passion for hunting and 
+              fishing as well as building businesses that feed his lifestyle.
               </p>
+
+              <h3 className={css.subtitle}>Aaron Ricchio</h3>
+
               <p>
-                You can also checkout our{' '}
-                <ExternalLink href={siteFacebookPage}>Facebook</ExternalLink> and{' '}
-                <ExternalLink href={siteTwitterPage}>Twitter</ExternalLink>.
+              Aaron is a beach kid at heart who found himself in NYC in order to 
+              further his design career. While working at some of the largest 
+              agencies he ironically landed a position creating with Cabela's. 
+              This sparked a number of relationships and fun times with the outdoor 
+              retailer. Now, after over twelve years in one of the least outdoor 
+              places he's begun working on his hunting and fishing skills. If he's 
+              not creating ads, branding or logos, you can typically find him at 
+              the airport headed off to his next climbing related adventure with 
+              his badass wife.
               </p>
             </div>
           </div>
