@@ -2,6 +2,21 @@
  * Marketplace specific configuration.
  */
 
+export const publicLands = [
+  {
+    key: 'blm',
+    label: 'Bureau of Land Management (BLM)',
+  },
+  {
+    key: 'nat_forest',
+    label: 'National Forest',
+  },
+  {
+    key: 'school_trusts',
+    label: 'School Trusts',
+  },
+]
+
 export const amenities = [
   {
     key: 'cabins',
