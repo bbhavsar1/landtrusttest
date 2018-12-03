@@ -138,7 +138,7 @@
   "EditListingFeaturesPanel.title": "Edit the amenities of {listingTitle}",  
   "EditListingPublicLandsForm.showListingFailed": "Fetching listing data failed",
   "EditListingPublicLandsForm.updateFailed": "Failed to update listing. Please try again.",
-  "EditListingPublicLandsPanel.createListingTitle": "List public lands next to {listingTitle}.",
+  "EditListingPublicLandsPanel.createListingTitle": "List public lands next to you.",
   "EditListingPublicLandsPanel.title": "Edit public lands next to {listingTitle}",
   "EditListingLocationForm.address": "Address",
   "EditListingLocationForm.addressNotRecognized": "We didn't recognize this location. Please try another location.",
