@@ -63,7 +63,7 @@
   --matterColorBright: #fcfcfc;
   --matterColorLight: #ffffff;
 
-  --matterColorLightTransparent: rgba(255, 255, 255, 0.65);
+  --matterColorLightTransparent: var(--matterColorLight);
 
   /* ================ Spacing unites ================ */
 
