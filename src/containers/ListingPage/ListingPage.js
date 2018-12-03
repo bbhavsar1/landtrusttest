@@ -41,6 +41,7 @@ import SectionAvatar from './SectionAvatar';
 import SectionHeading from './SectionHeading';
 import SectionDescriptionMaybe from './SectionDescriptionMaybe';
 import SectionFeatures from './SectionFeatures';
+import SectionPublicLands from './SectionPublicLands'
 import SectionReviews from './SectionReviews';
 import SectionHost from './SectionHost';
 import SectionRulesMaybe from './SectionRulesMaybe';
@@ -208,6 +209,7 @@ export class ListingPageComponent extends Component {
       fetchTimeSlotsError,
       categoriesConfig,
       amenitiesConfig,
+      publicLandsConfig,
     } = this.props;
 
     const isBook = !!parse(location.search).book;
@@ -459,6 +461,10 @@ export class ListingPageComponent extends Component {
                     options={amenitiesConfig}
                     selectedOptions={publicData.amenities}
                   />
+                  <SectionPublicLands
+                    options={publicLandsConfig}
+                    selectedOptions={publicData.publicLands}
+                  />
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
                     geolocation={geolocation}
@@ -522,6 +528,7 @@ ListingPageComponent.defaultProps = {
   sendEnquiryError: null,
   categoriesConfig: config.custom.categories,
   amenitiesConfig: config.custom.amenities,
+  publicLandsConfig: config.custom.publicLands,
 };
 
 ListingPageComponent.propTypes = {
@@ -562,6 +569,7 @@ ListingPageComponent.propTypes = {
 
   categoriesConfig: array,
   amenitiesConfig: array,
+  publicLandsConfig: array,
 };
 
 const mapStateToProps = state => {

@@ -74,7 +74,7 @@
   padding: 0;
 
   &:disabled {
-    background-color: var(--marketplaceColor);
+    background-color: var(--marketplaceColor);   
   }
 }
 
@@ -96,7 +96,6 @@
 .checkmark {
   width: 24px;
   height: 24px;
-  stroke: var(--matterColorLight);
 
   /* Animation */
   animation-name: checkmarkAnimation;

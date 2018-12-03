@@ -12,6 +12,7 @@ import { createResourceLocatorString } from '../../util/routes';
 import {
   EditListingDescriptionPanel,
   EditListingFeaturesPanel,
+  EditListingPublicLandsPanel,
   EditListingLocationPanel,
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
@@ -22,13 +23,14 @@ import css from './EditListingWizard.css';
 
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
+export const PUBLIC_LANDS = 'publicLands'
 export const POLICY = 'policy';
 export const LOCATION = 'location';
 export const PRICING = 'pricing';
 export const PHOTOS = 'photos';
 
 // EditListingWizardTab component supports these tabs
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, POLICY, LOCATION, PRICING, PHOTOS];
+export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, PUBLIC_LANDS, POLICY, LOCATION, PRICING, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;
@@ -164,6 +166,20 @@ const EditListingWizardTab = props => {
       return (
         <EditListingFeaturesPanel
           {...panelProps(FEATURES)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
+    case PUBLIC_LANDS: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewPublicLands'
+        : 'EditListingWizard.saveEditPublicLands';
+      return (
+        <EditListingPublicLandsPanel
+          {...panelProps(PUBLIC_LANDS)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
