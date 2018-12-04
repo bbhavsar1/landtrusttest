@@ -124,3 +124,5 @@ textarea {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 }
+
+html{ visibility: visible; opacity:1; }
