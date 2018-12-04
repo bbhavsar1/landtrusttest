@@ -105,7 +105,7 @@ For example, our default font is defined as:
 --fontWeightMedium: 500;
 
 --marketplaceDefaultFontStyles: {
-  font-family: 'sofiapro', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: var(--fontWeightMedium);
   font-size: 18px;
   line-height: 24px;

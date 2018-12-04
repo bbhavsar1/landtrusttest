@@ -157,7 +157,7 @@
   /* ================ Buttons ================ */
 
   --marketplaceButtonFontStyles: {
-    font-family: 'Helvetica Neue', 'sofiapro', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: var(--fontWeightSemiBold);
     font-size: 18px;
     line-height: 24px;
@@ -210,6 +210,7 @@
       color: var(--matterColorLight);
       cursor: not-allowed;
       box-shadow: none;
+      border-color: var(--matterColorNegative);
     }
 
     @media (--viewportMedium) {
