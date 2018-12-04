@@ -45,20 +45,11 @@ const stripeErrorTranslation = (intl, stripeError) => {
   });
 };
 
-const stripeElementsOptions = {
-  fonts: [
-    {
-      family: 'sofiapro',
-      fontSmoothing: 'antialiased',
-      src:
-        'local("sofiapro"), local("SofiaPro"), local("Sofia Pro"), url("https://assets-sharetribecom.sharetribe.com/webfonts/sofiapro/sofiapro-medium-webfont.woff2") format("woff2")',
-    },
-  ],
-};
+const stripeElementsOptions = {};
 
 const cardStyles = {
   base: {
-    fontFamily: '"sofiapro", Helvetica, Arial, sans-serif',
+    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
     fontSize: '18px',
     fontSmoothing: 'antialiased',
     lineHeight: '24px',
