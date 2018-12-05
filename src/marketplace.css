@@ -251,6 +251,7 @@
     &:focus {
       background-color: var(--matterColorLight);
       border-color: var(--matterColorAnti);
+      color: var(--matterColorDark);
     }
     &:disabled {
       background-color: var(--matterColorNegative);
