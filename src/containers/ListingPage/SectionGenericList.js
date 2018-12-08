@@ -4,15 +4,15 @@ import { SelectedGroup } from '../../components';
 
 import css from './ListingPage.css';
 
-const SectionPublicLands = props => {
-  const { options, selectedOptions } = props;
+const SectionGenericList = props => {
+  const { options, selectedOptions, titleMsgId, selectGroupId } = props;
   return (
-    <div className={css.sectionPublicLands}>
-      <h2 className={css.publicLandsTitle}>
-        <FormattedMessage id="ListingPage.publicLandsTitle" />
+    <div className={css.genericListSection}>
+      <h2 className={css.genericListTitle}>
+        <FormattedMessage id={titleMsgId} />
       </h2>
       <SelectedGroup
-        id="ListingPage.publicLands"
+        id={selectGroupId}
         options={options}
         selectedOptions={selectedOptions}
         twoColumns={true}
@@ -21,4 +21,4 @@ const SectionPublicLands = props => {
   );
 };
 
-export default SectionPublicLands;
+export default SectionGenericList;

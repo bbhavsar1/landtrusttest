@@ -17,16 +17,20 @@ import EditListingWizardTab, {
   DESCRIPTION,
   FEATURES,
   PUBLIC_LANDS,
+  AGRICULTURE_TYPES,
+  LAND_TYPES,
+  WATER_TYPES,
   POLICY,
   LOCATION,
   PRICING,
   PHOTOS,
+  SUPPORTED_TABS
 } from './EditListingWizardTab';
 import css from './EditListingWizard.css';
 
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const TABS = [DESCRIPTION, FEATURES, PUBLIC_LANDS, POLICY, LOCATION, PRICING, PHOTOS];
+export const TABS = SUPPORTED_TABS;
 
 // Tabs are horizontal in small screens
 const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
@@ -39,6 +43,12 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelFeatures';
   } else if (tab === PUBLIC_LANDS) {
     key = 'EditListingWizard.tabLabelPublicLands';
+  } else if (tab === AGRICULTURE_TYPES) {
+    key = 'EditListingWizard.tabLabelAgricultureTypes';
+  } else if (tab === LAND_TYPES) {
+    key = 'EditListingWizard.tabLabelLandTypes';
+  } else if (tab === WATER_TYPES) {
+    key = 'EditListingWizard.tabLabelWaterTypes';
   } else if (tab === POLICY) {
     key = 'EditListingWizard.tabLabelPolicy';
   } else if (tab === LOCATION) {
@@ -71,6 +81,12 @@ const tabCompleted = (tab, listing) => {
       return !!(publicData && publicData.amenities);
     case PUBLIC_LANDS:
       return !!(publicData && publicData.publicLands);
+    case AGRICULTURE_TYPES:
+      return !!(publicData && publicData.agricultureType);
+    case LAND_TYPES:
+      return !!(publicData && publicData.landType);
+    case WATER_TYPES:
+      return !!(publicData && publicData.waterType);
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:

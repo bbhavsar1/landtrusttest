@@ -5,14 +5,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { LISTING_STATE_DRAFT } from '../../util/types';
 import { ensureListing } from '../../util/data';
-import { EditListingPublicLandsForm } from '../../forms';
+import { EditListingGenericListForm } from '../../forms';
 import { ListingLink } from '../../components';
 
-import css from './EditListingPublicLandsPanel.css';
+import css from './EditListingGenericListPanel.css';
 
-const FEATURES_NAME = 'publicLands';
-
-const EditListingPublicLandsPanel = props => {
+const EditListingGenericListPanel = props => {
   const {
     rootClassName,
     className,
@@ -23,6 +21,9 @@ const EditListingPublicLandsPanel = props => {
     panelUpdated,
     updateInProgress,
     errors,
+    formId,
+    titleMsgId,
+    createListingTitleMsgId,
   } = props;
 
   const classes = classNames(rootClassName || css.root, className);
@@ -32,29 +33,26 @@ const EditListingPublicLandsPanel = props => {
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
     <FormattedMessage
-      id="EditListingPublicLandsPanel.title"
+      id={titleMsgId}
       values={{ listingTitle: <ListingLink listing={listing} /> }}
     />
   ) : (
-    <FormattedMessage id="EditListingPublicLandsPanel.createListingTitle" />
-  );
+      <FormattedMessage id={createListingTitleMsgId} />
+    );
 
-  const publicLands = publicData && publicData.publicLands;
-  const initialValues = { publicLands };
+  const initialValues = {};
+  initialValues[formId] = publicData && publicData[formId];
 
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
-      <EditListingPublicLandsForm
+      <EditListingGenericListForm
         className={css.form}
-        name={FEATURES_NAME}
+        name={formId}
         initialValues={initialValues}
         onSubmit={values => {
-          const { publicLands = [] } = values;
-
-          const updatedValues = {
-            publicData: { publicLands },
-          };
+          const updatedValues = {};
+          updatedValues.publicData = values;
           onSubmit(updatedValues);
         }}
         onChange={onChange}
@@ -67,7 +65,7 @@ const EditListingPublicLandsPanel = props => {
   );
 };
 
-EditListingPublicLandsPanel.defaultProps = {
+EditListingGenericListPanel.defaultProps = {
   rootClassName: null,
   className: null,
   listing: null,
@@ -75,7 +73,7 @@ EditListingPublicLandsPanel.defaultProps = {
 
 const { bool, func, object, string } = PropTypes;
 
-EditListingPublicLandsPanel.propTypes = {
+EditListingGenericListPanel.propTypes = {
   rootClassName: string,
   className: string,
 
@@ -90,4 +88,4 @@ EditListingPublicLandsPanel.propTypes = {
   errors: object.isRequired,
 };
 
-export default EditListingPublicLandsPanel;
+export default EditListingGenericListPanel;

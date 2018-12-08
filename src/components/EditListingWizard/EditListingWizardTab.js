@@ -12,7 +12,7 @@ import { createResourceLocatorString } from '../../util/routes';
 import {
   EditListingDescriptionPanel,
   EditListingFeaturesPanel,
-  EditListingPublicLandsPanel,
+  EditListingGenericListPanel,
   EditListingLocationPanel,
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
@@ -24,13 +24,18 @@ import css from './EditListingWizard.css';
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const PUBLIC_LANDS = 'publicLands'
+export const AGRICULTURE_TYPES = 'agricultureTypes'
+export const LAND_TYPES = 'landTypes'
+export const WATER_TYPES = 'waterTypes'
 export const POLICY = 'policy';
 export const LOCATION = 'location';
 export const PRICING = 'pricing';
 export const PHOTOS = 'photos';
 
 // EditListingWizardTab component supports these tabs
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, PUBLIC_LANDS, POLICY, LOCATION, PRICING, PHOTOS];
+// TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
+// All the other panels can be reordered.
+export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, PUBLIC_LANDS, AGRICULTURE_TYPES, LAND_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;
@@ -178,12 +183,66 @@ const EditListingWizardTab = props => {
         ? 'EditListingWizard.saveNewPublicLands'
         : 'EditListingWizard.saveEditPublicLands';
       return (
-        <EditListingPublicLandsPanel
+        <EditListingGenericListPanel
           {...panelProps(PUBLIC_LANDS)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
+          formId={PUBLIC_LANDS}
+          titleMsgId="EditListingPublicLandsPanel.title"
+          createListingTitleMsgId="EditListingPublicLandsPanel.createListingTitle"
+        />
+      );
+    }
+    case AGRICULTURE_TYPES: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewAgricultureTypes'
+        : 'EditListingWizard.saveEditAgricultureTypes';
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(AGRICULTURE_TYPES)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={AGRICULTURE_TYPES}
+          titleMsgId="EditListingAgricultureTypesPanel.title"
+          createListingTitleMsgId="EditListingAgricultureTypesPanel.createListingTitle"
+        />
+      );
+    }
+    case LAND_TYPES: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewLandTypes'
+        : 'EditListingWizard.saveEditLandTypes';
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(LAND_TYPES)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={LAND_TYPES}
+          titleMsgId="EditListingLandTypesPanel.title"
+          createListingTitleMsgId="EditListingLandTypesPanel.createListingTitle"
+        />
+      );
+    }
+    case WATER_TYPES: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewWaterTypes'
+        : 'EditListingWizard.saveEditWaterTypes';
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(WATER_TYPES)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={WATER_TYPES}
+          titleMsgId="EditListingWaterTypesPanel.title"
+          createListingTitleMsgId="EditListingWaterTypesPanel.createListingTitle"
         />
       );
     }

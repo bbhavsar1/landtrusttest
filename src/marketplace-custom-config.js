@@ -2,6 +2,123 @@
  * Marketplace specific configuration.
  */
 
+export const agricultureTypes = [
+  {
+    key: 'alfalfa',
+    label: 'Alfalfa',
+  },
+  {
+    key: 'wheat',
+    label: 'Wheat',
+  },
+  {
+    key: 'sorgum',
+    label: 'Sorgum',
+  },
+  {
+    key: 'corn',
+    label: 'Corn',
+  },
+  {
+    key: 'cotton',
+    label: 'Cotton',
+  },
+  {
+    key: 'soy_beans',
+    label: 'Soy Beans',
+  },
+  {
+    key: 'oats',
+    label: 'Oats',
+  },
+]
+
+export const landTypes = [
+  {
+    key: 'mountains',
+    label: 'Mountains',
+  },
+  {
+    key: 'hills',
+    label: 'Hills',
+  },
+  {
+    key: 'creeks',
+    label: 'Creeks',
+  },
+  {
+    key: 'draws',
+    label: 'Draws',
+  },
+  {
+    key: 'fields',
+    label: 'Fields',
+  },
+  {
+    key: 'forest',
+    label: 'Forest',
+  },
+  {
+    key: 'meadow',
+    label: 'Meadow',
+  },
+  {
+    key: 'island',
+    label: 'Island',
+  },
+  {
+    key: 'mesa',
+    label: 'Mesa',
+  },
+  {
+    key: 'plains',
+    label: 'Plains',
+  },
+  {
+    key: 'spur',
+    label: 'Spur',
+  },
+  {
+    key: 'valley',
+    label: 'Valley',
+  },
+]
+
+export const waterTypes = [
+  {
+    key: 'river',
+    label: 'River',
+  },
+  {
+    key: 'spring_creek',
+    label: 'Spring Creek',
+  },
+  {
+    key: 'pond',
+    label: 'Pond',
+  },
+  {
+    key: 'lake',
+    label: 'Lake',
+  },
+  {
+    key: 'reservoir',
+    label: 'Reservoir',
+  },
+  {
+    key: 'spring',
+    label: 'Spring',
+  },
+  {
+    key: 'sea',
+    label: 'Sea',
+  },
+  {
+    key: 'narrows',
+    label: 'Narrows',
+  },
+]
+
 export const publicLands = [
   {
     key: 'blm',

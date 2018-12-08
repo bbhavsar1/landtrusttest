@@ -405,7 +405,7 @@
   }
 }
 
-.sectionPublicLands {
+.genericListSection {
   padding: 0 24px;
   margin-bottom: 32px;
 
@@ -415,7 +415,7 @@
   }
 }
 
-.publicLandsTitle {
+.genericListTitle {
   /* Font */
   @apply --marketplaceH3FontStyles;
   color: var(--matterColorAnti);

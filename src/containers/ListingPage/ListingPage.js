@@ -41,7 +41,7 @@ import SectionAvatar from './SectionAvatar';
 import SectionHeading from './SectionHeading';
 import SectionDescriptionMaybe from './SectionDescriptionMaybe';
 import SectionFeatures from './SectionFeatures';
-import SectionPublicLands from './SectionPublicLands'
+import SectionGenericList from './SectionGenericList'
 import SectionReviews from './SectionReviews';
 import SectionHost from './SectionHost';
 import SectionRulesMaybe from './SectionRulesMaybe';
@@ -210,6 +210,9 @@ export class ListingPageComponent extends Component {
       categoriesConfig,
       amenitiesConfig,
       publicLandsConfig,
+      agricultureTypesConfig,
+      landTypesConfig,
+      waterTypesConfig,
     } = this.props;
 
     const isBook = !!parse(location.search).book;
@@ -461,9 +464,29 @@ export class ListingPageComponent extends Component {
                     options={amenitiesConfig}
                     selectedOptions={publicData.amenities}
                   />
-                  <SectionPublicLands
+                  <SectionGenericList
                     options={publicLandsConfig}
                     selectedOptions={publicData.publicLands}
+                    titleMsgId="ListingPage.publicLandsTitle"
+                    selectGroupId="ListingPage.publicLands"
+                  />
+                  <SectionGenericList
+                    options={agricultureTypesConfig}
+                    selectedOptions={publicData.agricultureTypes}
+                    titleMsgId="ListingPage.agricultureTypesTitle"
+                    selectGroupId="ListingPage.agricultureTypes"
+                  />
+                  <SectionGenericList
+                    options={landTypesConfig}
+                    selectedOptions={publicData.landTypes}
+                    titleMsgId="ListingPage.landTypesTitle"
+                    selectGroupId="ListingPage.landTypes"
+                  />
+                  <SectionGenericList
+                    options={waterTypesConfig}
+                    selectedOptions={publicData.waterTypes}
+                    titleMsgId="ListingPage.waterTypesTitle"
+                    selectGroupId="ListingPage.waterTypes"
                   />
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
@@ -529,6 +552,9 @@ ListingPageComponent.defaultProps = {
   categoriesConfig: config.custom.categories,
   amenitiesConfig: config.custom.amenities,
   publicLandsConfig: config.custom.publicLands,
+  agricultureTypesConfig: config.custom.agricultureTypes,
+  landTypesConfig: config.custom.landTypes,
+  waterTypesConfig: config.custom.waterTypes,
 };
 
 ListingPageComponent.propTypes = {
@@ -570,6 +596,9 @@ ListingPageComponent.propTypes = {
   categoriesConfig: array,
   amenitiesConfig: array,
   publicLandsConfig: array,
+  agricultureTypesConfig: array,
+  landTypesConfig: array,
+  waterTypesConfig: array,
 };
 
 const mapStateToProps = state => {

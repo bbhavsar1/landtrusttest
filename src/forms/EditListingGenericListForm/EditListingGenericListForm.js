@@ -9,9 +9,9 @@ import { propTypes } from '../../util/types';
 import config from '../../config';
 import { Button, FieldCheckboxGroup, Form } from '../../components';
 
-import css from './EditListingPublicLandsForm.css';
+import css from './EditListingGenericListForm.css';
 
-const EditListingPublicLandsFormComponent = props => (
+const EditListingGenericListFormComponent = props => (
   <FinalForm
     {...props}
     mutators={{ ...arrayMutators }}
@@ -37,13 +37,13 @@ const EditListingPublicLandsFormComponent = props => (
       const { updateListingError, showListingsError } = fetchErrors || {};
       const errorMessage = updateListingError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingPublicLandsForm.updateFailed" />
+          <FormattedMessage id="EditListingGenericListForm.updateListingFailed" />
         </p>
       ) : null;
 
       const errorMessageShowListing = showListingsError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingPublicLandsForm.showListingFailed" />
+          <FormattedMessage id="EditListingGenericListForm.showListingFailed" />
         </p>
       ) : null;
 
@@ -56,7 +56,7 @@ const EditListingPublicLandsFormComponent = props => (
             className={css.features}
             id={name}
             name={name}
-            options={config.custom.publicLands}
+            options={config.custom[name]}
           />
 
           <Button
@@ -74,13 +74,13 @@ const EditListingPublicLandsFormComponent = props => (
   />
 );
 
-EditListingPublicLandsFormComponent.defaultProps = {
+EditListingGenericListFormComponent.defaultProps = {
   rootClassName: null,
   className: null,
   fetchErrors: null,
 };
 
-EditListingPublicLandsFormComponent.propTypes = {
+EditListingGenericListFormComponent.propTypes = {
   rootClassName: string,
   className: string,
   name: string.isRequired,
@@ -94,6 +94,6 @@ EditListingPublicLandsFormComponent.propTypes = {
   }),
 };
 
-const EditListingPublicLandsForm = EditListingPublicLandsFormComponent;
+const EditListingGenericListForm = EditListingGenericListFormComponent;
 
-export default EditListingPublicLandsForm;
+export default EditListingGenericListForm;
