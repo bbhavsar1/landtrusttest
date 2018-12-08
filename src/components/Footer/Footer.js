@@ -79,13 +79,27 @@ const Footer = props => {
                 </p>
               </div>
             </div>
-            <div className={css.infoLinks}>
+            <div className={css.helpLinks}>
               <ul className={css.list}>
                 <li className={css.listItem}>
-                  <NamedLink name="NewListingPage" className={css.link}>
-                    <FormattedMessage id="Footer.toNewListingPage" />
+                  <NamedLink name="LandingPage" to={{ hash: '#landowners' }} className={css.link}>
+                    <FormattedMessage id="Footer.toLandownersPage" />
                   </NamedLink>
                 </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" to={{ hash: '#sportsmen' }} className={css.link}>
+                    <FormattedMessage id="Footer.toSportsmenPage" />
+                  </NamedLink>
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink name="LandingPage" to={{ hash: '#help' }} className={css.link}>
+                    <FormattedMessage id="Footer.toHelpPage" />
+                  </NamedLink>
+                </li>
+              </ul>
+            </div>
+            <div className={css.infoLinks}>
+              <ul className={css.list}>
                 <li className={css.listItem}>
                   <NamedLink name="AboutPage" className={css.link}>
                     <FormattedMessage id="Footer.toAboutPage" />
@@ -97,57 +111,8 @@ const Footer = props => {
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink name="LandingPage" className={css.link}>
-                    <FormattedMessage id="Footer.toHelpPage" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
                   <NamedLink name="AboutPage" to={{ hash: '#contact' }} className={css.link}>
                     <FormattedMessage id="Footer.toContactPage" />
-                  </NamedLink>
-                </li>
-              </ul>
-            </div>
-            <div className={css.searches}>
-              <ul className={css.list}>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-		        '?address=Montana%2C%20United%20States&bounds=51.13149033%2C-102.77800001%2C41.93706984%2C-117.31111399',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchMontana" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-			    '?address=Wyoming%2C%20United%20States&bounds=45.005886%2C-104.052585%2C40.99461%2C-111.056889',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchWyoming" />
-                  </NamedLink>
-                </li>
-              </ul>
-            </div>
-            <div className={css.searchesExtra}>
-              <ul className={css.list}>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search: 
-			    '?address=Washington%2C%20United%20States&bounds=49.002418%2C-116.91568%2C45.543541%2C-124.948858',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchWashington" />
                   </NamedLink>
                 </li>
               </ul>

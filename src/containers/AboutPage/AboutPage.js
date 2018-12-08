@@ -68,7 +68,7 @@ const AboutPage = () => {
                 build this company.
               </p>
 
-              <h2>Our Team</h2>
+              <h2 id="contact">Our Team</h2>
               <img className={css.contentImage} src={nic} alt="nic" />
               <h3 className={css.subtitle}>Nic De Castro</h3>
 
