@@ -74,19 +74,23 @@ const tabCompleted = (tab, listing) => {
   const { description, geolocation, price, title, publicData } = listing.attributes;
   const images = listing.images;
 
+  /**
+   * FU: Prefer to use bracket notation to prevent you from misspelling the name of
+   * the property which is based on the 'string' consts imported from EditListingWizardTab
+   */
   switch (tab) {
     case DESCRIPTION:
       return !!(description && title);
     case FEATURES:
       return !!(publicData && publicData.amenities);
     case PUBLIC_LANDS:
-      return !!(publicData && publicData.publicLands);
+      return !!(publicData && publicData[PUBLIC_LANDS]);
     case AGRICULTURE_TYPES:
-      return !!(publicData && publicData.agricultureType);
+      return !!(publicData && publicData[AGRICULTURE_TYPES]);
     case LAND_TYPES:
-      return !!(publicData && publicData.landType);
+      return !!(publicData && publicData[LAND_TYPES]);
     case WATER_TYPES:
-      return !!(publicData && publicData.waterType);
+      return !!(publicData && publicData[WATER_TYPES]);
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:
