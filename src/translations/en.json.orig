@@ -169,7 +169,7 @@
   "EditListingPoliciesForm.rulesPlaceholder": "Describe the no-nos",
   "EditListingPoliciesForm.showListingFailed": "Fetching listing data failed",
   "EditListingPoliciesForm.updateFailed": "Failed to update listing. Please try again.",
-  "EditListingPoliciesPanel.createListingTitle": "Time to set some ground rules for the bathers.",
+  "EditListingPoliciesPanel.createListingTitle": "Ground rules to use your land.",
   "EditListingPoliciesPanel.title": "Edit the rules of {listingTitle}",
   "EditListingPricingForm.priceInputPlaceholder": "Choose your price…",
   "EditListingPricingForm.pricePerUnit": "Price per night in euros",
