@@ -447,7 +447,7 @@
   "PayoutDetailsForm.addressTitle": "Address",
   "PayoutDetailsForm.bankDetails": "Bank details",
   "PayoutDetailsForm.birthdayDatePlaceholder": "dd",
-  "PayoutDetailsForm.birthdayLabel": "Birth date",
+  "PayoutDetailsForm.birthdayLabel": "Day",
   "PayoutDetailsForm.birthdayLabelMonth": "Month",
   "PayoutDetailsForm.birthdayLabelYear": "Year",
   "PayoutDetailsForm.birthdayMinAge": "You need to be at least {minAge} years old.",
