@@ -141,28 +141,7 @@ class BirthdayInputComponent extends Component {
     const yearPlaceholder = intl.formatMessage({ id: 'PayoutDetailsForm.birthdayYearPlaceholder' });
 
     return (
-      <div className={css.inputRoot}>
-        <div className={css.selectWrapper}>
-          {dateLabel}
-          <select
-            disabled={disabled}
-            id={dateId}
-            value={selectedValue(this.state.selected.day)}
-            className={classNames(selectClassName || css.select, {
-              [css.notSet]: !parseNum(this.state.selected.day),
-            })}
-            onFocus={() => this.handleSelectFocus()}
-            onBlur={() => this.handleSelectBlur()}
-            onChange={e => this.handleSelectChange('day', e.target.value)}
-          >
-            <option disabled>{datePlaceholder}</option>
-            {days.map(d => (
-              <option key={d} value={d}>
-                {pad(d)}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className={css.inputRoot}>        
         <div className={css.selectWrapper}>
           {monthLabel}
           <select
@@ -180,6 +159,27 @@ class BirthdayInputComponent extends Component {
             {months.map(m => (
               <option key={m} value={m}>
                 {pad(m)}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className={css.selectWrapper}>
+          {dateLabel}
+          <select
+            disabled={disabled}
+            id={dateId}
+            value={selectedValue(this.state.selected.day)}
+            className={classNames(selectClassName || css.select, {
+              [css.notSet]: !parseNum(this.state.selected.day),
+            })}
+            onFocus={() => this.handleSelectFocus()}
+            onBlur={() => this.handleSelectBlur()}
+            onChange={e => this.handleSelectChange('day', e.target.value)}
+          >
+            <option disabled>{datePlaceholder}</option>
+            {days.map(d => (
+              <option key={d} value={d}>
+                {pad(d)}
               </option>
             ))}
           </select>
