@@ -57,6 +57,7 @@ const EditListingGenericListFormComponent = props => (
             id={name}
             name={name}
             options={config.custom[name]}
+            twoColumns={true}
           />
 
           <Button

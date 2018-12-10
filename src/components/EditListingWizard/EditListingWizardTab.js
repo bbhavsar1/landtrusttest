@@ -35,7 +35,7 @@ export const PHOTOS = 'photos';
 // EditListingWizardTab component supports these tabs
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, PUBLIC_LANDS, AGRICULTURE_TYPES, LAND_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
+export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;

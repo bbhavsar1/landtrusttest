@@ -83,14 +83,12 @@ const tabCompleted = (tab, listing) => {
       return !!(description && title);
     case FEATURES:
       return !!(publicData && publicData.amenities);
-    case PUBLIC_LANDS:
-      return !!(publicData && publicData[PUBLIC_LANDS]);
-    case AGRICULTURE_TYPES:
-      return !!(publicData && publicData[AGRICULTURE_TYPES]);
     case LAND_TYPES:
       return !!(publicData && publicData[LAND_TYPES]);
+    case PUBLIC_LANDS:
+    case AGRICULTURE_TYPES:
     case WATER_TYPES:
-      return !!(publicData && publicData[WATER_TYPES]);
+      return !!(publicData);
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:
