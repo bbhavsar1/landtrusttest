@@ -194,11 +194,9 @@ export const amenities = [
 ];
 
 export const categories = [
-  { key: 'big_game', label: 'Big Game' },
-  { key: 'fishing', label: 'Fishing' },
-  { key: 'upland', label: 'Upland' },
-  { key: 'waterfowl', label: 'Waterfowl' },
-  { key: 'other', label: 'Other' },
+  { key: 'hunt', label: 'Hunt' },
+  { key: 'fish', label: 'Fish' },
+  { key: 'access', label: 'Access' },
 ];
 
 // Price filter configuration
