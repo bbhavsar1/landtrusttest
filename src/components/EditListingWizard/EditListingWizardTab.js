@@ -24,6 +24,7 @@ import css from './EditListingWizard.css';
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const PUBLIC_LANDS = 'publicLands'
+export const FISH_TYPES = 'fishTypes'
 export const AGRICULTURE_TYPES = 'agricultureTypes'
 export const LAND_TYPES = 'landTypes'
 export const WATER_TYPES = 'waterTypes'
@@ -35,7 +36,7 @@ export const PHOTOS = 'photos';
 // EditListingWizardTab component supports these tabs
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
+export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, FISH_TYPES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;
@@ -149,11 +150,11 @@ const EditListingWizardTab = props => {
     };
   };
 
+  const submitButtonTranslationKey = isNewListingFlow
+    ? 'EditListingWizard.saveNew'
+    : 'EditListingWizard.saveEdit';
   switch (tab) {
     case DESCRIPTION: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewDescription'
-        : 'EditListingWizard.saveEditDescription';
       return (
         <EditListingDescriptionPanel
           {...panelProps(DESCRIPTION)}
@@ -165,9 +166,6 @@ const EditListingWizardTab = props => {
       );
     }
     case FEATURES: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewFeatures'
-        : 'EditListingWizard.saveEditFeatures';
       return (
         <EditListingFeaturesPanel
           {...panelProps(FEATURES)}
@@ -178,10 +176,21 @@ const EditListingWizardTab = props => {
         />
       );
     }
+    case FISH_TYPES: {
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(FISH_TYPES)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={FISH_TYPES}
+          titleMsgId="EditListingFishTypesPanel.title"
+          createListingTitleMsgId="EditListingFishTypesPanel.createListingTitle"
+        />
+      );
+    }
     case PUBLIC_LANDS: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewPublicLands'
-        : 'EditListingWizard.saveEditPublicLands';
       return (
         <EditListingGenericListPanel
           {...panelProps(PUBLIC_LANDS)}
@@ -196,9 +205,6 @@ const EditListingWizardTab = props => {
       );
     }
     case AGRICULTURE_TYPES: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewAgricultureTypes'
-        : 'EditListingWizard.saveEditAgricultureTypes';
       return (
         <EditListingGenericListPanel
           {...panelProps(AGRICULTURE_TYPES)}
@@ -213,9 +219,6 @@ const EditListingWizardTab = props => {
       );
     }
     case LAND_TYPES: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewLandTypes'
-        : 'EditListingWizard.saveEditLandTypes';
       return (
         <EditListingGenericListPanel
           {...panelProps(LAND_TYPES)}
@@ -230,9 +233,6 @@ const EditListingWizardTab = props => {
       );
     }
     case WATER_TYPES: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewWaterTypes'
-        : 'EditListingWizard.saveEditWaterTypes';
       return (
         <EditListingGenericListPanel
           {...panelProps(WATER_TYPES)}
@@ -247,9 +247,6 @@ const EditListingWizardTab = props => {
       );
     }
     case POLICY: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewPolicies'
-        : 'EditListingWizard.saveEditPolicies';
       return (
         <EditListingPoliciesPanel
           {...panelProps(POLICY)}
@@ -261,9 +258,6 @@ const EditListingWizardTab = props => {
       );
     }
     case LOCATION: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewLocation'
-        : 'EditListingWizard.saveEditLocation';
       return (
         <EditListingLocationPanel
           {...panelProps(LOCATION)}
@@ -275,9 +269,6 @@ const EditListingWizardTab = props => {
       );
     }
     case PRICING: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewPricing'
-        : 'EditListingWizard.saveEditPricing';
       return (
         <EditListingPricingPanel
           {...panelProps(PRICING)}
@@ -289,10 +280,6 @@ const EditListingWizardTab = props => {
       );
     }
     case PHOTOS: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewPhotos'
-        : 'EditListingWizard.saveEditPhotos';
-
       // newListingPublished and fetchInProgress are flags for the last wizard tab
       return (
         <EditListingPhotosPanel

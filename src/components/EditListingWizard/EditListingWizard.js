@@ -16,6 +16,7 @@ import { Modal, NamedRedirect, Tabs } from '../../components';
 import EditListingWizardTab, {
   DESCRIPTION,
   FEATURES,
+  FISH_TYPES,
   PUBLIC_LANDS,
   AGRICULTURE_TYPES,
   LAND_TYPES,
@@ -41,6 +42,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelDescription';
   } else if (tab === FEATURES) {
     key = 'EditListingWizard.tabLabelFeatures';
+  } else if (tab === FISH_TYPES) {
+    key = 'EditListingWizard.tabLabelFishTypes';
   } else if (tab === PUBLIC_LANDS) {
     key = 'EditListingWizard.tabLabelPublicLands';
   } else if (tab === AGRICULTURE_TYPES) {
@@ -82,9 +85,8 @@ const tabCompleted = (tab, listing) => {
     case DESCRIPTION:
       return !!(description && title);
     case FEATURES:
-      return !!(publicData);
     case LAND_TYPES:
-      return !!(publicData && publicData[LAND_TYPES]);
+    case FISH_TYPES:
     case PUBLIC_LANDS:
     case AGRICULTURE_TYPES:
     case WATER_TYPES:

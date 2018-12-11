@@ -209,6 +209,7 @@ export class ListingPageComponent extends Component {
       fetchTimeSlotsError,
       categoriesConfig,
       amenitiesConfig,
+      fishTypesConfig,
       publicLandsConfig,
       agricultureTypesConfig,
       landTypesConfig,
@@ -465,6 +466,12 @@ export class ListingPageComponent extends Component {
                     selectedOptions={publicData.amenities}
                   />
                   <SectionGenericList
+                    options={fishTypesConfig}
+                    selectedOptions={publicData.fishTypes}
+                    titleMsgId="ListingPage.fishTypesTitle"
+                    selectGroupId="ListingPage.fishTypes"
+                  />
+                  <SectionGenericList
                     options={publicLandsConfig}
                     selectedOptions={publicData.publicLands}
                     titleMsgId="ListingPage.publicLandsTitle"
@@ -551,6 +558,7 @@ ListingPageComponent.defaultProps = {
   sendEnquiryError: null,
   categoriesConfig: config.custom.categories,
   amenitiesConfig: config.custom.amenities,
+  fishTypesConfig: config.custom.fishTypes,
   publicLandsConfig: config.custom.publicLands,
   agricultureTypesConfig: config.custom.agricultureTypes,
   landTypesConfig: config.custom.landTypes,
@@ -595,6 +603,7 @@ ListingPageComponent.propTypes = {
 
   categoriesConfig: array,
   amenitiesConfig: array,
+  fishTypesConfig: array,
   publicLandsConfig: array,
   agricultureTypesConfig: array,
   landTypesConfig: array,

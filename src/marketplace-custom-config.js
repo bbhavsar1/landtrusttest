@@ -2,6 +2,25 @@
  * Marketplace specific configuration.
  */
 
+export const fishTypes = [
+  {key: 'salmon', label: 'Salmon'},
+  {key: 'black_crappie', label: 'Black crappie'},
+  {key: 'blue_gill', label: 'Bluegill'},
+  {key: 'catfish', label: 'Catfish'},
+  {key: 'trout', label: 'Trout'},
+  {key: 'carp', label: 'Carp'},
+  {key: 'largemouth_bass', label: 'Largemouth bass'},
+  {key: 'mountain_whitefish', label: 'Mountain Whitefish'},
+  {key: 'muskey', label: 'Muskey'},
+  {key: 'norther_pike', label: 'Northern Pike'},
+  {key: 'suckers', label: 'Suckers'},
+  {key: 'smallmouth_bass', label: 'Smallmouth Bass'},
+  {key: 'steelhead', label: 'Steelhead'},
+  {key: 'striped_bass', label: 'Striped Bass'},
+  {key: 'walleye', label: 'Walleye'},
+  {key: 'white_bass', label: 'White Bass'},
+  {key: 'yellow_perch', label: 'Yellow Perch'},
+]
 export const agricultureTypes = [
   {
     key: 'alfalfa',
