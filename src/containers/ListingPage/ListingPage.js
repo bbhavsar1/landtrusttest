@@ -210,6 +210,7 @@ export class ListingPageComponent extends Component {
       categoriesConfig,
       amenitiesConfig,
       fishTypesConfig,
+      smallGameTypesConfig,
       publicLandsConfig,
       agricultureTypesConfig,
       landTypesConfig,
@@ -472,6 +473,12 @@ export class ListingPageComponent extends Component {
                     selectGroupId="ListingPage.fishTypes"
                   />
                   <SectionGenericList
+                    options={smallGameTypesConfig}
+                    selectedOptions={publicData.smallGameTypes}
+                    titleMsgId="ListingPage.smallGameTypesTitle"
+                    selectGroupId="ListingPage.smallGameTypes"
+                  />
+                  <SectionGenericList
                     options={publicLandsConfig}
                     selectedOptions={publicData.publicLands}
                     titleMsgId="ListingPage.publicLandsTitle"
@@ -559,6 +566,7 @@ ListingPageComponent.defaultProps = {
   categoriesConfig: config.custom.categories,
   amenitiesConfig: config.custom.amenities,
   fishTypesConfig: config.custom.fishTypes,
+  smallGameTypesConfig: config.custom.smallGameTypes,
   publicLandsConfig: config.custom.publicLands,
   agricultureTypesConfig: config.custom.agricultureTypes,
   landTypesConfig: config.custom.landTypes,
@@ -604,6 +612,7 @@ ListingPageComponent.propTypes = {
   categoriesConfig: array,
   amenitiesConfig: array,
   fishTypesConfig: array,
+  smallGameTypesConfig: array,
   publicLandsConfig: array,
   agricultureTypesConfig: array,
   landTypesConfig: array,

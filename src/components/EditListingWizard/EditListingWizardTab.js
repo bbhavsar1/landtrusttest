@@ -25,6 +25,7 @@ export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const PUBLIC_LANDS = 'publicLands'
 export const FISH_TYPES = 'fishTypes'
+export const SMALL_GAME_TYPES = 'smallGameTypes'
 export const AGRICULTURE_TYPES = 'agricultureTypes'
 export const LAND_TYPES = 'landTypes'
 export const WATER_TYPES = 'waterTypes'
@@ -36,7 +37,8 @@ export const PHOTOS = 'photos';
 // EditListingWizardTab component supports these tabs
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, FISH_TYPES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
+export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, FISH_TYPES, SMALL_GAME_TYPES,
+  LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;
@@ -187,6 +189,20 @@ const EditListingWizardTab = props => {
           formId={FISH_TYPES}
           titleMsgId="EditListingFishTypesPanel.title"
           createListingTitleMsgId="EditListingFishTypesPanel.createListingTitle"
+        />
+      );
+    }
+    case SMALL_GAME_TYPES: {
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(tab)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={tab}
+          titleMsgId={'EditListingPanel.title.' + tab}
+          createListingTitleMsgId={'EditListingPanel.createListingTitle.'+tab}
         />
       );
     }

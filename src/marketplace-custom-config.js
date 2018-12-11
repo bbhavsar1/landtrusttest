@@ -21,6 +21,18 @@ export const fishTypes = [
   {key: 'white_bass', label: 'White Bass'},
   {key: 'yellow_perch', label: 'Yellow Perch'},
 ]
+
+export const smallGameTypes = [
+  {key: 'wild_pigs', label: 'Wild Pigs'},
+  {key: 'javelina', label: 'Javelina'},
+  {key: 'prairie_dogs', label: 'Prairie Dogs'},
+  {key: 'cotton_tail_rabbits', label: 'Cottontail Rabbits'},
+  {key: 'jackrabbits', label: 'Jackrabbits'},
+  {key: 'racoons', label: 'Racoons'},
+  {key: 'squirrels', label: 'Squirrels'},
+  {key: 'coyotes', label: 'Coyotes'},
+]
+
 export const agricultureTypes = [
   {
     key: 'alfalfa',

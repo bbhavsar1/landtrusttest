@@ -17,6 +17,7 @@ import EditListingWizardTab, {
   DESCRIPTION,
   FEATURES,
   FISH_TYPES,
+  SMALL_GAME_TYPES,
   PUBLIC_LANDS,
   AGRICULTURE_TYPES,
   LAND_TYPES,
@@ -44,7 +45,9 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelFeatures';
   } else if (tab === FISH_TYPES) {
     key = 'EditListingWizard.tabLabelFishTypes';
-  } else if (tab === PUBLIC_LANDS) {
+  } else if (tab === SMALL_GAME_TYPES) {
+    key = 'EditListingWizard.tabLabelSmallGameTypes';
+  }else if (tab === PUBLIC_LANDS) {
     key = 'EditListingWizard.tabLabelPublicLands';
   } else if (tab === AGRICULTURE_TYPES) {
     key = 'EditListingWizard.tabLabelAgricultureTypes';
@@ -87,6 +90,7 @@ const tabCompleted = (tab, listing) => {
     case FEATURES:
     case LAND_TYPES:
     case FISH_TYPES:
+    case SMALL_GAME_TYPES:
     case PUBLIC_LANDS:
     case AGRICULTURE_TYPES:
     case WATER_TYPES:
