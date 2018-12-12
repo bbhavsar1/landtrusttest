@@ -93,6 +93,7 @@ const EditListingWizardTab = props => {
     updatedTab,
     updateInProgress,
     intl,
+    onUpdateCategory,
   } = props;
 
   const { type } = params;
@@ -163,6 +164,7 @@ const EditListingWizardTab = props => {
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
+            onUpdateCategory(values.publicData.category)
           }}
         />
       );

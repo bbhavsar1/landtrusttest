@@ -32,7 +32,21 @@ import css from './EditListingWizard.css';
 
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const TABS = SUPPORTED_TABS;
+export const TABS_PREFIX = [DESCRIPTION, LOCATION, PUBLIC_LANDS];
+export const TABS_SUFFIX = [POLICY, PRICING, PHOTOS,];
+export const DEFAULT_TABS = TABS_PREFIX.concat(TABS_SUFFIX);
+export const HUNT_TABS = TABS_PREFIX.concat([
+  SMALL_GAME_TYPES,
+  AGRICULTURE_TYPES,
+  LAND_TYPES,
+  WATER_TYPES,
+  FEATURES,]).concat(TABS_SUFFIX);
+export const FISH_TABS = TABS_PREFIX.concat([
+  FISH_TYPES,
+  AGRICULTURE_TYPES,
+  LAND_TYPES,
+  WATER_TYPES,
+  FEATURES,]).concat(TABS_SUFFIX);
 
 // Tabs are horizontal in small screens
 const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
@@ -47,7 +61,7 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelFishTypes';
   } else if (tab === SMALL_GAME_TYPES) {
     key = 'EditListingWizard.tabLabelSmallGameTypes';
-  }else if (tab === PUBLIC_LANDS) {
+  } else if (tab === PUBLIC_LANDS) {
     key = 'EditListingWizard.tabLabelPublicLands';
   } else if (tab === AGRICULTURE_TYPES) {
     key = 'EditListingWizard.tabLabelAgricultureTypes';
@@ -80,25 +94,25 @@ const tabCompleted = (tab, listing) => {
   const { description, geolocation, price, title, publicData } = listing.attributes;
   const images = listing.images;
 
-  /**
-   * FU: Prefer to use bracket notation to prevent you from misspelling the name of
-   * the property which is based on the 'string' consts imported from EditListingWizardTab
-   */
+  if (!publicData){
+    return false;
+  }
+
   switch (tab) {
     case DESCRIPTION:
       return !!(description && title);
+    case LOCATION:
+      return !!(geolocation && publicData.location && publicData.location.address);      
+    case PUBLIC_LANDS:
     case FEATURES:
     case LAND_TYPES:
     case FISH_TYPES:
     case SMALL_GAME_TYPES:
-    case PUBLIC_LANDS:
     case AGRICULTURE_TYPES:
     case WATER_TYPES:
-      return !!(publicData);
+      return !!(publicData.location && publicData.location.address);
     case POLICY:
-      return !!(publicData && typeof publicData.rules !== 'undefined');
-    case LOCATION:
-      return !!(geolocation && publicData && publicData.location && publicData.location.address);
+      return !!(publicData.rules);
     case PRICING:
       return !!price;
     case PHOTOS:
@@ -117,11 +131,11 @@ const tabCompleted = (tab, listing) => {
  *
  * @return object containing activity / editability of different tabs of this wizard
  */
-const tabsActive = (isNew, listing) => {
-  return TABS.reduce((acc, tab) => {
-    const previousTabIndex = TABS.findIndex(t => t === tab) - 1;
+const tabsActive = (tabs, isNew, listing) => {
+  return tabs.reduce((acc, tab) => {
+    const previousTabIndex = tabs.findIndex(t => t === tab) - 1;
     const isActive =
-      previousTabIndex >= 0 ? !isNew || tabCompleted(TABS[previousTabIndex], listing) : true;
+      previousTabIndex >= 0 ? !isNew || tabCompleted(tabs[previousTabIndex], listing) : true;
     return { ...acc, [tab]: isActive };
   }, {});
 };
@@ -136,6 +150,17 @@ const scrollToTab = (tabPrefix, tabId) => {
   }
 };
 
+const getTabList = (category) => {
+  switch (category) {
+    case 'hunt':
+      return HUNT_TABS;
+    case 'fish':
+      return FISH_TABS;
+    default:
+      return DEFAULT_TABS;
+  }
+}
+
 // Create a new or edit listing through EditListingWizard
 class EditListingWizard extends Component {
   constructor(props) {
@@ -147,11 +172,13 @@ class EditListingWizard extends Component {
     this.state = {
       draftId: null,
       showPayoutDetails: false,
+      tabList: getTabList(props.listing.attributes.publicData.category),
     };
     this.handleCreateFlowTabScrolling = this.handleCreateFlowTabScrolling.bind(this);
     this.handlePublishListing = this.handlePublishListing.bind(this);
     this.handlePayoutModalClose = this.handlePayoutModalClose.bind(this);
     this.handlePayoutSubmit = this.handlePayoutSubmit.bind(this);
+    this.updateTabs = this.updateTabs.bind(this);
   }
 
   handleCreateFlowTabScrolling(shouldScroll) {
@@ -190,6 +217,10 @@ class EditListingWizard extends Component {
       });
   }
 
+  updateTabs(category) {
+    this.setState({ tabList: getTabList(category) });
+  }
+
   render() {
     const {
       id,
@@ -213,12 +244,12 @@ class EditListingWizard extends Component {
     const rootClasses = rootClassName || css.root;
     const classes = classNames(rootClasses, className);
     const currentListing = ensureListing(listing);
-    const tabsStatus = tabsActive(isNewListingFlow, currentListing);
+    const tabsStatus = tabsActive(this.state.tabList, isNewListingFlow, currentListing);
 
     // If selectedTab is not active, redirect to the beginning of wizard
     if (!tabsStatus[selectedTab]) {
-      const currentTabIndex = TABS.indexOf(selectedTab);
-      const nearestActiveTab = TABS.slice(0, currentTabIndex)
+      const currentTabIndex = this.state.tabList.indexOf(selectedTab);
+      const nearestActiveTab = this.state.tabList.slice(0, currentTabIndex)
         .reverse()
         .find(t => tabsStatus[t]);
 
@@ -252,7 +283,7 @@ class EditListingWizard extends Component {
           navRootClassName={css.nav}
           tabRootClassName={css.tab}
         >
-          {TABS.map(tab => {
+          {this.state.tabList.map(tab => {
             return (
               <EditListingWizardTab
                 {...rest}
@@ -266,11 +297,12 @@ class EditListingWizard extends Component {
                 intl={intl}
                 params={params}
                 listing={listing}
-                marketplaceTabs={TABS}
+                marketplaceTabs={this.state.tabList}
                 errors={errors}
                 handleCreateFlowTabScrolling={this.handleCreateFlowTabScrolling}
                 handlePublishListing={this.handlePublishListing}
                 fetchInProgress={fetchInProgress}
+                onUpdateCategory={this.updateTabs}
               />
             );
           })}
@@ -318,7 +350,7 @@ EditListingWizard.propTypes = {
     id: string.isRequired,
     slug: string.isRequired,
     type: oneOf(LISTING_PAGE_PARAM_TYPES).isRequired,
-    tab: oneOf(TABS).isRequired,
+    tab: oneOf(SUPPORTED_TABS).isRequired,
   }).isRequired,
 
   // We cannot use propTypes.listing since the listing might be a draft.
