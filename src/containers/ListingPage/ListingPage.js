@@ -210,7 +210,10 @@ export class ListingPageComponent extends Component {
       categoriesConfig,
       amenitiesConfig,
       fishTypesConfig,
+      bigGameTypesConfig,
       smallGameTypesConfig,
+      uplandGameTypesConfig,
+      waterfowlTypesConfig,
       publicLandsConfig,
       agricultureTypesConfig,
       landTypesConfig,
@@ -473,10 +476,28 @@ export class ListingPageComponent extends Component {
                     selectGroupId="ListingPage.fishTypes"
                   />
                   <SectionGenericList
+                    options={bigGameTypesConfig}
+                    selectedOptions={publicData.bigGameTypes}
+                    titleMsgId="ListingPage.bigGameTypesTitle"
+                    selectGroupId="ListingPage.bigGameTypes"
+                  />
+                  <SectionGenericList
                     options={smallGameTypesConfig}
                     selectedOptions={publicData.smallGameTypes}
                     titleMsgId="ListingPage.smallGameTypesTitle"
                     selectGroupId="ListingPage.smallGameTypes"
+                  />
+                  <SectionGenericList
+                    options={uplandGameTypesConfig}
+                    selectedOptions={publicData.uplandGameTypes}
+                    titleMsgId="ListingPage.uplandGameTypesTitle"
+                    selectGroupId="ListingPage.uplandGameTypes"
+                  />
+                  <SectionGenericList
+                    options={waterfowlTypesConfig}
+                    selectedOptions={publicData.waterfowlTypes}
+                    titleMsgId="ListingPage.waterfowlTypesTitle"
+                    selectGroupId="ListingPage.waterfowlTypes"
                   />
                   <SectionGenericList
                     options={publicLandsConfig}
@@ -566,7 +587,10 @@ ListingPageComponent.defaultProps = {
   categoriesConfig: config.custom.categories,
   amenitiesConfig: config.custom.amenities,
   fishTypesConfig: config.custom.fishTypes,
+  bigGameTypesConfig: config.custom.bigGameTypes,
   smallGameTypesConfig: config.custom.smallGameTypes,
+  uplandGameTypesConfig: config.custom.uplandGameTypes,
+  waterfowlTypesConfig: config.custom.waterfowlTypes,
   publicLandsConfig: config.custom.publicLands,
   agricultureTypesConfig: config.custom.agricultureTypes,
   landTypesConfig: config.custom.landTypes,
@@ -612,7 +636,10 @@ ListingPageComponent.propTypes = {
   categoriesConfig: array,
   amenitiesConfig: array,
   fishTypesConfig: array,
+  bigGameTypesConfig: array,
   smallGameTypesConfig: array,
+  uplandGameTypesConfig: array,
+  waterfowlTypesConfig: array,
   publicLandsConfig: array,
   agricultureTypesConfig: array,
   landTypesConfig: array,

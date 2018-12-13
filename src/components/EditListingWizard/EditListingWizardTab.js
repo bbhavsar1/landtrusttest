@@ -25,7 +25,10 @@ export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const PUBLIC_LANDS = 'publicLands'
 export const FISH_TYPES = 'fishTypes'
+export const BIG_GAME_TYPES = 'bigGameTypes'
 export const SMALL_GAME_TYPES = 'smallGameTypes'
+export const UPLAND_GAME_TYPES = 'uplandGameTypes'
+export const WATERFOWL_TYPES = 'waterfowlTypes'
 export const AGRICULTURE_TYPES = 'agricultureTypes'
 export const LAND_TYPES = 'landTypes'
 export const WATER_TYPES = 'waterTypes'
@@ -37,8 +40,8 @@ export const PHOTOS = 'photos';
 // EditListingWizardTab component supports these tabs
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, FISH_TYPES, SMALL_GAME_TYPES,
-  LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
+export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, FISH_TYPES, BIG_GAME_TYPES, SMALL_GAME_TYPES, UPLAND_GAME_TYPES,
+  WATERFOWL_TYPES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;
@@ -194,6 +197,20 @@ const EditListingWizardTab = props => {
         />
       );
     }
+    case BIG_GAME_TYPES: {
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(tab)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={tab}
+          titleMsgId={'EditListingPanel.title.' + tab}
+          createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
+        />
+      );
+    }
     case SMALL_GAME_TYPES: {
       return (
         <EditListingGenericListPanel
@@ -204,7 +221,35 @@ const EditListingWizardTab = props => {
           }}
           formId={tab}
           titleMsgId={'EditListingPanel.title.' + tab}
-          createListingTitleMsgId={'EditListingPanel.createListingTitle.'+tab}
+          createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
+        />
+      );
+    }
+    case UPLAND_GAME_TYPES: {
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(tab)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={tab}
+          titleMsgId={'EditListingPanel.title.' + tab}
+          createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
+        />
+      );
+    }
+    case WATERFOWL_TYPES: {
+      return (
+        <EditListingGenericListPanel
+          {...panelProps(tab)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+          formId={tab}
+          titleMsgId={'EditListingPanel.title.' + tab}
+          createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
         />
       );
     }

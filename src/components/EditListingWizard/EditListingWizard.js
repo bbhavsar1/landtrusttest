@@ -16,8 +16,11 @@ import { Modal, NamedRedirect, Tabs } from '../../components';
 import EditListingWizardTab, {
   DESCRIPTION,
   FEATURES,
-  FISH_TYPES,
+  FISH_TYPES,  
+  BIG_GAME_TYPES,
   SMALL_GAME_TYPES,
+  UPLAND_GAME_TYPES,
+  WATERFOWL_TYPES,
   PUBLIC_LANDS,
   AGRICULTURE_TYPES,
   LAND_TYPES,
@@ -36,7 +39,10 @@ export const TABS_PREFIX = [DESCRIPTION, LOCATION, PUBLIC_LANDS];
 export const TABS_SUFFIX = [POLICY, PRICING, PHOTOS,];
 export const DEFAULT_TABS = TABS_PREFIX.concat(TABS_SUFFIX);
 export const HUNT_TABS = TABS_PREFIX.concat([
+  BIG_GAME_TYPES,
   SMALL_GAME_TYPES,
+  UPLAND_GAME_TYPES,
+  WATERFOWL_TYPES,
   AGRICULTURE_TYPES,
   LAND_TYPES,
   WATER_TYPES,
@@ -57,8 +63,14 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelFeatures';
   } else if (tab === FISH_TYPES) {
     key = 'EditListingWizard.tabLabelFishTypes';
+  } else if (tab === BIG_GAME_TYPES) {
+    key = 'EditListingWizard.tabLabelBigGameTypes';
   } else if (tab === SMALL_GAME_TYPES) {
     key = 'EditListingWizard.tabLabelSmallGameTypes';
+  } else if (tab === UPLAND_GAME_TYPES) {
+    key = 'EditListingWizard.tabLabelUplandGameTypes';
+  } else if (tab === WATERFOWL_TYPES) {
+    key = 'EditListingWizard.tabLabelWaterfowlTypes';
   } else if (tab === PUBLIC_LANDS) {
     key = 'EditListingWizard.tabLabelPublicLands';
   } else if (tab === AGRICULTURE_TYPES) {
@@ -92,7 +104,7 @@ const tabCompleted = (tab, listing) => {
   const { description, geolocation, price, title, publicData } = listing.attributes;
   const images = listing.images;
 
-  if (!publicData){
+  if (!publicData) {
     return false;
   }
 
@@ -100,12 +112,15 @@ const tabCompleted = (tab, listing) => {
     case DESCRIPTION:
       return !!(description && title);
     case LOCATION:
-      return !!(geolocation && publicData.location && publicData.location.address);      
+      return !!(geolocation && publicData.location && publicData.location.address);
     case PUBLIC_LANDS:
     case FEATURES:
     case LAND_TYPES:
     case FISH_TYPES:
+    case BIG_GAME_TYPES:
     case SMALL_GAME_TYPES:
+    case UPLAND_GAME_TYPES:
+    case WATERFOWL_TYPES:
     case AGRICULTURE_TYPES:
     case WATER_TYPES:
       return !!(publicData.location && publicData.location.address);
