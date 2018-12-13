@@ -43,8 +43,6 @@ export const HUNT_TABS = TABS_PREFIX.concat([
   FEATURES,]).concat(TABS_SUFFIX);
 export const FISH_TABS = TABS_PREFIX.concat([
   FISH_TYPES,
-  AGRICULTURE_TYPES,
-  LAND_TYPES,
   WATER_TYPES,
   FEATURES,]).concat(TABS_SUFFIX);
 
