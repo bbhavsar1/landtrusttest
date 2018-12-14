@@ -52,11 +52,14 @@ const Item = props => {
 };
 
 const PropertyGroup = props => {
-  const { rootClassName, className, id, options, selectedOptions, twoColumns } = props;
+  const { rootClassName, className, id, options, selectedOptions, twoColumns, removeUnselected = false } = props;
   const classes = classNames(rootClassName || css.root, className);
   const listClasses = twoColumns ? classNames(classes, css.twoColumns) : classes;
 
-  const checked = checkSelected(options, selectedOptions);
+  let checked = checkSelected(options, selectedOptions);
+  if (removeUnselected){
+    checked = checked.filter((elem) => { return elem.isSelected });
+  }
 
   return (
     <ul className={listClasses}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { SelectedGroup } from '../../components';
+import { PropertyGroup } from '../../components';
 
 import css from './ListingPage.css';
 
@@ -11,11 +11,12 @@ const SectionGenericList = props => {
       <h2 className={css.genericListTitle}>
         <FormattedMessage id={titleMsgId} />
       </h2>
-      <SelectedGroup
+      <PropertyGroup
         id={selectGroupId}
         options={options}
         selectedOptions={selectedOptions}
         twoColumns={true}
+        removeUnselected={true}
       />
     </div>
   );

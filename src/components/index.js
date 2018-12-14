@@ -94,7 +94,6 @@ export { default as SectionHero } from './SectionHero/SectionHero';
 export { default as SectionHowItWorks } from './SectionHowItWorks/SectionHowItWorks';
 export { default as SectionLocations } from './SectionLocations/SectionLocations';
 export { default as SectionThumbnailLinks } from './SectionThumbnailLinks/SectionThumbnailLinks';
-export { default as SelectedGroup } from './SelectedGroup/SelectedGroup';
 export { default as SelectMultipleFilter } from './SelectMultipleFilter/SelectMultipleFilter';
 export { default as SelectMultipleFilterPlain } from './SelectMultipleFilterPlain/SelectMultipleFilterPlain';
 export { default as SelectSingleFilter } from './SelectSingleFilter/SelectSingleFilter';
