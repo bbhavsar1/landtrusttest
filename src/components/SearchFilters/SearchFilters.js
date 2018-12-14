@@ -47,7 +47,7 @@ const SearchFiltersComponent = props => {
     resultsCount,
     searchInProgress,
     categoryFilter,
-    amenitiesFilter,
+    publicLandsFilter,
     priceFilter,
     isSearchFiltersPanelOpen,
     toggleSearchFiltersPanel,
@@ -63,12 +63,12 @@ const SearchFiltersComponent = props => {
     id: 'SearchFilters.categoryLabel',
   });
 
-  const amenitiesLabel = intl.formatMessage({
-    id: 'SearchFilters.amenitiesLabel',
+  const publicLandsLabel = intl.formatMessage({
+    id: 'SearchFilters.publicLandsLabel',
   });
 
-  const initialAmenities = amenitiesFilter
-    ? initialValues(urlQueryParams, amenitiesFilter.paramName)
+  const initialPublicLands = publicLandsFilter
+    ? initialValues(urlQueryParams, publicLandsFilter.paramName)
     : null;
 
   const initialCategory = categoryFilter
@@ -119,15 +119,15 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
-  const amenitiesFilterElement = amenitiesFilter ? (
+  const publicLandsFilterElement = publicLandsFilter ? (
     <SelectMultipleFilter
-      id={'SearchFilters.amenitiesFilter'}
-      name="amenities"
-      urlParam={amenitiesFilter.paramName}
-      label={amenitiesLabel}
+      id={'SearchFilters.publicLandsFilter'}
+      name="publicLands"
+      urlParam={publicLandsFilter.paramName}
+      label={publicLandsLabel}
       onSelect={handleSelectOptions}
-      options={amenitiesFilter.options}
-      initialValues={initialAmenities}
+      options={publicLandsFilter.options}
+      initialValues={initialPublicLands}
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
     />
   ) : null;
@@ -165,7 +165,7 @@ const SearchFiltersComponent = props => {
     <div className={classes}>
       <div className={css.filters}>
         {categoryFilterElement}
-        {amenitiesFilterElement}
+        {publicLandsFilterElement}
         {priceFilterElement}
         {toggleSearchFiltersPanelButton}
       </div>
@@ -199,7 +199,7 @@ SearchFiltersComponent.defaultProps = {
   resultsCount: null,
   searchingInProgress: false,
   categoryFilter: null,
-  amenitiesFilter: null,
+  publicLandsFilter: null,
   isSearchFiltersPanelOpen: false,
   toggleSearchFiltersPanel: null,
   searchFiltersPanelSelectedCount: 0,
@@ -214,7 +214,7 @@ SearchFiltersComponent.propTypes = {
   searchingInProgress: bool,
   onManageDisableScrolling: func.isRequired,
   categoriesFilter: propTypes.filterConfig,
-  amenitiesFilter: propTypes.filterConfig,
+  publicLandsFilter: propTypes.filterConfig,
   priceFilter: propTypes.filterConfig,
   isSearchFiltersPanelOpen: bool,
   toggleSearchFiltersPanel: func,

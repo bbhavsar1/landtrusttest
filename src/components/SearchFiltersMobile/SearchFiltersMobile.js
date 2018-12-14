@@ -149,7 +149,7 @@ class SearchFiltersMobileComponent extends Component {
       onManageDisableScrolling,
       selectedFiltersCount,
       categoryFilter,
-      amenitiesFilter,
+      publicLandsFilter,
       priceFilter,
       intl,
     } = this.props;
@@ -196,19 +196,19 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
-    const amenitiesLabel = intl.formatMessage({ id: 'SearchFiltersMobile.amenitiesLabel' });
+    const publicLandsLabel = intl.formatMessage({ id: 'SearchFiltersMobile.publicLandsFilter' });
 
-    const initialAmenities = this.initialValues(amenitiesFilter.paramName);
+    const initialPublicLands = this.initialValues(publicLandsFilter.paramName);
 
-    const amenitiesFilterElement = amenitiesFilter ? (
+    const publicLandsFilterElement = publicLandsFilter ? (
       <SelectMultipleFilterPlain
-        id="SearchFiltersMobile.amenitiesFilter"
-        name="amenities"
-        urlParam={amenitiesFilter.paramName}
-        label={amenitiesLabel}
+        id="SearchFiltersMobile.publicLandsFilter"
+        name="publicLands"
+        urlParam={publicLandsFilter.paramName}
+        label={publicLandsLabel}
         onSelect={this.handleSelectMultiple}
-        options={amenitiesFilter.options}
-        initialValues={initialAmenities}
+        options={publicLandsFilter.options}
+        initialValues={initialPublicLands}
       />
     ) : null;
 
@@ -255,7 +255,7 @@ class SearchFiltersMobileComponent extends Component {
           </div>
           <div className={css.filtersWrapper}>
             {categoryFilterElement}
-            {amenitiesFilterElement}
+            {publicLandsFilterElement}
             {priceFilterElement}
           </div>
           <div className={css.showListingsContainer}>
@@ -277,7 +277,7 @@ SearchFiltersMobileComponent.defaultProps = {
   selectedFiltersCount: 0,
   filterParamNames: [],
   categoryFilter: null,
-  amenitiesFilter: null,
+  publicLandsFilter: null,
 };
 
 SearchFiltersMobileComponent.propTypes = {
@@ -295,7 +295,7 @@ SearchFiltersMobileComponent.propTypes = {
   selectedFiltersCount: number,
   filterParamNames: array,
   categoriesFilter: propTypes.filterConfig,
-  amenitiesFilter: propTypes.filterConfig,
+  publicLandsFilter: propTypes.filterConfig,
 
   // from injectIntl
   intl: intlShape.isRequired,

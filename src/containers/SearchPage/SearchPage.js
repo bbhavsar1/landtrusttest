@@ -52,16 +52,16 @@ export class SearchPageComponent extends Component {
   }
 
   filters() {
-    const { categories, amenities, priceFilterConfig } = this.props;
+    const { categories, publicLands, priceFilterConfig } = this.props;
 
     return {
       categoryFilter: {
         paramName: 'pub_category',
         options: categories,
       },
-      amenitiesFilter: {
-        paramName: 'pub_amenities',
-        options: amenities,
+      publicLandsFilter: {
+        paramName: 'pub_publicLands',
+        options: publicLands,
       },
       priceFilter: {
         paramName: 'price',
@@ -208,7 +208,7 @@ export class SearchPageComponent extends Component {
             showAsModalMaxWidth={MODAL_BREAKPOINT}
             primaryFilters={{
               categoryFilter: filters.categoryFilter,
-              amenitiesFilter: filters.amenitiesFilter,
+              publicLandsFilter: filters.publicLandsFilter,
               priceFilter: filters.priceFilter,
             }}
           />
@@ -254,7 +254,7 @@ SearchPageComponent.defaultProps = {
   searchParams: {},
   tab: 'listings',
   categories: config.custom.categories,
-  amenities: config.custom.amenities,
+  publicLands: config.custom.publicLands,
   priceFilterConfig: config.custom.priceFilterConfig,
   activeListingId: null,
 };
@@ -272,7 +272,7 @@ SearchPageComponent.propTypes = {
   searchParams: object,
   tab: oneOf(['filters', 'listings', 'map']).isRequired,
   categories: array,
-  amenities: array,
+  publicLands: array,
   priceFilterConfig: shape({
     min: number.isRequired,
     max: number.isRequired,
