@@ -48,12 +48,12 @@ export const ListingCardComponent = props => {
   const id = currentListing.id.uuid;
   const { title = '', price } = currentListing.attributes;
   const slug = createSlug(title);
-  const author = ensureUser(listing.author);
-  const authorName = author.attributes.profile.displayName;
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
 
   const { formattedPrice, priceTitle } = priceData(price, intl);
+  const { category } = listing.attributes.publicData;
+  const { getCustomLabel } = config.custom;
 
   return (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
@@ -73,12 +73,9 @@ export const ListingCardComponent = props => {
         </div>
       </div>
       <div className={css.info}>
-        <div className={css.price}>
+        <div className={css.category}>
           <div className={css.priceValue} title={priceTitle}>
-            {formattedPrice}
-          </div>
-          <div className={css.perUnit}>
-            <FormattedMessage id="ListingCard.perUnit" />
+            {getCustomLabel(config.custom.categories, category)}
           </div>
         </div>
         <div className={css.mainInfo}>
@@ -88,12 +85,13 @@ export const ListingCardComponent = props => {
               longWordClass: css.longWord,
             })}
           </div>
-          <div className={css.authorInfo}>
-            <FormattedMessage
-              className={css.authorName}
-              id="ListingCard.hostedBy"
-              values={{ authorName }}
-            />
+        </div>
+        <div className={css.price}>
+          <div className={css.priceValue} title={priceTitle}>
+            {formattedPrice}
+          </div>
+          <div className={css.perUnit}>
+            <FormattedMessage id="ListingCard.perUnit" />
           </div>
         </div>
       </div>

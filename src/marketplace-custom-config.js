@@ -261,8 +261,8 @@ export const amenities = [
 ];
 
 export const categories = [
-  { key: 'hunt', label: 'Hunt' },
-  { key: 'fish', label: 'Fish' },
+  { key: 'hunt', label: 'Hunting' },
+  { key: 'fish', label: 'Fishing' },
   { key: 'access', label: 'Access' },
 ];
 
@@ -272,4 +272,9 @@ export const priceFilterConfig = {
   min: 0,
   max: 1000,
   step: 5,
+};
+
+export const getCustomLabel = (customArray, key) => {
+  const pair = customArray.find(c => c.key === key);
+  return pair ? pair.label : key;
 };
