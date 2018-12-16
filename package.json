@@ -85,6 +85,6 @@
     "proseWrap": "always"
   },
   "engines": {
-    "node": "10.14.1"
+    "node": "10.14.2"
   }
 }
