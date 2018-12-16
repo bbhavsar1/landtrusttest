@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { lazyLoadWithDimensions } from '../../util/contextHelpers';
 import { propTypes } from '../../util/types';
 import { formatMoney } from '../../util/currency';
-import { ensureListing, ensureUser } from '../../util/data';
+import { ensureListing } from '../../util/data';
 import { richText } from '../../util/richText';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
