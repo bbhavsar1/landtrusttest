@@ -52,12 +52,16 @@ export class SearchPageComponent extends Component {
   }
 
   filters() {
-    const { categories, publicLands, priceFilterConfig } = this.props;
+    const { categories, bigGameTypes, publicLands, priceFilterConfig } = this.props;
 
     return {
       categoryFilter: {
         paramName: 'pub_category',
         options: categories,
+      },
+      bigGameTypesFilter: {
+        paramName: 'pub_bigGameTypes',
+        options: bigGameTypes,
       },
       publicLandsFilter: {
         paramName: 'pub_publicLands',
@@ -208,8 +212,11 @@ export class SearchPageComponent extends Component {
             showAsModalMaxWidth={MODAL_BREAKPOINT}
             primaryFilters={{
               categoryFilter: filters.categoryFilter,
-              publicLandsFilter: filters.publicLandsFilter,
+              bigGameTypesFilter: filters.bigGameTypesFilter,
               priceFilter: filters.priceFilter,
+            }}
+            secondaryFilters={{
+              publicLandsFilter: filters.publicLandsFilter,
             }}
           />
           <ModalInMobile
@@ -254,6 +261,7 @@ SearchPageComponent.defaultProps = {
   searchParams: {},
   tab: 'listings',
   categories: config.custom.categories,
+  bigGameTypes: config.custom.bigGameTypes,
   publicLands: config.custom.publicLands,
   priceFilterConfig: config.custom.priceFilterConfig,
   activeListingId: null,
@@ -272,6 +280,7 @@ SearchPageComponent.propTypes = {
   searchParams: object,
   tab: oneOf(['filters', 'listings', 'map']).isRequired,
   categories: array,
+  bigGameTypes: array,
   publicLands: array,
   priceFilterConfig: shape({
     min: number.isRequired,

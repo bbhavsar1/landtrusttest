@@ -35,7 +35,8 @@ import omit from 'lodash/omit';
 
 import routeConfiguration from '../../routeConfiguration';
 import { createResourceLocatorString } from '../../util/routes';
-import { InlineTextButton } from '../../components';
+import { InlineTextButton, SelectMultipleFilter } from '../../components';
+import { propTypes } from '../../util/types';
 import css from './SearchFiltersPanel.css';
 
 class SearchFiltersPanelComponent extends Component {
@@ -151,12 +152,34 @@ class SearchFiltersPanelComponent extends Component {
   }
 
   render() {
-    const { rootClassName, className } = this.props;
+    const {
+      rootClassName,
+      className,
+      publicLandsFilter,
+      intl } = this.props;
+
+    const initialPublicLands = this.initialValues(publicLandsFilter.paramName);
+
+    const publicLandsFilterElement = publicLandsFilter ? (
+      <SelectMultipleFilter
+        id={'SearchFiltersPanel.publicLandsFilter'}
+        name="publicLands"
+        urlParam={publicLandsFilter.paramName}
+        label={intl.formatMessage({ id: 'SearchFiltersPanel.publicLandsLabel' })}
+        onSelect={this.handleSelectMultiple}
+        options={publicLandsFilter.options}
+        initialValues={initialPublicLands}
+        twoColumns={true}
+      />
+    ) : null;
+
     const classes = classNames(rootClassName || css.root, className);
 
     return (
       <div className={classes}>
-        <div className={css.filtersWrapper}>{/* Add filters here */}</div>
+        <div className={css.filtersWrapper}>
+          {publicLandsFilterElement}
+        </div>
         <div className={css.footer}>
           <InlineTextButton className={css.resetAllButton} onClick={this.resetAll}>
             <FormattedMessage id={'SearchFiltersPanel.resetAll'} />
@@ -177,6 +200,7 @@ SearchFiltersPanelComponent.defaultProps = {
   rootClassName: null,
   className: null,
   filterParamNames: [],
+  publicLandsFilter: null,
 };
 
 SearchFiltersPanelComponent.propTypes = {
@@ -185,6 +209,7 @@ SearchFiltersPanelComponent.propTypes = {
   urlQueryParams: object.isRequired,
   onClosePanel: func.isRequired,
   filterParamNames: array,
+  publicLandsFilter: propTypes.filterConfig,
 
   // from injectIntl
   intl: intlShape.isRequired,

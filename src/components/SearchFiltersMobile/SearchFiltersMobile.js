@@ -131,9 +131,9 @@ class SearchFiltersMobileComponent extends Component {
 
     return !!price && valuesFromParams.length === 2
       ? {
-          minPrice: valuesFromParams[0],
-          maxPrice: valuesFromParams[1],
-        }
+        minPrice: valuesFromParams[0],
+        maxPrice: valuesFromParams[1],
+      }
       : null;
   }
 
@@ -149,6 +149,7 @@ class SearchFiltersMobileComponent extends Component {
       onManageDisableScrolling,
       selectedFiltersCount,
       categoryFilter,
+      bigGameTypesFilter,
       publicLandsFilter,
       priceFilter,
       intl,
@@ -175,10 +176,10 @@ class SearchFiltersMobileComponent extends Component {
           <FormattedMessage id="SearchFilters.filtersButtonLabel" className={css.mapIconText} />
         </Button>
       ) : (
-        <SecondaryButton className={css.filtersButton} onClick={this.openFilters}>
-          <FormattedMessage id="SearchFilters.filtersButtonLabel" className={css.mapIconText} />
-        </SecondaryButton>
-      );
+          <SecondaryButton className={css.filtersButton} onClick={this.openFilters}>
+            <FormattedMessage id="SearchFilters.filtersButtonLabel" className={css.mapIconText} />
+          </SecondaryButton>
+        );
 
     const categoryLabel = intl.formatMessage({
       id: 'SearchFiltersMobile.categoryLabel',
@@ -196,8 +197,21 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
-    const publicLandsLabel = intl.formatMessage({ id: 'SearchFiltersMobile.publicLandsLabel' });
+    const bigGameTypesLabel = intl.formatMessage({ id: 'SearchFiltersMobile.bigGameTypesLabel' });
+    const initialBigGameTypes = this.initialValues(bigGameTypesFilter.paramName);
+    const bigGameTypesFilterElement = bigGameTypesFilter ? (
+      <SelectMultipleFilterPlain
+        id="SearchFiltersMobile.bigGameTypesFilter"
+        name="bigGameTypes"
+        urlParam={bigGameTypesFilter.paramName}
+        label={bigGameTypesLabel}
+        onSelect={this.handleSelectMultiple}
+        options={bigGameTypesFilter.options}
+        initialValues={initialBigGameTypes}
+      />
+    ) : null;
 
+    const publicLandsLabel = intl.formatMessage({ id: 'SearchFiltersMobile.publicLandsLabel' });
     const initialPublicLands = this.initialValues(publicLandsFilter.paramName);
 
     const publicLandsFilterElement = publicLandsFilter ? (
@@ -255,6 +269,7 @@ class SearchFiltersMobileComponent extends Component {
           </div>
           <div className={css.filtersWrapper}>
             {categoryFilterElement}
+            {bigGameTypesFilterElement}
             {publicLandsFilterElement}
             {priceFilterElement}
           </div>
@@ -277,6 +292,7 @@ SearchFiltersMobileComponent.defaultProps = {
   selectedFiltersCount: 0,
   filterParamNames: [],
   categoryFilter: null,
+  bigGameTypesFilter:null,
   publicLandsFilter: null,
 };
 
@@ -295,6 +311,7 @@ SearchFiltersMobileComponent.propTypes = {
   selectedFiltersCount: number,
   filterParamNames: array,
   categoriesFilter: propTypes.filterConfig,
+  bigGameTypesFilter: propTypes.filterConfig,
   publicLandsFilter: propTypes.filterConfig,
 
   // from injectIntl

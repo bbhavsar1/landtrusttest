@@ -32,9 +32,9 @@ const initialPriceRangeValue = (queryParams, paramName) => {
 
   return !!price && valuesFromParams.length === 2
     ? {
-        minPrice: valuesFromParams[0],
-        maxPrice: valuesFromParams[1],
-      }
+      minPrice: valuesFromParams[0],
+      maxPrice: valuesFromParams[1],
+    }
     : null;
 };
 
@@ -47,7 +47,7 @@ const SearchFiltersComponent = props => {
     resultsCount,
     searchInProgress,
     categoryFilter,
-    publicLandsFilter,
+    bigGameTypesFilter,
     priceFilter,
     isSearchFiltersPanelOpen,
     toggleSearchFiltersPanel,
@@ -63,13 +63,12 @@ const SearchFiltersComponent = props => {
     id: 'SearchFilters.categoryLabel',
   });
 
-  const publicLandsLabel = intl.formatMessage({
-    id: 'SearchFilters.publicLandsLabel',
+  const bigGameTypesLabel = intl.formatMessage({
+    id: 'SearchFilters.bigGameTypesLabel',
   });
 
-  const initialPublicLands = publicLandsFilter
-    ? initialValues(urlQueryParams, publicLandsFilter.paramName)
-    : null;
+  const initialBigGameTypes = bigGameTypesFilter
+    ? initialValues(urlQueryParams, bigGameTypesFilter.paramName) : null;
 
   const initialCategory = categoryFilter
     ? initialValue(urlQueryParams, categoryFilter.paramName)
@@ -119,15 +118,15 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
-  const publicLandsFilterElement = publicLandsFilter ? (
+  const bigGameTypesFilterElement = bigGameTypesFilter ? (
     <SelectMultipleFilter
-      id={'SearchFilters.publicLandsFilter'}
-      name="publicLands"
-      urlParam={publicLandsFilter.paramName}
-      label={publicLandsLabel}
+      id={'SearchFilters.bigGameTypesFilter'}
+      name="bigGameTypes"
+      urlParam={bigGameTypesFilter.paramName}
+      label={bigGameTypesLabel}
       onSelect={handleSelectOptions}
-      options={publicLandsFilter.options}
-      initialValues={initialPublicLands}
+      options={bigGameTypesFilter.options}
+      initialValues={initialBigGameTypes}
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
     />
   ) : null;
@@ -165,7 +164,7 @@ const SearchFiltersComponent = props => {
     <div className={classes}>
       <div className={css.filters}>
         {categoryFilterElement}
-        {publicLandsFilterElement}
+        {bigGameTypesFilterElement}
         {priceFilterElement}
         {toggleSearchFiltersPanelButton}
       </div>
@@ -199,7 +198,7 @@ SearchFiltersComponent.defaultProps = {
   resultsCount: null,
   searchingInProgress: false,
   categoryFilter: null,
-  publicLandsFilter: null,
+  bigGameTypesFilter: null,
   isSearchFiltersPanelOpen: false,
   toggleSearchFiltersPanel: null,
   searchFiltersPanelSelectedCount: 0,
@@ -214,7 +213,7 @@ SearchFiltersComponent.propTypes = {
   searchingInProgress: bool,
   onManageDisableScrolling: func.isRequired,
   categoriesFilter: propTypes.filterConfig,
-  publicLandsFilter: propTypes.filterConfig,
+  bigGameTypesFilter: propTypes.filterConfig,
   priceFilter: propTypes.filterConfig,
   isSearchFiltersPanelOpen: bool,
   toggleSearchFiltersPanel: func,
