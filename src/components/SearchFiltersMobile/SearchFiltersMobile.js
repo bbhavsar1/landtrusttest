@@ -196,7 +196,7 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
-    const publicLandsLabel = intl.formatMessage({ id: 'SearchFiltersMobile.publicLandsFilter' });
+    const publicLandsLabel = intl.formatMessage({ id: 'SearchFiltersMobile.publicLandsLabel' });
 
     const initialPublicLands = this.initialValues(publicLandsFilter.paramName);
 
