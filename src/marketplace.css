@@ -42,7 +42,10 @@
 
   /* ================ Colors ================ */
 
-  --marketplaceColor: #fd3713;
+  --ltColor: #fd3713;
+  --ltColorAnti: #ffffff;
+  
+  --marketplaceColor: var(--ltColor);
   --marketplaceColorLight: #ff4c38;
   --marketplaceColorDark: #8c291e;
 
@@ -182,7 +185,7 @@
 
     /* Borders */
     border-style: solid;
-    border-color: var(--marketplaceColor);
+    border-color: var(--ltColor);
     border-radius: var(--borderRadius);
 
     /* Colors */
@@ -200,8 +203,8 @@
     &:hover,
     &:focus {
       outline: none;
-      background-color: var(--marketplaceColor);
-      color: var(--matterColorLight);
+      background-color: var(--ltColor);
+      color: var(--ltColorAnti);
       text-decoration: none;
       box-shadow: var(--boxShadowButton);
     }
@@ -220,13 +223,13 @@
   --marketplaceButtonStylesPrimary {
     @apply --marketplaceButtonStyles;
 
-    background-color: var(--matterColorLight);
-    color: var(--successColorDark);
+    background-color: var(--ltColor);
+    color: var(--ltColorAnti);
 
     &:hover,
     &:focus {
-      background-color: var(--successColorDark);
-      color: var(--matterColorLight);
+      background-color: var(--ltColorAnti);
+      color: var(--ltColor);
     }
     &:disabled {
       background-color: var(--matterColorNegative);
