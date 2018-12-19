@@ -13,3 +13,4 @@ build
 .vscode/**
 .DS_Store
 *.log
+nohup.out
