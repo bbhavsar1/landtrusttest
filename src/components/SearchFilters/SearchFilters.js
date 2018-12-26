@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import omit from 'lodash/omit';
 
-import { SelectSingleFilter, SelectMultipleFilter, PriceFilter } from '../../components';
+import { SelectCategoryFilter, SelectMultipleFilter, PriceFilter } from '../../components';
 import routeConfiguration from '../../routeConfiguration';
 import { createResourceLocatorString } from '../../util/routes';
 import { propTypes } from '../../util/types';
@@ -108,7 +108,7 @@ const SearchFiltersComponent = props => {
   };
 
   const categoryFilterElement = categoryFilter ? (
-    <SelectSingleFilter
+    <SelectCategoryFilter
       urlParam={categoryFilter.paramName}
       label={categoryLabel}
       onSelect={handleSelectOption}

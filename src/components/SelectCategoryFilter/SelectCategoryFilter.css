@@ -1,0 +1,25 @@
+@import '../../marketplace.css';
+
+.filterContainer{
+  display: flex;
+  flex-direction: row
+}
+
+.filterButton {  
+  @apply --ltButtonStyle;
+
+
+  width: auto;
+  height: auto;
+  min-height: 0;
+  margin-right: 4px;
+}
+
+.filterButtonSelected {
+  @apply --ltButtonSelectedStyle;
+
+  width: auto;
+  height: auto;
+  min-height: 0;
+  margin-right: 4px;
+}
