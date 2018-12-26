@@ -42,6 +42,13 @@
 
   /* ================ Colors ================ */
 
+  --ltBackgroundColor: #ffffff;
+  --ltForegroundColor: #000000;
+  --ltBorderColor: #EEEEEE;
+  --ltFocusBorderColor: #CBCBCB;
+  --ltFocusBackgroundColor: #ff4c38;
+  --ltFocusForegroundColor: var(--ltBackgroundColor);
+
   --ltColor: #fd3713;
   --ltColorAnti: #ffffff;
   
@@ -161,7 +168,7 @@
 
   --marketplaceButtonFontStyles: {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightRegular);
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.3px;
@@ -170,6 +177,65 @@
       /* TODO: Make sure button text aligns with the baseline */
     }
   }
+
+  --ltButtonStyle {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: var(--fontWeightSemiBold);
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.3px;
+    
+    @media (--viewportMedium) {
+      /* TODO: Make sure button text aligns with the baseline */
+    }
+
+    /* Dimensions */
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    margin: 0;
+
+    padding: 4px 24px;
+
+    /* Borders */
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--ltBorderColor);
+    border-radius: var(--borderRadius);
+
+    /* Colors */
+    background-color: transparent;
+    color: var(--ltForegroundColor);
+
+    /* Text */
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      border-color: var(--ltFocusBorderColor);
+      outline: none;
+    }
+
+    @media (--viewportMedium) {
+      min-height: 65px;
+    }
+  }
+
+  --ltButtonSelectedStyle {
+    @apply --ltButtonStyle;
+    font-weight: var(--fontWeightSemiBold);
+    border-color: var(--ltFocusBackgroundColor);
+    background-color: var(--ltFocusBackgroundColor);
+    color: var(--ltFocusForegroundColor);
+    &:hover,
+    &:focus {
+      border-color: var(--ltFocusBackgroundColor);
+    }
+  }
+  
   --marketplaceButtonStyles {
     @apply --marketplaceButtonFontStyles;
 
@@ -200,26 +266,11 @@
     transition: all var(--transitionStyleButton);
     cursor: pointer;
 
-    &:hover,
-    &:focus {
-      outline: none;
-      background-color: var(--ltColor);
-      color: var(--ltColorAnti);
-      text-decoration: none;
-      box-shadow: var(--boxShadowButton);
-    }
-    &:disabled {
-      background-color: var(--matterColorNegative);
-      color: var(--matterColorLight);
-      cursor: not-allowed;
-      box-shadow: none;
-      border-color: var(--matterColorNegative);
-    }
-
     @media (--viewportMedium) {
       min-height: 65px;
     }
   }
+
   --marketplaceButtonStylesPrimary {
     @apply --marketplaceButtonStyles;
 
@@ -262,6 +313,7 @@
       border-color: var(--matterColorNegative);
     }
   }
+  
 
   /* ================ Inputs ================ */
 
