@@ -62,6 +62,8 @@ const SearchFiltersComponent = props => {
     history
   } = props;
 
+
+
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
 
@@ -85,6 +87,7 @@ const SearchFiltersComponent = props => {
 
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
+
 
   const handleSelectOption = (urlParam, option) => {
     // query parameters after selecting the option
