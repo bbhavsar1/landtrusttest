@@ -21,6 +21,14 @@ const initialValue = (queryParams, paramName) => {
   return queryParams[paramName];
 };
 
+const getInitialSpecies = (queryParams, speciesFilters) => {
+  let obj = speciesFilters.find(a => queryParams[a.paramName]);
+  if (obj) {
+    return queryParams[obj.paramName];
+  }
+  return null;
+};
+
 // resolve initial values for a multi value filter
 const initialValues = (queryParams, paramName) => {
   return !!queryParams[paramName] ? queryParams[paramName].split(',') : [];
@@ -47,26 +55,19 @@ const SearchFiltersComponent = props => {
     resultsCount,
     searchInProgress,
     categoryFilter,
-    bigGameTypesFilter,
     priceFilter,
     isSearchFiltersPanelOpen,
     toggleSearchFiltersPanel,
     searchFiltersPanelSelectedCount,
-    history,
-    intl,
+    history
   } = props;
-
-
 
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
 
-  const bigGameTypesLabel = intl.formatMessage({
-    id: 'SearchFilters.bigGameTypesLabel',
-  });
-
-  const initialBigGameTypes = bigGameTypesFilter
-    ? initialValues(urlQueryParams, bigGameTypesFilter.paramName) : null;
+  const initialSpecies = getInitialSpecies(urlQueryParams, [
+    props.bigGameTypesFilter, props.smallGameTypesFilter, props.uplandGameTypesFilter,
+    props.waterfowlTypesFilter, props.fishTypesFilter]);
 
   const initialCategory = categoryFilter
     ? initialValue(urlQueryParams, categoryFilter.paramName)
@@ -84,7 +85,6 @@ const SearchFiltersComponent = props => {
 
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
-
 
   const handleSelectOption = (urlParam, option) => {
     // query parameters after selecting the option
@@ -156,6 +156,7 @@ const SearchFiltersComponent = props => {
       key={initialCategory}
       onSelect={handleSpeciesSelectOption}
       categoryValue={initialCategory}
+      initialValue={initialSpecies}
     />
   ) : null;
 

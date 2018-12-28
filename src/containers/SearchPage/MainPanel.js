@@ -85,6 +85,7 @@ class MainPanel extends Component {
           onManageDisableScrolling={onManageDisableScrolling}
           {...searchFiltersPanelProps}
           {...primaryFilters}
+          {...secondaryFilters}
         />
         <SearchFiltersMobile
           className={css.searchFiltersMobile}

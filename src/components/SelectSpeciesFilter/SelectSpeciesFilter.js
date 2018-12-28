@@ -5,16 +5,32 @@ import AsyncSelect from 'react-select/lib/Async';
 import css from './SelectSpeciesFilter.css';
 import { bigGameTypes, fishTypes, smallGameTypes, uplandGameTypes, waterfowlTypes } from '../../marketplace-custom-config';
 
-const huntOptions = [
+const huntOptionGroups = [
   { group: 'Big Game', paramName: 'pub_bigGameTypes', options: bigGameTypes },
   { group: 'Small Game', paramName: 'pub_smallGameTypes', options: smallGameTypes },
   { group: 'Upland', paramName: 'pub_uplandGameTypes', options: uplandGameTypes },
   { group: 'Waterfowl', paramName: 'pub_waterfowlTypes', options: waterfowlTypes },
 ];
 
+const huntOptions = bigGameTypes.concat(smallGameTypes, uplandGameTypes, waterfowlTypes);
+
+const findInitialValue = (categoryValue, speciesValue) => {
+  if (categoryValue === 'hunt') {
+    return huntOptions.find(a => a.key === speciesValue);
+  }
+  else if (categoryValue === 'fish') {
+    return fishTypes.find(a => a.key === speciesValue);
+  }
+  return null;
+};
+
+
 class SelectSpeciesFilter extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      initialValue: (props.initialValue ? findInitialValue(this.props.categoryValue, props.initialValue) : null)
+    }
     this.speciesOptions = this.speciesOptions.bind(this);
     this.filterSpecies = this.filterSpecies.bind(this);
     this.loadOptions = this.loadOptions.bind(this);
@@ -25,9 +41,11 @@ class SelectSpeciesFilter extends Component {
   handleFilterSelect(selection) {
     if (selection) {
       this.props.onSelect(selection.paramName, selection.value);
+      this.setState({ initialValue: selection });
       return;
     }
     this.props.onSelect(null);
+    this.setState({ initialValue: null });
   }
 
   filterStyles() {
@@ -98,7 +116,7 @@ class SelectSpeciesFilter extends Component {
         );
         break;
       case 'hunt':
-        huntOptions.forEach(t => {
+        huntOptionGroups.forEach(t => {
           const opts = [];
           t.options.forEach(a => {
             opts.push({
@@ -134,6 +152,7 @@ class SelectSpeciesFilter extends Component {
     return (
       <div className={css.root}>
         <AsyncSelect
+          value={this.state.initialValue}
           styles={this.filterStyles()}
           cacheOptions
           loadOptions={this.loadOptions}

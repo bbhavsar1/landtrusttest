@@ -227,11 +227,15 @@ export class SearchPageComponent extends Component {
             searchParamsForPagination={parse(location.search)}
             showAsModalMaxWidth={MODAL_BREAKPOINT}
             primaryFilters={{
-              categoryFilter: filters.categoryFilter,
-              bigGameTypesFilter: filters.bigGameTypesFilter,
+              categoryFilter: filters.categoryFilter,              
               priceFilter: filters.priceFilter,
             }}
             secondaryFilters={{
+              bigGameTypesFilter: filters.bigGameTypesFilter,
+              smallGameTypesFilter: filters.smallGameTypesFilter,
+              uplandGameTypesFilter: filters.uplandGameTypesFilter,
+              waterfowlTypesFilter: filters.waterfowlTypesFilter,
+              fishTypesFilter: filters.fishTypesFilter,
               publicLandsFilter: filters.publicLandsFilter,
             }}
           />
