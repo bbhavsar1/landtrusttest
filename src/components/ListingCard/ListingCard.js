@@ -74,9 +74,7 @@ export const ListingCardComponent = props => {
       </div>
       <div className={css.info}>
         <div className={css.category}>
-          <div className={css.priceValue} title={priceTitle}>
             {getCustomLabel(config.custom.categories, category)}
-          </div>
         </div>
         <div className={css.mainInfo}>
           <div className={css.title}>

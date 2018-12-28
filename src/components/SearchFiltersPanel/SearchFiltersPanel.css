@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--matterColorBright);
+  background-color: var(--ltBackgroundColor);
 }
 
 .filtersWrapper {

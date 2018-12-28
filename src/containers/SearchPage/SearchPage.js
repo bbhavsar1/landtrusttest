@@ -52,7 +52,7 @@ export class SearchPageComponent extends Component {
   }
 
   filters() {
-    const { categories, bigGameTypes, publicLands, priceFilterConfig } = this.props;
+    const { categories, publicLands, priceFilterConfig } = this.props;
 
     return {
       categoryFilter: {
@@ -61,7 +61,23 @@ export class SearchPageComponent extends Component {
       },
       bigGameTypesFilter: {
         paramName: 'pub_bigGameTypes',
-        options: bigGameTypes,
+        options: config.custom.bigGameTypes,
+      },
+      smallGameTypesFilter:{
+        paramName: 'pub_smallGameTypes',
+        options: config.custom.smallGameTypes,
+      },
+      uplandGameTypesFilter:{
+        paramName: 'pub_uplandGameTypes',
+        options: config.custom.uplandGameTypes,
+      },
+      waterfowlTypesFilter:{
+        paramName: 'pub_waterfowlTypes',
+        options: config.custom.waterfowlTypes,
+      },
+      fishTypesFilter:{
+        paramName: 'pub_fishTypes',
+        options: config.custom.fishTypes,
       },
       publicLandsFilter: {
         paramName: 'pub_publicLands',
@@ -261,7 +277,6 @@ SearchPageComponent.defaultProps = {
   searchParams: {},
   tab: 'listings',
   categories: config.custom.categories,
-  bigGameTypes: config.custom.bigGameTypes,
   publicLands: config.custom.publicLands,
   priceFilterConfig: config.custom.priceFilterConfig,
   activeListingId: null,
@@ -280,7 +295,6 @@ SearchPageComponent.propTypes = {
   searchParams: object,
   tab: oneOf(['filters', 'listings', 'map']).isRequired,
   categories: array,
-  bigGameTypes: array,
   publicLands: array,
   priceFilterConfig: shape({
     min: number.isRequired,

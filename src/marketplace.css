@@ -70,7 +70,7 @@
   --matterColor: #4a4a4a;
   --matterColorAnti: #b2b2b2;
   --matterColorNegative: #e7e7e7;
-  --matterColorBright: #fcfcfc;
+  --matterColorBright: var(--ltBackgroundColor);
   --matterColorLight: #ffffff;
 
   --matterColorLightTransparent: var(--matterColorLight);
@@ -190,10 +190,10 @@
     }
 
     /* Dimensions */
-    display: block;
     width: 100%;
     min-height: 30px;
     margin: 0;
+    white-space: nowrap;
 
     padding: 4px 24px;
 
@@ -218,10 +218,6 @@
       border-color: var(--ltFocusBorderColor);
       outline: none;
     }
-
-    @media (--viewportMedium) {
-      min-height: 65px;
-    }
   }
 
   --ltButtonSelectedStyle {
@@ -234,6 +230,13 @@
     &:focus {
       border-color: var(--ltFocusBackgroundColor);
     }
+  }
+
+  --ltFilterButtonStyle { 
+    width: 100px;
+    height: 30px;
+    min-height: 0;
+    margin: 4px 4px 4px 0px;
   }
   
   --marketplaceButtonStyles {

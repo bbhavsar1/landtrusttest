@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import omit from 'lodash/omit';
 
-import { SelectCategoryFilter, SelectMultipleFilter, PriceFilter } from '../../components';
+import { SelectCategoryFilter, SelectSpeciesFilter, PriceFilter } from '../../components';
 import routeConfiguration from '../../routeConfiguration';
 import { createResourceLocatorString } from '../../util/routes';
 import { propTypes } from '../../util/types';
@@ -56,12 +56,10 @@ const SearchFiltersComponent = props => {
     intl,
   } = props;
 
+
+
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
-
-  const categoryLabel = intl.formatMessage({
-    id: 'SearchFilters.categoryLabel',
-  });
 
   const bigGameTypesLabel = intl.formatMessage({
     id: 'SearchFilters.bigGameTypesLabel',
@@ -87,6 +85,7 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
+
   const handleSelectOption = (urlParam, option) => {
     // query parameters after selecting the option
     // if no option is passed, clear the selection for the filter
@@ -94,6 +93,38 @@ const SearchFiltersComponent = props => {
       ? { ...urlQueryParams, [urlParam]: option }
       : omit(urlQueryParams, urlParam);
 
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  };
+
+  const removeSpeciesSelectOption = () => {
+    const cleanUrlQueryParams = { ...urlQueryParams }
+    delete cleanUrlQueryParams.pub_fishTypes;
+    delete cleanUrlQueryParams.pub_bigGameTypes;
+    delete cleanUrlQueryParams.pub_smallGameTypes;
+    delete cleanUrlQueryParams.pub_uplandGameTypes;
+    delete cleanUrlQueryParams.pub_waterfowlGameTypes;
+    return cleanUrlQueryParams;
+  }
+
+  const handleCategorySelectOption = (urlParam, option) => {
+    const cleanUrlQueryParams = removeSpeciesSelectOption();
+    delete cleanUrlQueryParams.pub_category;
+    handleCategoryBasedSelectOption(urlParam, option, cleanUrlQueryParams);
+  };
+
+  const handleSpeciesSelectOption = (urlParam, option) => {
+    const cleanUrlQueryParams = removeSpeciesSelectOption();
+    if (urlParam) {
+      handleCategoryBasedSelectOption(urlParam, option, cleanUrlQueryParams);
+      return;
+    }
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, cleanUrlQueryParams));
+  };
+
+  const handleCategoryBasedSelectOption = (urlParam, option, cleanUrlQueryParams) => {
+    const queryParams = option
+      ? { ...cleanUrlQueryParams, [urlParam]: option }
+      : omit(cleanUrlQueryParams, urlParam);
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
@@ -110,24 +141,21 @@ const SearchFiltersComponent = props => {
   const categoryFilterElement = categoryFilter ? (
     <SelectCategoryFilter
       urlParam={categoryFilter.paramName}
-      label={categoryLabel}
-      onSelect={handleSelectOption}
+      onSelect={handleCategorySelectOption}
       options={categoryFilter.options}
       initialValue={initialCategory}
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
     />
   ) : null;
 
-  const bigGameTypesFilterElement = bigGameTypesFilter ? (
-    <SelectMultipleFilter
-      id={'SearchFilters.bigGameTypesFilter'}
-      name="bigGameTypes"
-      urlParam={bigGameTypesFilter.paramName}
-      label={bigGameTypesLabel}
-      onSelect={handleSelectOptions}
-      options={bigGameTypesFilter.options}
-      initialValues={initialBigGameTypes}
-      contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
+  const isSpeciesFilterEnabled = initialCategory &&
+    (initialCategory === 'hunt' || initialCategory === 'fish') ? true : false;
+
+  const speciesFilterElement = isSpeciesFilterEnabled ? (
+    <SelectSpeciesFilter
+      key={initialCategory}
+      onSelect={handleSpeciesSelectOption}
+      categoryValue={initialCategory}
     />
   ) : null;
 
@@ -164,9 +192,8 @@ const SearchFiltersComponent = props => {
     <div className={classes}>
       <div className={css.filters}>
         {categoryFilterElement}
-        {bigGameTypesFilterElement}
+        {speciesFilterElement}
         {priceFilterElement}
-        {toggleSearchFiltersPanelButton}
       </div>
 
       {listingsAreLoaded && resultsCount > 0 ? (

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { string, func, arrayOf, shape, number } from 'prop-types';
-import classNames from 'classnames';
 import css from './SelectCategoryFilter.css';
 
 class SelectCategoryFilter extends Component {
@@ -49,17 +48,12 @@ class SelectCategoryFilter extends Component {
 }
 
 SelectCategoryFilter.defaultProps = {
-  rootClassName: null,
-  className: null,
   initialValue: null,
   contentPlacementOffset: 0,
 };
 
 SelectCategoryFilter.propTypes = {
-  rootClassName: string,
-  className: string,
   urlParam: string.isRequired,
-  label: string.isRequired,
   onSelect: func.isRequired,
   options: arrayOf(
     shape({
