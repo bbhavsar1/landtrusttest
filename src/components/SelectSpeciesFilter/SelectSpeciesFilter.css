@@ -2,12 +2,14 @@
 
 .root {
   position: relative;
-  display: inline-block;
+  display: flex;
 }
 
 .label {
   @apply --ltButtonStyle;
   @apply --ltFilterButtonStyle;
+  background-color: 'red';
+  font-size: 10px;
 }
 
 .labelSelected {

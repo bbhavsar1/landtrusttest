@@ -568,7 +568,6 @@
   "ReviewModal.title": "Leave a review for {revieweeName}",
   "Reviews.bannedUserDisplayName": "Banned user",
   "SearchFilters.bigGameTypesLabel": "Big Game",
-  "SearchFilters.categoryLabel": "Category",
   "SearchFilters.filtersButtonLabel": "Filters",
   "SearchFilters.foundResults": "{count, number} {count, plural, one {result} other {results}}",
   "SearchFilters.loadingResults": "Loading search results…",
