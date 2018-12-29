@@ -71,7 +71,7 @@ const SearchFiltersComponent = props => {
     props.bigGameTypesFilter, props.smallGameTypesFilter, props.uplandGameTypesFilter,
     props.waterfowlTypesFilter, props.fishTypesFilter]);
 
-  const initialCategory = categoryFilter
+  const activity = categoryFilter
     ? initialValue(urlQueryParams, categoryFilter.paramName)
     : null;
 
@@ -146,19 +146,19 @@ const SearchFiltersComponent = props => {
       urlParam={categoryFilter.paramName}
       onSelect={handleCategorySelectOption}
       options={categoryFilter.options}
-      initialValue={initialCategory}
+      initialValue={activity}
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
     />
   ) : null;
 
-  const isSpeciesFilterEnabled = initialCategory &&
-    (initialCategory === 'hunt' || initialCategory === 'fish') ? true : false;
+  const isSpeciesFilterEnabled = activity &&
+    (activity === 'hunt' || activity === 'fish') ? true : false;
 
   const speciesFilterElement = isSpeciesFilterEnabled ? (
     <SelectSpeciesFilter
-      key={initialCategory}
+      key={activity}
       onSelect={handleSpeciesSelectOption}
-      categoryValue={initialCategory}
+      activity={activity}
       initialValue={initialSpecies}
     />
   ) : null;

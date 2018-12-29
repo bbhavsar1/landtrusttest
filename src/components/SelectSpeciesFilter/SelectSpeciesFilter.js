@@ -1,9 +1,66 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
 import { injectIntl } from 'react-intl';
-import AsyncSelect from 'react-select/lib/Async';
+import Select from 'react-select';
 import css from './SelectSpeciesFilter.css';
 import { bigGameTypes, fishTypes, smallGameTypes, uplandGameTypes, waterfowlTypes } from '../../marketplace-custom-config';
+
+const defaultStyle = {
+  width: '200px',
+  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontSize: '12px',
+  color: '#000000',
+};
+
+const cssStyles = {
+  control: styles => ({
+    ...styles,
+    ...defaultStyle,
+    margin: '4px 4px 4px 0px',
+    minHeight: '30px',
+    height: '30px',
+    borderColor: '#eeeeee',
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      ...defaultStyle,
+      padding: '0px 0px 0px 10px'
+    };
+  },
+  input: styles => ({
+    ...styles
+  }),
+  placeholder: styles => ({
+    ...styles,
+    ...defaultStyle,
+    fontWeight: 600
+  }),
+  group: (styles, { data }) => ({
+    ...styles,
+    ...defaultStyle,
+  }),
+  singleValue: (styles, { data }) => ({
+    ...styles,
+    fontWeight: 600
+  }),
+  clearIndicator: (styles) => ({
+    ...styles,
+    padding: '2px',
+  }),
+  dropdownIndicator: (styles) => ({
+    ...styles,
+    padding: '2px',
+  }),
+  loadingMessage: (styles) => ({
+    ...styles,
+    ...defaultStyle
+  }),
+  noOptionsMessage: (styles) => ({
+    ...styles,
+    ...defaultStyle
+  }),
+};
 
 const huntOptionGroups = [
   { group: 'Big Game', paramName: 'pub_bigGameTypes', options: bigGameTypes },
@@ -14,31 +71,32 @@ const huntOptionGroups = [
 
 const huntOptions = bigGameTypes.concat(smallGameTypes, uplandGameTypes, waterfowlTypes);
 
-const findInitialValue = (categoryValue, speciesValue) => {
-  if (categoryValue === 'hunt') {
-    return huntOptions.find(a => a.key === speciesValue);
-  }
-  else if (categoryValue === 'fish') {
-    return fishTypes.find(a => a.key === speciesValue);
-  }
-  return null;
-};
-
-
 class SelectSpeciesFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialValue: (props.initialValue ? findInitialValue(this.props.categoryValue, props.initialValue) : null)
+      initialValue: (props.initialValue ? this.findInitialValue() : null)
     }
-    this.speciesOptions = this.speciesOptions.bind(this);
-    this.filterSpecies = this.filterSpecies.bind(this);
-    this.loadOptions = this.loadOptions.bind(this);
-    this.filterStyles = this.filterStyles.bind(this);
-    this.handleFilterSelect = this.handleFilterSelect.bind(this);
+    this.findInitialValue = this.findInitialValue.bind(this);
+    this.generateOptions = this.generateOptions.bind(this);
+    this.onSelect = this.onSelect.bind(this);
   }
 
-  handleFilterSelect(selection) {
+  findInitialValue() {
+    const { activity, initialValue } = this.props;
+    if (!initialValue) {
+      return null;
+    }
+    if (activity === 'hunt') {
+      return huntOptions.find(a => a.key === initialValue);
+    }
+    else if (activity === 'fish') {
+      return fishTypes.find(a => a.key === initialValue);
+    }
+    return null;
+  };
+
+  onSelect(selection) {
     if (selection) {
       this.props.onSelect(selection.paramName, selection.value);
       this.setState({ initialValue: selection });
@@ -48,71 +106,13 @@ class SelectSpeciesFilter extends Component {
     this.setState({ initialValue: null });
   }
 
-  filterStyles() {
-    const defaultStyle = {
-      width: '200px',
-      fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-      fontSize: '12px',
-      color: '#000000',
-    };
-    return {
-      control: styles => ({
-        ...styles,
-        ...defaultStyle,
-        margin: '4px 4px 4px 0px',
-        minHeight: '30px',
-        height: '30px',
-        borderColor: '#eeeeee',
-      }),
-      option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-        return {
-          ...styles,
-          ...defaultStyle,
-          padding: '0px 0px 0px 10px'
-        };
-      },
-      input: styles => ({
-        ...styles
-      }),
-      placeholder: styles => ({
-        ...styles,
-        ...defaultStyle,
-        fontWeight: 600
-      }),
-      group: (styles, { data }) => ({
-        ...styles,
-        ...defaultStyle,
-      }),
-      singleValue: (styles, { data }) => ({
-        ...styles,
-        fontWeight: 600
-      }),
-      clearIndicator: (styles) => ({
-        ...styles,
-        padding: '2px',
-      }),
-      dropdownIndicator: (styles) => ({
-        ...styles,
-        padding: '2px',
-      }),
-      loadingMessage: (styles) => ({
-        ...styles,
-        ...defaultStyle
-      }),
-      noOptionsMessage: (styles) => ({
-        ...styles,
-        ...defaultStyle
-      }),
-    };
-  }
-
-  speciesOptions() {
-    const { categoryValue } = this.props;
+  generateOptions() {
+    const { activity } = this.props;
     const res = [];
-    switch (categoryValue) {
+    switch (activity) {
       case 'fish':
         fishTypes.forEach(a =>
-          res.push({ value: a.key, label: a.label, category: categoryValue, paramName: 'pub_fishTypes' })
+          res.push({ value: a.key, label: a.label, category: activity, paramName: 'pub_fishTypes' })
         );
         break;
       case 'hunt':
@@ -121,7 +121,7 @@ class SelectSpeciesFilter extends Component {
           t.options.forEach(a => {
             opts.push({
               value: a.key, label: a.label,
-              category: categoryValue, paramName: t.paramName,
+              category: activity, paramName: t.paramName,
             });
           })
           res.push({ label: t.group, options: opts })
@@ -133,33 +133,16 @@ class SelectSpeciesFilter extends Component {
     return res;
   };
 
-  filterSpecies(inputValue) {
-    if (inputValue) {
-      return this.speciesOptions().filter(i =>
-        i.label.toLowerCase().includes(inputValue.toLowerCase())
-      );
-    }
-    return this.speciesOptions();
-  };
-
-  loadOptions(inputValue, callback) {
-    setTimeout(() => {
-      callback(this.filterSpecies(inputValue));
-    }, 1000);
-  };
-
   render() {
     return (
       <div className={css.root}>
-        <AsyncSelect
+        <Select
           value={this.state.initialValue}
-          styles={this.filterStyles()}
-          cacheOptions
-          loadOptions={this.loadOptions}
-          defaultOptions
-          onInputChange={this.handleInputChange}
+          styles={cssStyles}
+          options={this.generateOptions()}
+          onInputChange={this.onInputChange}
           isClearable={true}
-          onChange={this.handleFilterSelect}
+          onSelect={this.onSelect}
         />
       </div>
     );
@@ -167,7 +150,7 @@ class SelectSpeciesFilter extends Component {
 }
 
 SelectSpeciesFilter.propTypes = {
-  categoryValue: string.isRequired,
+  activity: string.isRequired,
   onSelect: func.isRequired,
 };
 
