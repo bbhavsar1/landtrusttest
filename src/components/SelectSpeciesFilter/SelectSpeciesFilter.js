@@ -140,9 +140,8 @@ class SelectSpeciesFilter extends Component {
           value={this.state.initialValue}
           styles={cssStyles}
           options={this.generateOptions()}
-          onInputChange={this.onInputChange}
           isClearable={true}
-          onSelect={this.onSelect}
+          onChange={this.onSelect}
         />
       </div>
     );
@@ -150,7 +149,9 @@ class SelectSpeciesFilter extends Component {
 }
 
 SelectSpeciesFilter.propTypes = {
+  key: string.isRequired,
   activity: string.isRequired,
+  initialValue: string,
   onSelect: func.isRequired,
 };
 
