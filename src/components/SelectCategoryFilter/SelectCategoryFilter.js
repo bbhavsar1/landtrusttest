@@ -32,9 +32,10 @@ class SelectCategoryFilter extends Component {
           // check if this option is selected
           const selected = initialValue === option.key;
           const filterButtonClass = selected ? css.filterButtonSelected : css.filterButton;
-          
+
           return (
             <button
+              key={option.key}
               className={filterButtonClass}
               onClick={() => this.selectOption(urlParam, option.key)}
             >
