@@ -93,7 +93,7 @@ const cssStyles = {
   }),
   indicatorSeparator: (styles, state) => ({
     ...styles,
-    backgroundColor: state.hasValue ? ltActiveForegroundColor : ltForegroundColor
+    backgroundColor: state.hasValue ? ltActiveForegroundColor : ltBorderColor
   }),
   loadingMessage: (styles) => ({
     ...styles,
