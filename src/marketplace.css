@@ -42,14 +42,16 @@
 
   /* ================ Colors ================ */
 
+  --ltColor: #fd3713;
   --ltBackgroundColor: #ffffff;
   --ltForegroundColor: #000000;
   --ltBorderColor: #EEEEEE;
   --ltFocusBorderColor: #CBCBCB;
-  --ltFocusBackgroundColor: #ff4c38;
-  --ltFocusForegroundColor: var(--ltBackgroundColor);
+  --ltHoverForegroundColor: var(--ltColor);
 
-  --ltColor: #fd3713;
+  --ltActiveBackgroundColor: var(--ltColor);
+  --ltActiveForegroundColor: var(--ltBackgroundColor);
+
   --ltColorAnti: #ffffff;
   
   --marketplaceColor: var(--ltColor);
@@ -223,12 +225,12 @@
   --ltButtonSelectedStyle {
     @apply --ltButtonStyle;
     font-weight: var(--fontWeightSemiBold);
-    border-color: var(--ltFocusBackgroundColor);
-    background-color: var(--ltFocusBackgroundColor);
-    color: var(--ltFocusForegroundColor);
+    border-color: var(--ltActiveBackgroundColor);
+    background-color: var(--ltActiveBackgroundColor);
+    color: var(--ltActiveForegroundColor);
     &:hover,
     &:focus {
-      border-color: var(--ltFocusBackgroundColor);
+      border-color: var(--ltActiveBackgroundColor);
     }
   }
 
