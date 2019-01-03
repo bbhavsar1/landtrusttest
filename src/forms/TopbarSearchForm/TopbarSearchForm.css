@@ -75,7 +75,8 @@
   display: flex;
   width: 24px;
   align-self: stretch;
-  background-color: var(--matterColorLight);
+  background-color: var(--ltTopbarBackgroundColor);
+  color: var(--ltTopbarForegroundColor);
 }
 
 .desktopInput {
@@ -106,11 +107,12 @@
 
   &:hover::placeholder,
   &:focus::placeholder {
-    color: var(--matterColor);
+    color: var(--ltHoverForegroundColor);
   }
 
   /* Placeholder text might be too wide */
   &::placeholder {
+    color: var(--ltTopbarForegroundColor);
     text-overflow: ellipsis;
     overflow-x: hidden;
     font-weight: var(--fontWeightRegular);

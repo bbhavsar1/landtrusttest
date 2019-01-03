@@ -50,7 +50,7 @@
   padding: 0 12px 0 0;
 
   /* fill */
-  background-color: var(--matterColorLight);
+  background-color: var(--ltTopbarBackgroundColor);
 
   /* shadows */
   box-shadow: var(--boxShadowLight);
@@ -118,12 +118,12 @@
   flex-shrink: 0;
   height: 100%;
   padding: 0 12px 0 12px;
-  color: var(--marketplaceColor);
+  color: var(--ltTopbarForegroundColor);
   margin-top: 0;
   margin-bottom: 0;
 
   &:hover {
-    color: var(--marketplaceColorDark);
+    color: var(--ltHoverForegroundColor);
   }
 
   @media (--viewportMedium) {
@@ -144,10 +144,10 @@
   padding: 0 12px 0 12px;
   margin-top: 0;
   margin-bottom: 0;
-  color: var(--matterColor);
+  color: var(--ltTopbarForegroundColor);
 
   &:hover {
-    color: var(--matterColorDark);
+    color: var(--ltHoverForegroundColor);
   }
 
   @media (--viewportMedium) {

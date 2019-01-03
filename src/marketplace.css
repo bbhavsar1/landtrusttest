@@ -52,6 +52,9 @@
   --ltActiveBackgroundColor: var(--ltColor);
   --ltActiveForegroundColor: var(--ltBackgroundColor);
 
+  --ltTopbarBackgroundColor: #000000;
+  --ltTopbarForegroundColor: #ffffff;
+
   --ltColorAnti: #ffffff;
   
   --marketplaceColor: var(--ltColor);
