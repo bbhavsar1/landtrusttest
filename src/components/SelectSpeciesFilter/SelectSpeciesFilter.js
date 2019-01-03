@@ -43,7 +43,6 @@ const cssStyles = {
       backgroundColor: isSelected ? ltActiveBackgroundColor : ltBackgroundColor,
       color: isSelected ? ltActiveForegroundColor : ltForegroundColor,
       '&:hover': {
-        textTransform: 'uppercase',
         color: ltHoverForegroundColor,        
         fontWeight: 'bold'
       },
