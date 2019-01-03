@@ -53,7 +53,16 @@ export const ListingCardComponent = props => {
 
   const { formattedPrice, priceTitle } = priceData(price, intl);
   const { category } = listing.attributes.publicData;
-  const { getCustomLabel } = config.custom;
+  const { getCustomLabel, getSpecies } = config.custom;
+
+  const getTitle = () => {
+    let res = getCustomLabel(config.custom.categories, category);
+    let suffix = getSpecies(listing.attributes.publicData);
+    if (suffix) {
+      res += ' - ' + suffix;
+    }
+    return res;
+  }
 
   return (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
@@ -73,8 +82,8 @@ export const ListingCardComponent = props => {
         </div>
       </div>
       <div className={css.info}>
-        <div className={css.category}>
-            {getCustomLabel(config.custom.categories, category)}
+        <div className={css.header}>
+          {getTitle()}
         </div>
         <div className={css.mainInfo}>
           <div className={css.title}>
