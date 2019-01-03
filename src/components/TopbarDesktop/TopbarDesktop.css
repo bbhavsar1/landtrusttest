@@ -93,6 +93,12 @@
   @media (min-width: 1024px) {
     padding-left: 0;
   }
+
+  &:hover {
+    border-bottom: 4px solid var(--marketplaceColor);
+    border-radius: 0;
+    text-decoration: none;
+  }
 }
 
 .search {
@@ -122,10 +128,6 @@
   margin-top: 0;
   margin-bottom: 0;
 
-  &:hover {
-    color: var(--ltHoverForegroundColor);
-  }
-
   @media (--viewportMedium) {
     margin-top: 0;
     margin-bottom: 0;
@@ -145,10 +147,6 @@
   margin-top: 0;
   margin-bottom: 0;
   color: var(--ltTopbarForegroundColor);
-
-  &:hover {
-    color: var(--ltHoverForegroundColor);
-  }
 
   @media (--viewportMedium) {
     margin-top: 0;
