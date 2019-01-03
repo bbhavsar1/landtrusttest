@@ -312,7 +312,7 @@ export const getSpecies = (listingPublicData) => {
     addSpecies(res, listingPublicData.waterfowlTypes, waterfowlTypes);
   }
 
-  if (res.length == 0) {
+  if (res.length === 0) {
     return null;
   }
   return res.toString();
