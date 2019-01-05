@@ -209,15 +209,6 @@ export class ListingPageComponent extends Component {
       fetchTimeSlotsError,
       categoriesConfig,
       amenitiesConfig,
-      fishTypesConfig,
-      bigGameTypesConfig,
-      smallGameTypesConfig,
-      uplandGameTypesConfig,
-      waterfowlTypesConfig,
-      publicLandsConfig,
-      agricultureTypesConfig,
-      landTypesConfig,
-      waterTypesConfig,
     } = this.props;
 
     const isBook = !!parse(location.search).book;
@@ -465,64 +456,76 @@ export class ListingPageComponent extends Component {
                     onContactUser={this.onContactUser}
                   />
                   <SectionDescriptionMaybe description={description} />
-                  <SectionFeatures
-                    options={amenitiesConfig}
-                    selectedOptions={publicData.amenities}
+                  <SectionGenericList
+                    options={config.custom.huntMotMap}
+                    selectedOptions={publicData.huntMotTypes}
+                    titleMsgId="ListingPage.huntMotTypesTitle"
+                    selectGroupId="ListingPage.huntMotTypes"
                   />
                   <SectionGenericList
-                    options={fishTypesConfig}
+                    options={config.custom.fishMotMap}
+                    selectedOptions={publicData.fishMotTypes}
+                    titleMsgId="ListingPage.fishMotTypesTitle"
+                    selectGroupId="ListingPage.fishMotTypes"
+                  />                  
+                  <SectionGenericList
+                    options={config.custom.fishTypeMap}
                     selectedOptions={publicData.fishTypes}
                     titleMsgId="ListingPage.fishTypesTitle"
                     selectGroupId="ListingPage.fishTypes"
                   />
                   <SectionGenericList
-                    options={bigGameTypesConfig}
+                    options={config.custom.bigGameTypeMap}
                     selectedOptions={publicData.bigGameTypes}
                     titleMsgId="ListingPage.bigGameTypesTitle"
                     selectGroupId="ListingPage.bigGameTypes"
                   />
                   <SectionGenericList
-                    options={smallGameTypesConfig}
+                    options={config.custom.smallGameTypeMap}
                     selectedOptions={publicData.smallGameTypes}
                     titleMsgId="ListingPage.smallGameTypesTitle"
                     selectGroupId="ListingPage.smallGameTypes"
                   />
                   <SectionGenericList
-                    options={uplandGameTypesConfig}
+                    options={config.custom.uplandGameTypeMap}
                     selectedOptions={publicData.uplandGameTypes}
                     titleMsgId="ListingPage.uplandGameTypesTitle"
                     selectGroupId="ListingPage.uplandGameTypes"
                   />
                   <SectionGenericList
-                    options={waterfowlTypesConfig}
+                    options={config.custom.waterfowlTypeMap}
                     selectedOptions={publicData.waterfowlTypes}
                     titleMsgId="ListingPage.waterfowlTypesTitle"
                     selectGroupId="ListingPage.waterfowlTypes"
                   />
                   <SectionGenericList
-                    options={publicLandsConfig}
+                    options={config.custom.publicLandMap}
                     selectedOptions={publicData.publicLands}
                     titleMsgId="ListingPage.publicLandsTitle"
                     selectGroupId="ListingPage.publicLands"
                   />
                   <SectionGenericList
-                    options={agricultureTypesConfig}
+                    options={config.custom.agricultureTypeMap}
                     selectedOptions={publicData.agricultureTypes}
                     titleMsgId="ListingPage.agricultureTypesTitle"
                     selectGroupId="ListingPage.agricultureTypes"
                   />
                   <SectionGenericList
-                    options={landTypesConfig}
+                    options={config.custom.landTypeMap}
                     selectedOptions={publicData.landTypes}
                     titleMsgId="ListingPage.landTypesTitle"
                     selectGroupId="ListingPage.landTypes"
                   />
                   <SectionGenericList
-                    options={waterTypesConfig}
+                    options={config.custom.waterTypeMap}
                     selectedOptions={publicData.waterTypes}
                     titleMsgId="ListingPage.waterTypesTitle"
                     selectGroupId="ListingPage.waterTypes"
-                  />
+                  />     
+                  <SectionFeatures
+                    options={amenitiesConfig}
+                    selectedOptions={publicData.amenities}
+                  />             
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
                     geolocation={geolocation}
@@ -586,15 +589,6 @@ ListingPageComponent.defaultProps = {
   sendEnquiryError: null,
   categoriesConfig: config.custom.categories,
   amenitiesConfig: config.custom.amenities,
-  fishTypesConfig: config.custom.fishTypes,
-  bigGameTypesConfig: config.custom.bigGameTypes,
-  smallGameTypesConfig: config.custom.smallGameTypes,
-  uplandGameTypesConfig: config.custom.uplandGameTypes,
-  waterfowlTypesConfig: config.custom.waterfowlTypes,
-  publicLandsConfig: config.custom.publicLands,
-  agricultureTypesConfig: config.custom.agricultureTypes,
-  landTypesConfig: config.custom.landTypes,
-  waterTypesConfig: config.custom.waterTypes,
 };
 
 ListingPageComponent.propTypes = {
@@ -635,15 +629,6 @@ ListingPageComponent.propTypes = {
 
   categoriesConfig: array,
   amenitiesConfig: array,
-  fishTypesConfig: array,
-  bigGameTypesConfig: array,
-  smallGameTypesConfig: array,
-  uplandGameTypesConfig: array,
-  waterfowlTypesConfig: array,
-  publicLandsConfig: array,
-  agricultureTypesConfig: array,
-  landTypesConfig: array,
-  waterTypesConfig: array,
 };
 
 const mapStateToProps = state => {

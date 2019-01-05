@@ -53,7 +53,42 @@ export const ListingCardComponent = props => {
 
   const { formattedPrice, priceTitle } = priceData(price, intl);
   const { category } = listing.attributes.publicData;
-  const { getCustomLabel, getSpecies } = config.custom;
+  const { getCustomLabel, bigGameTypeMap, smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap, fishTypeMap } = config.custom;
+
+  const addSpecies = (cache, pubDataSpeciesType, speciesMap) => {
+    if (!pubDataSpeciesType) {
+      return;
+    }
+    pubDataSpeciesType.forEach(a => {
+      let label = getCustomLabel(speciesMap, a);
+      if (label) {
+        cache.push(label);
+      }
+    });
+  }
+
+  const getSpecies = () => {
+    let { publicData } = listing.attributes;
+
+    if (publicData.category === 'access') {
+      return null;
+    }
+    let res = [];
+    if (publicData.category === 'fish') {
+      addSpecies(res, publicData.fishTypes, fishTypeMap);
+    }
+    else {
+      addSpecies(res, publicData.bigGameTypes, bigGameTypeMap);
+      addSpecies(res, publicData.smallGameTypes, smallGameTypeMap);
+      addSpecies(res, publicData.uplandGameTypes, uplandGameTypeMap);
+      addSpecies(res, publicData.waterfowlTypes, waterfowlTypeMap);
+    }
+
+    if (res.length === 0) {
+      return null;
+    }
+    return res.toString();
+  };
 
   const getTitle = () => {
     let res = getCustomLabel(config.custom.categories, category);

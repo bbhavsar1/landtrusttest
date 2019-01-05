@@ -9,7 +9,7 @@ export const ltHoverForegroundColor = '#fd3713';
 export const ltActiveBackgroundColor = '#fd3713';
 export const ltActiveForegroundColor = '#ffffff';
 
-export const fishTypes = [
+export const fishTypeMap = [
   { key: 'salmon', label: 'Salmon' },
   { key: 'black_crappie', label: 'Black crappie' },
   { key: 'blue_gill', label: 'Bluegill' },
@@ -29,7 +29,7 @@ export const fishTypes = [
   { key: 'yellow_perch', label: 'Yellow Perch' },
 ]
 
-export const bigGameTypes = [
+export const bigGameTypeMap = [
   { key: 'black_bear', label: 'Black Bear' },
   { key: 'mountain_lion', label: 'Mountain Lion' },
   { key: 'mule_deer', label: 'Mule Deer' },
@@ -40,7 +40,7 @@ export const bigGameTypes = [
   { key: 'Wolf', label: 'Wolf' },
 ]
 
-export const smallGameTypes = [
+export const smallGameTypeMap = [
   { key: 'wild_pigs', label: 'Wild Pigs' },
   { key: 'javelina', label: 'Javelina' },
   { key: 'prairie_dogs', label: 'Prairie Dogs' },
@@ -51,7 +51,7 @@ export const smallGameTypes = [
   { key: 'coyotes', label: 'Coyotes' },
 ]
 
-export const uplandGameTypes = [
+export const uplandGameTypeMap = [
   { key: 'mourning_doves', label: 'Mourning Doves' },
   { key: 'eurasian_doves', label: 'Eurasian Doves' },
   { key: 'pigeons', label: 'Pigeons' },
@@ -68,7 +68,7 @@ export const uplandGameTypes = [
   { key: 'turkeys', label: 'Turkeys' },
 ]
 
-export const waterfowlTypes = [
+export const waterfowlTypeMap = [
   { key: 'ducks', label: 'Ducks' },
   { key: 'canada_geese', label: 'Canada Geese' },
   { key: 'snow_geese', label: 'Snow Geese' },
@@ -76,181 +76,86 @@ export const waterfowlTypes = [
   { key: 'white_fronted_geese', label: 'White-fronted Geese' },
 ]
 
-export const agricultureTypes = [
-  {
-    key: 'alfalfa',
-    label: 'Alfalfa',
-  },
-  {
-    key: 'wheat',
-    label: 'Wheat',
-  },
-  {
-    key: 'sorgum',
-    label: 'Sorgum',
-  },
-  {
-    key: 'corn',
-    label: 'Corn',
-  },
-  {
-    key: 'cotton',
-    label: 'Cotton',
-  },
-  {
-    key: 'soy_beans',
-    label: 'Soy Beans',
-  },
-  {
-    key: 'oats',
-    label: 'Oats',
-  },
+export const agricultureTypeMap = [
+  { key: 'alfalfa', label: 'Alfalfa', },
+  { key: 'wheat', label: 'Wheat', },
+  { key: 'sorgum', label: 'Sorgum', },
+  { key: 'corn', label: 'Corn', },
+  { key: 'cotton', label: 'Cotton', },
+  { key: 'soy_beans', label: 'Soy Beans', },
+  { key: 'oats', label: 'Oats', },
 ]
 
-export const landTypes = [
-  {
-    key: 'mountains',
-    label: 'Mountains',
-  },
-  {
-    key: 'hills',
-    label: 'Hills',
-  },
-  {
-    key: 'creeks',
-    label: 'Creeks',
-  },
-  {
-    key: 'draws',
-    label: 'Draws',
-  },
-  {
-    key: 'fields',
-    label: 'Fields',
-  },
-  {
-    key: 'forest',
-    label: 'Forest',
-  },
-  {
-    key: 'meadow',
-    label: 'Meadow',
-  },
-  {
-    key: 'island',
-    label: 'Island',
-  },
-  {
-    key: 'mesa',
-    label: 'Mesa',
-  },
-  {
-    key: 'plains',
-    label: 'Plains',
-  },
-  {
-    key: 'spur',
-    label: 'Spur',
-  },
-  {
-    key: 'valley',
-    label: 'Valley',
-  },
+export const landTypeMap = [
+  { key: 'mountains', label: 'Mountains', },
+  { key: 'hills', label: 'Hills', },
+  { key: 'creeks', label: 'Creeks', },
+  { key: 'draws', label: 'Draws', },
+  { key: 'fields', label: 'Fields', },
+  { key: 'forest', label: 'Forest', },
+  { key: 'meadow', label: 'Meadow', },
+  { key: 'island', label: 'Island', },
+  { key: 'mesa', label: 'Mesa', },
+  { key: 'plains', label: 'Plains', },
+  { key: 'spur', label: 'Spur', },
+  { key: 'valley', label: 'Valley', },
 ]
 
-export const waterTypes = [
-  {
-    key: 'river',
-    label: 'River',
-  },
-  {
-    key: 'spring_creek',
-    label: 'Spring Creek',
-  },
-  {
-    key: 'pond',
-    label: 'Pond',
-  },
-  {
-    key: 'lake',
-    label: 'Lake',
-  },
-  {
-    key: 'reservoir',
-    label: 'Reservoir',
-  },
-  {
-    key: 'spring',
-    label: 'Spring',
-  },
-  {
-    key: 'sea',
-    label: 'Sea',
-  },
-  {
-    key: 'narrows',
-    label: 'Narrows',
-  },
+export const waterTypeMap = [
+  { key: 'river', label: 'River', },
+  { key: 'spring_creek', label: 'Spring Creek', },
+  { key: 'pond', label: 'Pond', },
+  { key: 'lake', label: 'Lake', },
+  { key: 'reservoir', label: 'Reservoir', },
+  { key: 'spring', label: 'Spring', },
+  { key: 'sea', label: 'Sea', },
+  { key: 'narrows', label: 'Narrows', },
 ]
 
-export const publicLands = [
-  {
-    key: 'blm',
-    label: 'Bureau of Land Management (BLM)',
-  },
-  {
-    key: 'bma',
-    label: 'Block Management Areas (BMA)',
-  },
-  {
-    key: 'nat_forest',
-    label: 'National Forest',
-  },
-  {
-    key: 'nat_park',
-    label: 'National Park',
-  },
-  {
-    key: 'nat_wildlife_refuge',
-    label: 'National Wildlife Refuge',
-  },
-  {
-    key: 'nat_cons_area',
-    label: 'National Conservation Areas',
-  },
-  {
-    key: 'nat_monuments',
-    label: 'National Monuments',
-  },
-  {
-    key: 'nat_rec_area',
-    label: 'National Recreation Areas',
-  },
-  {
-    key: 'nat_sea_and_lake_shores',
-    label: 'National Seashores and Lakeshores',
-  },
-  {
-    key: 'nat_trails',
-    label: 'National Trails',
-  },
-  {
-    key: 'wilderness',
-    label: 'Wilderness',
-  },
-  {
-    key: 'wild_and_scenic_rivers',
-    label: 'Wild And Scenic Rivers',
-  },
-  {
-    key: 'state_lands',
-    label: 'State Lands',
-  },
-  {
-    key: 'school_trusts',
-    label: 'School Trusts',
-  },
+export const publicLandMap = [
+  { key: 'blm', label: 'Bureau of Land Management (BLM)', },
+  { key: 'bma', label: 'Block Management Areas (BMA)', },
+  { key: 'nat_forest', label: 'National Forest', },
+  { key: 'nat_park', label: 'National Park', },
+  { key: 'nat_wildlife_refuge', label: 'National Wildlife Refuge', },
+  { key: 'nat_cons_area', label: 'National Conservation Areas', },
+  { key: 'nat_monuments', label: 'National Monuments', },
+  { key: 'nat_rec_area', label: 'National Recreation Areas', },
+  { key: 'nat_sea_and_lake_shores', label: 'National Seashores and Lakeshores', },
+  { key: 'nat_trails', label: 'National Trails', },
+  { key: 'wilderness', label: 'Wilderness', },
+  { key: 'wild_and_scenic_rivers', label: 'Wild And Scenic Rivers', },
+  { key: 'state_lands', label: 'State Lands', },
+  { key: 'school_trusts', label: 'School Trusts', },
 ]
+
+export const huntMotMap = [
+  { key: 'archery', label: 'Archery', },
+  { key: 'shotgun', label: 'Shotgun', },
+  { key: 'rifle', label: 'rifle', },
+  { key: 'rimfire', label: 'Rimfire (.22 calibre)', },
+]
+
+export const fishMotMap = [
+  { key: 'fly_fishing', label: 'Fly Fishing', },
+  { key: 'artificial_lure', label: 'Artificial Lure', },
+  { key: 'live_bait', label: 'Live Bait', },
+  { key: 'bowfishing', label: 'Bowfishing', },
+]
+
+export const genericTabsMap = {
+  fishTypes: fishTypeMap,
+  bigGameTypes: bigGameTypeMap,
+  smallGameTypes: smallGameTypeMap,
+  uplandGameTypes: uplandGameTypeMap,
+  waterfowlTypes: waterfowlTypeMap,
+  landTypes: landTypeMap,
+  waterTypes: waterTypeMap,
+  publicLands: publicLandMap,
+  agricultureTypes: agricultureTypeMap,
+  huntMotTypes: huntMotMap,
+  fishMotTypes: fishMotMap,
+}
 
 export const amenities = [
   {
@@ -284,36 +189,4 @@ export const priceFilterConfig = {
 export const getCustomLabel = (customArray, key) => {
   const pair = customArray.find(c => c.key === key);
   return pair ? pair.label : key;
-};
-
-const addSpecies = (cache, pubDataSpeciesType, speciesMap) => {
-  if (!pubDataSpeciesType) {
-    return;
-  }
-  pubDataSpeciesType.forEach(a => {
-    let label = getCustomLabel(speciesMap, a);
-    if (label) {
-      cache.push(label);
-    }
-  });
-}
-export const getSpecies = (listingPublicData) => {
-  if (listingPublicData.category === 'access') {
-    return null;
-  }
-  let res = [];
-  if (listingPublicData.category === 'fish') {
-    addSpecies(res, listingPublicData.fishTypes, fishTypes);
-  }
-  else {
-    addSpecies(res, listingPublicData.bigGameTypes, bigGameTypes);    
-    addSpecies(res, listingPublicData.smallGameTypes, smallGameTypes);
-    addSpecies(res, listingPublicData.uplandGameTypes, uplandGameTypes);    
-    addSpecies(res, listingPublicData.waterfowlTypes, waterfowlTypes);
-  }
-
-  if (res.length === 0) {
-    return null;
-  }
-  return res.toString();
 };

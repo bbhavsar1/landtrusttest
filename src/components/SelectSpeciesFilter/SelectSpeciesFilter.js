@@ -4,7 +4,7 @@ import { injectIntl } from 'react-intl';
 import Select from 'react-select';
 import css from './SelectSpeciesFilter.css';
 import {
-  bigGameTypes, fishTypes, smallGameTypes, uplandGameTypes, waterfowlTypes,
+  bigGameTypeMap, fishTypeMap, smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap,
   ltBorderColor, ltFocusBorderColor, ltForegroundColor, ltBackgroundColor, ltActiveBackgroundColor,
   ltActiveForegroundColor, ltHoverForegroundColor
 } from '../../marketplace-custom-config';
@@ -106,13 +106,13 @@ const cssStyles = {
 };
 
 const huntOptionGroups = [
-  { group: 'Big Game', paramName: 'pub_bigGameTypes', options: bigGameTypes },
-  { group: 'Small Game', paramName: 'pub_smallGameTypes', options: smallGameTypes },
-  { group: 'Upland', paramName: 'pub_uplandGameTypes', options: uplandGameTypes },
-  { group: 'Waterfowl', paramName: 'pub_waterfowlTypes', options: waterfowlTypes },
+  { group: 'Big Game', paramName: 'pub_bigGameTypes', options: bigGameTypeMap },
+  { group: 'Small Game', paramName: 'pub_smallGameTypes', options: smallGameTypeMap },
+  { group: 'Upland', paramName: 'pub_uplandGameTypes', options: uplandGameTypeMap },
+  { group: 'Waterfowl', paramName: 'pub_waterfowlTypes', options: waterfowlTypeMap },
 ];
 
-const huntOptions = bigGameTypes.concat(smallGameTypes, uplandGameTypes, waterfowlTypes);
+const huntOptions = bigGameTypeMap.concat(smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap);
 
 class SelectSpeciesFilter extends Component {
   constructor(props) {
@@ -134,7 +134,7 @@ class SelectSpeciesFilter extends Component {
       return huntOptions.find(a => a.key === initialValue);
     }
     else if (activity === 'fish') {
-      return fishTypes.find(a => a.key === initialValue);
+      return fishTypeMap.find(a => a.key === initialValue);
     }
     return null;
   };
@@ -154,7 +154,7 @@ class SelectSpeciesFilter extends Component {
     const res = [];
     switch (activity) {
       case 'fish':
-        fishTypes.forEach(a =>
+        fishTypeMap.forEach(a =>
           res.push({ value: a.key, label: a.label, category: activity, paramName: 'pub_fishTypes' })
         );
         break;

@@ -5,6 +5,10 @@ import { PropertyGroup } from '../../components';
 import css from './ListingPage.css';
 
 const SectionGenericList = props => {
+  if (!props.selectedOptions || props.selectedOptions.length === 0) {
+    return null;
+  }
+
   const { options, selectedOptions, titleMsgId, selectGroupId } = props;
   return (
     <div className={css.genericListSection}>

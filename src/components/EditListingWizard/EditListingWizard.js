@@ -15,8 +15,10 @@ import { Modal, NamedRedirect, Tabs } from '../../components';
 
 import EditListingWizardTab, {
   DESCRIPTION,
+  FISH_MOT_TYPES,
+  HUNT_MOT_TYPES,
   FEATURES,
-  FISH_TYPES,  
+  FISH_TYPES,
   BIG_GAME_TYPES,
   SMALL_GAME_TYPES,
   UPLAND_GAME_TYPES,
@@ -35,10 +37,11 @@ import css from './EditListingWizard.css';
 
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const TABS_PREFIX = [DESCRIPTION, LOCATION, PUBLIC_LANDS];
-export const TABS_SUFFIX = [POLICY, PRICING, PHOTOS,];
+export const TABS_PREFIX = [DESCRIPTION, LOCATION];
+export const TABS_SUFFIX = [PUBLIC_LANDS, POLICY, PRICING, PHOTOS,];
 export const DEFAULT_TABS = TABS_PREFIX.concat(TABS_SUFFIX);
 export const HUNT_TABS = TABS_PREFIX.concat([
+  HUNT_MOT_TYPES,
   BIG_GAME_TYPES,
   SMALL_GAME_TYPES,
   UPLAND_GAME_TYPES,
@@ -48,49 +51,13 @@ export const HUNT_TABS = TABS_PREFIX.concat([
   WATER_TYPES,
   FEATURES,]).concat(TABS_SUFFIX);
 export const FISH_TABS = TABS_PREFIX.concat([
+  FISH_MOT_TYPES,
   FISH_TYPES,
   WATER_TYPES,
   FEATURES,]).concat(TABS_SUFFIX);
 
 // Tabs are horizontal in small screens
 const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
-
-const tabLabel = (intl, tab) => {
-  let key = null;
-  if (tab === DESCRIPTION) {
-    key = 'EditListingWizard.tabLabelDescription';
-  } else if (tab === FEATURES) {
-    key = 'EditListingWizard.tabLabelFeatures';
-  } else if (tab === FISH_TYPES) {
-    key = 'EditListingWizard.tabLabelFishTypes';
-  } else if (tab === BIG_GAME_TYPES) {
-    key = 'EditListingWizard.tabLabelBigGameTypes';
-  } else if (tab === SMALL_GAME_TYPES) {
-    key = 'EditListingWizard.tabLabelSmallGameTypes';
-  } else if (tab === UPLAND_GAME_TYPES) {
-    key = 'EditListingWizard.tabLabelUplandGameTypes';
-  } else if (tab === WATERFOWL_TYPES) {
-    key = 'EditListingWizard.tabLabelWaterfowlTypes';
-  } else if (tab === PUBLIC_LANDS) {
-    key = 'EditListingWizard.tabLabelPublicLands';
-  } else if (tab === AGRICULTURE_TYPES) {
-    key = 'EditListingWizard.tabLabelAgricultureTypes';
-  } else if (tab === LAND_TYPES) {
-    key = 'EditListingWizard.tabLabelLandTypes';
-  } else if (tab === WATER_TYPES) {
-    key = 'EditListingWizard.tabLabelWaterTypes';
-  } else if (tab === POLICY) {
-    key = 'EditListingWizard.tabLabelPolicy';
-  } else if (tab === LOCATION) {
-    key = 'EditListingWizard.tabLabelLocation';
-  } else if (tab === PRICING) {
-    key = 'EditListingWizard.tabLabelPricing';
-  } else if (tab === PHOTOS) {
-    key = 'EditListingWizard.tabLabelPhotos';
-  }
-
-  return intl.formatMessage({ id: key });
-};
 
 /**
  * Check if a wizard tab is completed.
@@ -113,6 +80,8 @@ const tabCompleted = (tab, listing) => {
       return !!(description && title);
     case LOCATION:
       return !!(geolocation && publicData.location && publicData.location.address);
+    case FISH_MOT_TYPES:
+    case HUNT_MOT_TYPES:
     case PUBLIC_LANDS:
     case FEATURES:
     case LAND_TYPES:
@@ -302,7 +271,7 @@ class EditListingWizard extends Component {
                 {...rest}
                 key={tab}
                 tabId={`${id}_${tab}`}
-                tabLabel={tabLabel(intl, tab)}
+                tabLabel={intl.formatMessage({ id: 'EditListingWizard.' + tab + 'TabLabel' })}
                 tabLinkProps={tabLink(tab)}
                 selected={selectedTab === tab}
                 disabled={isNewListingFlow && !tabsStatus[tab]}
