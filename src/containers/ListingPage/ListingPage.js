@@ -40,7 +40,6 @@ import SectionImages from './SectionImages';
 import SectionAvatar from './SectionAvatar';
 import SectionHeading from './SectionHeading';
 import SectionDescriptionMaybe from './SectionDescriptionMaybe';
-import SectionFeatures from './SectionFeatures';
 import SectionGenericList from './SectionGenericList'
 import SectionReviews from './SectionReviews';
 import SectionHost from './SectionHost';
@@ -208,7 +207,6 @@ export class ListingPageComponent extends Component {
       timeSlots,
       fetchTimeSlotsError,
       categoriesConfig,
-      amenitiesConfig,
     } = this.props;
 
     const isBook = !!parse(location.search).book;
@@ -521,10 +519,6 @@ export class ListingPageComponent extends Component {
                     selectedOptions={publicData.waterTypes}
                     titleMsgId="ListingPage.waterTypesTitle"
                     selectGroupId="ListingPage.waterTypes"
-                  />     
-                  <SectionFeatures
-                    options={amenitiesConfig}
-                    selectedOptions={publicData.amenities}
                   />             
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
@@ -588,7 +582,6 @@ ListingPageComponent.defaultProps = {
   fetchTimeSlotsError: null,
   sendEnquiryError: null,
   categoriesConfig: config.custom.categories,
-  amenitiesConfig: config.custom.amenities,
 };
 
 ListingPageComponent.propTypes = {
@@ -628,7 +621,6 @@ ListingPageComponent.propTypes = {
   onSendEnquiry: func.isRequired,
 
   categoriesConfig: array,
-  amenitiesConfig: array,
 };
 
 const mapStateToProps = state => {

@@ -17,7 +17,6 @@ import EditListingWizardTab, {
   DESCRIPTION,
   FISH_MOT_TYPES,
   HUNT_MOT_TYPES,
-  FEATURES,
   FISH_TYPES,
   BIG_GAME_TYPES,
   SMALL_GAME_TYPES,
@@ -48,13 +47,11 @@ export const HUNT_TABS = TABS_PREFIX.concat([
   WATERFOWL_TYPES,
   AGRICULTURE_TYPES,
   LAND_TYPES,
-  WATER_TYPES,
-  FEATURES,]).concat(TABS_SUFFIX);
+  WATER_TYPES,]).concat(TABS_SUFFIX);
 export const FISH_TABS = TABS_PREFIX.concat([
   FISH_MOT_TYPES,
   FISH_TYPES,
-  WATER_TYPES,
-  FEATURES,]).concat(TABS_SUFFIX);
+  WATER_TYPES,]).concat(TABS_SUFFIX);
 
 // Tabs are horizontal in small screens
 const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
@@ -83,7 +80,6 @@ const tabCompleted = (tab, listing) => {
     case FISH_MOT_TYPES:
     case HUNT_MOT_TYPES:
     case PUBLIC_LANDS:
-    case FEATURES:
     case LAND_TYPES:
     case FISH_TYPES:
     case BIG_GAME_TYPES:

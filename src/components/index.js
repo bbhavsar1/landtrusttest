@@ -6,7 +6,6 @@ export { default as Button, PrimaryButton, SecondaryButton, InlineTextButton } f
 export { default as CookieConsent } from './CookieConsent/CookieConsent';
 export { default as Discussion } from './Discussion/Discussion';
 export { default as EditListingDescriptionPanel } from './EditListingDescriptionPanel/EditListingDescriptionPanel';
-export { default as EditListingFeaturesPanel } from './EditListingFeaturesPanel/EditListingFeaturesPanel';
 export { default as EditListingGenericListPanel } from './EditListingGenericListPanel/EditListingGenericListPanel';
 export { default as EditListingLocationPanel } from './EditListingLocationPanel/EditListingLocationPanel';
 export { default as EditListingPhotosPanel } from './EditListingPhotosPanel/EditListingPhotosPanel';

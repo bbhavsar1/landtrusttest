@@ -1,7 +1,6 @@
 export { default as BookingDatesForm } from './BookingDatesForm/BookingDatesForm';
 export { default as ContactDetailsForm } from './ContactDetailsForm/ContactDetailsForm';
 export { default as EditListingDescriptionForm } from './EditListingDescriptionForm/EditListingDescriptionForm';
-export { default as EditListingFeaturesForm } from './EditListingFeaturesForm/EditListingFeaturesForm';
 export { default as EditListingGenericListForm } from './EditListingGenericListForm/EditListingGenericListForm';
 export { default as EditListingLocationForm } from './EditListingLocationForm/EditListingLocationForm';
 export { default as EditListingPhotosForm } from './EditListingPhotosForm/EditListingPhotosForm';

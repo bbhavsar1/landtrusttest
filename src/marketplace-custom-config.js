@@ -157,21 +157,6 @@ export const genericTabsMap = {
   fishMotTypes: fishMotMap,
 }
 
-export const amenities = [
-  {
-    key: 'cabins',
-    label: 'Cabins',
-  },
-  {
-    key: 'guide_service',
-    label: 'Guide Service',
-  },
-  {
-    key: 'equipment_rental',
-    label: 'Equipment Rental',
-  },
-];
-
 export const categories = [
   { key: 'hunt', label: 'Hunting' },
   { key: 'fish', label: 'Fishing' },

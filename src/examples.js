@@ -62,7 +62,6 @@ import * as UserCard from './components/UserCard/UserCard.example';
 // forms
 import * as BookingDatesForm from './forms/BookingDatesForm/BookingDatesForm.example';
 import * as EditListingDescriptionForm from './forms/EditListingDescriptionForm/EditListingDescriptionForm.example';
-import * as EditListingFeaturesForm from './forms/EditListingFeaturesForm/EditListingFeaturesForm.example';
 import * as EditListingLocationForm from './forms/EditListingLocationForm/EditListingLocationForm.example';
 import * as EditListingPhotosForm from './forms/EditListingPhotosForm/EditListingPhotosForm.example';
 import * as EditListingPoliciesForm from './forms/EditListingPoliciesForm/EditListingPoliciesForm.example';
@@ -91,7 +90,6 @@ export {
   Button,
   Colors,
   EditListingDescriptionForm,
-  EditListingFeaturesForm,
   EditListingLocationForm,
   EditListingPhotosForm,
   EditListingPoliciesForm,
