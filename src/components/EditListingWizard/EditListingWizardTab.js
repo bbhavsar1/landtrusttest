@@ -191,7 +191,8 @@ const EditListingWizardTab = props => {
     case BIG_GAME_TYPES:
     case SMALL_GAME_TYPES:
     case UPLAND_GAME_TYPES:
-    case WATERFOWL_TYPES: {
+    case WATERFOWL_TYPES:
+      // name of tab is name of options map
       return (
         <EditListingGenericListPanel
           {...panelProps(tab)}
@@ -199,12 +200,11 @@ const EditListingWizardTab = props => {
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
-          formId={tab}
+          optionsMap={tab}
           titleMsgId={'EditListingPanel.title.' + tab}
           createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
         />
       );
-    }
     case POLICY: {
       return (
         <EditListingPoliciesPanel

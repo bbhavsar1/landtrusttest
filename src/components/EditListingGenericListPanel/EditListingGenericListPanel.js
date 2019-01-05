@@ -21,7 +21,7 @@ const EditListingGenericListPanel = props => {
     panelUpdated,
     updateInProgress,
     errors,
-    formId,
+    optionsMap,
     titleMsgId,
     createListingTitleMsgId,
   } = props;
@@ -41,14 +41,14 @@ const EditListingGenericListPanel = props => {
     );
 
   const initialValues = {};
-  initialValues[formId] = publicData && publicData[formId];
+  initialValues[optionsMap] = publicData && publicData[optionsMap];
 
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
       <EditListingGenericListForm
         className={css.form}
-        name={formId}
+        optionsMap={optionsMap}
         initialValues={initialValues}
         onSubmit={values => {
           const updatedValues = {};
@@ -76,6 +76,7 @@ const { bool, func, object, string } = PropTypes;
 EditListingGenericListPanel.propTypes = {
   rootClassName: string,
   className: string,
+  optionsMap: string.isRequired,
 
   // We cannot use propTypes.listing since the listing might be a draft.
   listing: object,

@@ -53,7 +53,7 @@ export const ListingCardComponent = props => {
 
   const { formattedPrice, priceTitle } = priceData(price, intl);
   const { category } = listing.attributes.publicData;
-  const { getCustomLabel, bigGameTypes, smallGameTypes, uplandGameTypes, waterfowlTypes, fishTypes } = config.custom;
+  const { getCustomLabel, bigGameTypeMap, smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap, fishTypeMap } = config.custom;
 
   const addSpecies = (cache, pubDataSpeciesType, speciesMap) => {
     if (!pubDataSpeciesType) {
@@ -68,22 +68,22 @@ export const ListingCardComponent = props => {
   }
 
   const getSpecies = () => {
-    let {publicData} = listing.attributes;
+    let { publicData } = listing.attributes;
 
     if (publicData.category === 'access') {
       return null;
     }
     let res = [];
     if (publicData.category === 'fish') {
-      addSpecies(res, publicData.fishTypes, fishTypes);
+      addSpecies(res, publicData.fishTypes, fishTypeMap);
     }
     else {
-      addSpecies(res, publicData.bigGameTypes, bigGameTypes);    
-      addSpecies(res, publicData.smallGameTypes, smallGameTypes);
-      addSpecies(res, publicData.uplandGameTypes, uplandGameTypes);    
-      addSpecies(res, publicData.waterfowlTypes, waterfowlTypes);
+      addSpecies(res, publicData.bigGameTypes, bigGameTypeMap);
+      addSpecies(res, publicData.smallGameTypes, smallGameTypeMap);
+      addSpecies(res, publicData.uplandGameTypes, uplandGameTypeMap);
+      addSpecies(res, publicData.waterfowlTypes, waterfowlTypeMap);
     }
-  
+
     if (res.length === 0) {
       return null;
     }

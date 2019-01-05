@@ -20,7 +20,7 @@ const EditListingGenericListFormComponent = props => (
         disabled,
         rootClassName,
         className,
-        name,
+        optionsMap,
         handleSubmit,
         pristine,
         saveActionMsg,
@@ -54,9 +54,9 @@ const EditListingGenericListFormComponent = props => (
 
           <FieldCheckboxGroup
             className={css.features}
-            id={name}
-            name={name}
-            options={config.custom[name]}
+            id={optionsMap}
+            name={optionsMap}
+            options={config.custom.genericTabsMap[optionsMap]}
             twoColumns={true}
           />
 
@@ -84,7 +84,7 @@ EditListingGenericListFormComponent.defaultProps = {
 EditListingGenericListFormComponent.propTypes = {
   rootClassName: string,
   className: string,
-  name: string.isRequired,
+  optionsMap: string.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
   updated: bool.isRequired,
