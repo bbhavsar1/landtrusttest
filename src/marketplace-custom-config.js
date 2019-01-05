@@ -285,35 +285,3 @@ export const getCustomLabel = (customArray, key) => {
   const pair = customArray.find(c => c.key === key);
   return pair ? pair.label : key;
 };
-
-const addSpecies = (cache, pubDataSpeciesType, speciesMap) => {
-  if (!pubDataSpeciesType) {
-    return;
-  }
-  pubDataSpeciesType.forEach(a => {
-    let label = getCustomLabel(speciesMap, a);
-    if (label) {
-      cache.push(label);
-    }
-  });
-}
-export const getSpecies = (listingPublicData) => {
-  if (listingPublicData.category === 'access') {
-    return null;
-  }
-  let res = [];
-  if (listingPublicData.category === 'fish') {
-    addSpecies(res, listingPublicData.fishTypes, fishTypes);
-  }
-  else {
-    addSpecies(res, listingPublicData.bigGameTypes, bigGameTypes);    
-    addSpecies(res, listingPublicData.smallGameTypes, smallGameTypes);
-    addSpecies(res, listingPublicData.uplandGameTypes, uplandGameTypes);    
-    addSpecies(res, listingPublicData.waterfowlTypes, waterfowlTypes);
-  }
-
-  if (res.length === 0) {
-    return null;
-  }
-  return res.toString();
-};
