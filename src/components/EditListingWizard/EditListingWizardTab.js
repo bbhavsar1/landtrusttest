@@ -183,62 +183,14 @@ const EditListingWizardTab = props => {
         />
       );
     }
-    case FISH_TYPES: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(FISH_TYPES)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={FISH_TYPES}
-          titleMsgId="EditListingFishTypesPanel.title"
-          createListingTitleMsgId="EditListingFishTypesPanel.createListingTitle"
-        />
-      );
-    }
-    case BIG_GAME_TYPES: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(tab)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={tab}
-          titleMsgId={'EditListingPanel.title.' + tab}
-          createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
-        />
-      );
-    }
-    case SMALL_GAME_TYPES: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(tab)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={tab}
-          titleMsgId={'EditListingPanel.title.' + tab}
-          createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
-        />
-      );
-    }
-    case UPLAND_GAME_TYPES: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(tab)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={tab}
-          titleMsgId={'EditListingPanel.title.' + tab}
-          createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
-        />
-      );
-    }
+    case LAND_TYPES:
+    case WATER_TYPES:
+    case AGRICULTURE_TYPES:
+    case PUBLIC_LANDS:
+    case FISH_TYPES:
+    case BIG_GAME_TYPES:
+    case SMALL_GAME_TYPES:
+    case UPLAND_GAME_TYPES:
     case WATERFOWL_TYPES: {
       return (
         <EditListingGenericListPanel
@@ -250,62 +202,6 @@ const EditListingWizardTab = props => {
           formId={tab}
           titleMsgId={'EditListingPanel.title.' + tab}
           createListingTitleMsgId={'EditListingPanel.createListingTitle.' + tab}
-        />
-      );
-    }
-    case PUBLIC_LANDS: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(PUBLIC_LANDS)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={PUBLIC_LANDS}
-          titleMsgId="EditListingPublicLandsPanel.title"
-          createListingTitleMsgId="EditListingPublicLandsPanel.createListingTitle"
-        />
-      );
-    }
-    case AGRICULTURE_TYPES: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(AGRICULTURE_TYPES)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={AGRICULTURE_TYPES}
-          titleMsgId="EditListingAgricultureTypesPanel.title"
-          createListingTitleMsgId="EditListingAgricultureTypesPanel.createListingTitle"
-        />
-      );
-    }
-    case LAND_TYPES: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(LAND_TYPES)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={LAND_TYPES}
-          titleMsgId="EditListingLandTypesPanel.title"
-          createListingTitleMsgId="EditListingLandTypesPanel.createListingTitle"
-        />
-      );
-    }
-    case WATER_TYPES: {
-      return (
-        <EditListingGenericListPanel
-          {...panelProps(WATER_TYPES)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          formId={WATER_TYPES}
-          titleMsgId="EditListingWaterTypesPanel.title"
-          createListingTitleMsgId="EditListingWaterTypesPanel.createListingTitle"
         />
       );
     }
