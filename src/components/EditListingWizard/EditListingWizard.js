@@ -16,7 +16,7 @@ import { Modal, NamedRedirect, Tabs } from '../../components';
 import EditListingWizardTab, {
   DESCRIPTION,
   FEATURES,
-  FISH_TYPES,  
+  FISH_TYPES,
   BIG_GAME_TYPES,
   SMALL_GAME_TYPES,
   UPLAND_GAME_TYPES,
@@ -54,43 +54,6 @@ export const FISH_TABS = TABS_PREFIX.concat([
 
 // Tabs are horizontal in small screens
 const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
-
-const tabLabel = (intl, tab) => {
-  let key = null;
-  if (tab === DESCRIPTION) {
-    key = 'EditListingWizard.tabLabelDescription';
-  } else if (tab === FEATURES) {
-    key = 'EditListingWizard.tabLabelFeatures';
-  } else if (tab === FISH_TYPES) {
-    key = 'EditListingWizard.tabLabelFishTypes';
-  } else if (tab === BIG_GAME_TYPES) {
-    key = 'EditListingWizard.tabLabelBigGameTypes';
-  } else if (tab === SMALL_GAME_TYPES) {
-    key = 'EditListingWizard.tabLabelSmallGameTypes';
-  } else if (tab === UPLAND_GAME_TYPES) {
-    key = 'EditListingWizard.tabLabelUplandGameTypes';
-  } else if (tab === WATERFOWL_TYPES) {
-    key = 'EditListingWizard.tabLabelWaterfowlTypes';
-  } else if (tab === PUBLIC_LANDS) {
-    key = 'EditListingWizard.tabLabelPublicLands';
-  } else if (tab === AGRICULTURE_TYPES) {
-    key = 'EditListingWizard.tabLabelAgricultureTypes';
-  } else if (tab === LAND_TYPES) {
-    key = 'EditListingWizard.tabLabelLandTypes';
-  } else if (tab === WATER_TYPES) {
-    key = 'EditListingWizard.tabLabelWaterTypes';
-  } else if (tab === POLICY) {
-    key = 'EditListingWizard.tabLabelPolicy';
-  } else if (tab === LOCATION) {
-    key = 'EditListingWizard.tabLabelLocation';
-  } else if (tab === PRICING) {
-    key = 'EditListingWizard.tabLabelPricing';
-  } else if (tab === PHOTOS) {
-    key = 'EditListingWizard.tabLabelPhotos';
-  }
-
-  return intl.formatMessage({ id: key });
-};
 
 /**
  * Check if a wizard tab is completed.
@@ -302,7 +265,7 @@ class EditListingWizard extends Component {
                 {...rest}
                 key={tab}
                 tabId={`${id}_${tab}`}
-                tabLabel={tabLabel(intl, tab)}
+                tabLabel={intl.formatMessage({ id: 'EditListingWizard.' + tab + 'TabLabel' })}
                 tabLinkProps={tabLink(tab)}
                 selected={selectedTab === tab}
                 disabled={isNewListingFlow && !tabsStatus[tab]}
