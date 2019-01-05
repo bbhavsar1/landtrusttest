@@ -15,6 +15,8 @@ import { Modal, NamedRedirect, Tabs } from '../../components';
 
 import EditListingWizardTab, {
   DESCRIPTION,
+  FISH_MOT_TYPES,
+  HUNT_MOT_TYPES,
   FEATURES,
   FISH_TYPES,
   BIG_GAME_TYPES,
@@ -35,10 +37,11 @@ import css from './EditListingWizard.css';
 
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const TABS_PREFIX = [DESCRIPTION, LOCATION, PUBLIC_LANDS];
-export const TABS_SUFFIX = [POLICY, PRICING, PHOTOS,];
+export const TABS_PREFIX = [DESCRIPTION, LOCATION];
+export const TABS_SUFFIX = [PUBLIC_LANDS, POLICY, PRICING, PHOTOS,];
 export const DEFAULT_TABS = TABS_PREFIX.concat(TABS_SUFFIX);
 export const HUNT_TABS = TABS_PREFIX.concat([
+  HUNT_MOT_TYPES,
   BIG_GAME_TYPES,
   SMALL_GAME_TYPES,
   UPLAND_GAME_TYPES,
@@ -48,6 +51,7 @@ export const HUNT_TABS = TABS_PREFIX.concat([
   WATER_TYPES,
   FEATURES,]).concat(TABS_SUFFIX);
 export const FISH_TABS = TABS_PREFIX.concat([
+  FISH_MOT_TYPES,
   FISH_TYPES,
   WATER_TYPES,
   FEATURES,]).concat(TABS_SUFFIX);
@@ -76,6 +80,8 @@ const tabCompleted = (tab, listing) => {
       return !!(description && title);
     case LOCATION:
       return !!(geolocation && publicData.location && publicData.location.address);
+    case FISH_MOT_TYPES:
+    case HUNT_MOT_TYPES:
     case PUBLIC_LANDS:
     case FEATURES:
     case LAND_TYPES:

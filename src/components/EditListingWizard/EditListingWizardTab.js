@@ -24,6 +24,8 @@ import css from './EditListingWizard.css';
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const PUBLIC_LANDS = 'publicLands'
+export const FISH_MOT_TYPES = 'fishMotTypes'
+export const HUNT_MOT_TYPES = 'huntMotTypes'
 export const FISH_TYPES = 'fishTypes'
 export const BIG_GAME_TYPES = 'bigGameTypes'
 export const SMALL_GAME_TYPES = 'smallGameTypes'
@@ -40,7 +42,7 @@ export const PHOTOS = 'photos';
 // EditListingWizardTab component supports these tabs
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
-export const SUPPORTED_TABS = [DESCRIPTION, FEATURES, FISH_TYPES, BIG_GAME_TYPES, SMALL_GAME_TYPES, UPLAND_GAME_TYPES,
+export const SUPPORTED_TABS = [DESCRIPTION, FISH_MOT_TYPES, HUNT_MOT_TYPES, FEATURES, FISH_TYPES, BIG_GAME_TYPES, SMALL_GAME_TYPES, UPLAND_GAME_TYPES,
   WATERFOWL_TYPES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
@@ -183,6 +185,8 @@ const EditListingWizardTab = props => {
         />
       );
     }
+    case HUNT_MOT_TYPES:
+    case FISH_MOT_TYPES:
     case LAND_TYPES:
     case WATER_TYPES:
     case AGRICULTURE_TYPES:

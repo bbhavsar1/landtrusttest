@@ -128,6 +128,21 @@ export const publicLandMap = [
   { key: 'state_lands', label: 'State Lands', },
   { key: 'school_trusts', label: 'School Trusts', },
 ]
+
+export const huntMotMap = [
+  { key: 'archery', label: 'Archery', },
+  { key: 'shotgun', label: 'Shotgun', },
+  { key: 'rifle', label: 'rifle', },
+  { key: 'rimfire', label: 'Rimfire (.22 calibre)', },
+]
+
+export const fishMotMap = [
+  { key: 'fly_fishing', label: 'Fly Fishing', },
+  { key: 'artificial_lure', label: 'Artificial Lure', },
+  { key: 'live_bait', label: 'Live Bait', },
+  { key: 'bowfishing', label: 'Bowfishing', },
+]
+
 export const genericTabsMap = {
   fishTypes: fishTypeMap,
   bigGameTypes: bigGameTypeMap,
@@ -138,6 +153,8 @@ export const genericTabsMap = {
   waterTypes: waterTypeMap,
   publicLands: publicLandMap,
   agricultureTypes: agricultureTypeMap,
+  huntMotTypes: huntMotMap,
+  fishMotTypes: fishMotMap,
 }
 
 export const amenities = [

@@ -456,10 +456,18 @@ export class ListingPageComponent extends Component {
                     onContactUser={this.onContactUser}
                   />
                   <SectionDescriptionMaybe description={description} />
-                  <SectionFeatures
-                    options={amenitiesConfig}
-                    selectedOptions={publicData.amenities}
+                  <SectionGenericList
+                    options={config.custom.huntMotMap}
+                    selectedOptions={publicData.huntMotTypes}
+                    titleMsgId="ListingPage.huntMotTypesTitle"
+                    selectGroupId="ListingPage.huntMotTypes"
                   />
+                  <SectionGenericList
+                    options={config.custom.fishMotMap}
+                    selectedOptions={publicData.fishMotTypes}
+                    titleMsgId="ListingPage.fishMotTypesTitle"
+                    selectGroupId="ListingPage.fishMotTypes"
+                  />                  
                   <SectionGenericList
                     options={config.custom.fishTypeMap}
                     selectedOptions={publicData.fishTypes}
@@ -513,7 +521,11 @@ export class ListingPageComponent extends Component {
                     selectedOptions={publicData.waterTypes}
                     titleMsgId="ListingPage.waterTypesTitle"
                     selectGroupId="ListingPage.waterTypes"
-                  />
+                  />     
+                  <SectionFeatures
+                    options={amenitiesConfig}
+                    selectedOptions={publicData.amenities}
+                  />             
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
                     geolocation={geolocation}
