@@ -63,6 +63,8 @@
 .selectedLabel,
 .notSelectedLabel {
   @apply --marketplaceBodyFontStyles;
+  font-family: 'PT Mono';
+
   line-height: var(--PropertyGroup_lineHeight);
   margin: 0;
 }

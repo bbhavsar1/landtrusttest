@@ -31,7 +31,7 @@ const SectionHeading = props => {
           <FormattedMessage id="ListingPage.hostedBy" values={{ name: hostLink }} />
           {showContactUser ? (
             <span className={css.contactWrapper}>
-              <span className={css.separator}>•</span>
+              <span className={css.separator}>/</span>
               <InlineTextButton className={css.contactLink} onClick={onContactUser}>
                 <FormattedMessage id="ListingPage.contactUser" />
               </InlineTextButton>

@@ -13,7 +13,7 @@
 .title {
   /* Font */
   @apply --marketplaceH3FontStyles;
-  color: var(--matterColorAnti);
+  color: var(--ltForegroundColor);
 
   margin-top: 0;
   margin-bottom: 13px;

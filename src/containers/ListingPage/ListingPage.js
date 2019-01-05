@@ -403,7 +403,7 @@ export class ListingPageComponent extends Component {
       publicData && publicData.category ? (
         <span>
           {categoryLabel(categoriesConfig, publicData.category)}
-          <span className={css.separator}>•</span>
+          <span className={css.separator}>/</span>
         </span>
       ) : null;
 
