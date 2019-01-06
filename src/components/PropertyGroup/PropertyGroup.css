@@ -70,7 +70,7 @@
 }
 
 .selectedLabel {
-  font-weight: var(--fontWeightSemiBold);
+  font-weight: var(--fontWeightRegular);
 }
 
 .notSelectedLabel {
