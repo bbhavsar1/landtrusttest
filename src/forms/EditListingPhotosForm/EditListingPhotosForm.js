@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { array, bool, func, shape, string } from 'prop-types';
+import { array, bool, func, shape, string, object } from 'prop-types';
 import { compose } from 'redux';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
@@ -56,6 +56,7 @@ export class EditListingPhotosFormComponent extends Component {
             invalid,
             onImageUploadHandler,
             onRemoveImage,
+            onUpdateHeaderImage,
             ready,
             saveActionMsg,
             updated,
@@ -148,6 +149,7 @@ export class EditListingPhotosFormComponent extends Component {
                   id: 'EditListingPhotosForm.savedImageAltText',
                 })}
                 onRemoveImage={onRemoveImage}
+                onUpdateHeaderImage={onUpdateHeaderImage}
               >
                 <Field
                   id="addImage"
@@ -236,6 +238,7 @@ EditListingPhotosFormComponent.propTypes = {
   intl: intlShape.isRequired,
   onImageUpload: func.isRequired,
   onUpdateImageOrder: func.isRequired,
+  onUpdateHeaderImage: func.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
   updated: bool.isRequired,

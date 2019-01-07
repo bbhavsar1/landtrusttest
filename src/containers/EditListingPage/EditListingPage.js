@@ -26,6 +26,7 @@ import {
   requestUpdateListing,
   requestImageUpload,
   updateImageOrder,
+  onUpdateHeaderImage,
   removeListingImage,
   loadData,
   clearUpdatedTab,
@@ -49,6 +50,7 @@ export const EditListingPageComponent = props => {
     onUpdateListing,
     onImageUpload,
     onRemoveListingImage,
+    onUpdateHeaderImage,
     onManageDisableScrolling,
     onPayoutDetailsSubmit,
     onPayoutDetailsFormChange,
@@ -81,20 +83,20 @@ export const EditListingPageComponent = props => {
 
     const redirectProps = isPendingApproval
       ? {
-          name: 'ListingPageVariant',
-          params: {
-            id: listingId.uuid,
-            slug: listingSlug,
-            variant: LISTING_PAGE_PENDING_APPROVAL_VARIANT,
-          },
-        }
+        name: 'ListingPageVariant',
+        params: {
+          id: listingId.uuid,
+          slug: listingSlug,
+          variant: LISTING_PAGE_PENDING_APPROVAL_VARIANT,
+        },
+      }
       : {
-          name: 'ListingPage',
-          params: {
-            id: listingId.uuid,
-            slug: listingSlug,
-          },
-        };
+        name: 'ListingPage',
+        params: {
+          id: listingId.uuid,
+          slug: listingSlug,
+        },
+      };
 
     return <NamedRedirect {...redirectProps} />;
   } else if (showForm) {
@@ -126,12 +128,21 @@ export const EditListingPageComponent = props => {
     // Images not yet connected to the listing
     const imageOrder = page.imageOrder || [];
     const unattachedImages = imageOrder.map(i => page.images[i]);
-
     const allImages = currentListingImages.concat(unattachedImages);
     const removedImageIds = page.removedImageIds || [];
     const images = allImages.filter(img => {
       return !removedImageIds.includes(img.id);
     });
+
+    // make the header image the first image
+    if (page.headerImageId && images) {
+      const headerIdx = images.findIndex(a => a.id === page.headerImageId);
+      if (headerIdx != 0) {
+        const tmp = images[headerIdx];
+        images[headerIdx] = images[0];
+        images[0] = tmp;
+      }
+    }
 
     const title =
       isNewURI || isDraftURI
@@ -165,6 +176,7 @@ export const EditListingPageComponent = props => {
           onImageUpload={onImageUpload}
           onUpdateImageOrder={onUpdateImageOrder}
           onRemoveImage={onRemoveListingImage}
+          onUpdateHeaderImage={onUpdateHeaderImage}
           onChange={onChange}
           currentUser={currentUser}
           onManageDisableScrolling={onManageDisableScrolling}
@@ -209,6 +221,7 @@ EditListingPageComponent.propTypes = {
   onPayoutDetailsFormChange: func.isRequired,
   onPayoutDetailsSubmit: func.isRequired,
   onUpdateImageOrder: func.isRequired,
+  onUpdateHeaderImage: func.isRequired,
   onRemoveListingImage: func.isRequired,
   onUpdateListing: func.isRequired,
   onChange: func.isRequired,
@@ -261,6 +274,7 @@ const mapDispatchToProps = dispatch => ({
   onPayoutDetailsFormChange: () => dispatch(stripeAccountClearError()),
   onPayoutDetailsSubmit: values => dispatch(createStripeAccount(values)),
   onUpdateImageOrder: imageOrder => dispatch(updateImageOrder(imageOrder)),
+  onUpdateHeaderImage: imageId => dispatch(onUpdateHeaderImage(imageId)),
   onRemoveListingImage: imageId => dispatch(removeListingImage(imageId)),
   onChange: () => dispatch(clearUpdatedTab()),
 });

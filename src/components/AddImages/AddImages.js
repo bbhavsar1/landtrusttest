@@ -16,10 +16,15 @@ import css from './AddImages.css';
 import RemoveImageButton from './RemoveImageButton';
 
 const ThumbnailWrapper = props => {
-  const { className, image, savedImageAltText, onRemoveImage } = props;
+  const { className, image, index, savedImageAltText, onRemoveImage, onUpdateHeaderImage } = props;
   const handleRemoveClick = e => {
     e.stopPropagation();
     onRemoveImage(image.id);
+  };
+
+  const handleSelectHeaderImageClick = e => {
+    e.stopPropagation();
+    onUpdateHeaderImage(image.id);
   };
 
   if (image.file) {
@@ -40,6 +45,11 @@ const ThumbnailWrapper = props => {
         rootClassName={css.thumbnail}
         file={image.file}
       >
+        <button className={index === 0 ?
+          classNames(css.headerImage, css.selectHeaderImage) :
+          css.selectHeaderImage}
+          onClick={handleSelectHeaderImageClick}>H</button>
+
         {removeButton}
         {uploadingOverlay}
       </ImageFromFile>
@@ -57,6 +67,10 @@ const ThumbnailWrapper = props => {
               variants={['landscape-crop', 'landscape-crop2x']}
             />
           </div>
+          <button className={index === 0 ?
+            classNames(css.headerImage, css.selectHeaderImage) :
+            css.selectHeaderImage}
+            onClick={handleSelectHeaderImageClick}>H</button>
           <RemoveImageButton onClick={handleRemoveClick} />
         </div>
       </div>
@@ -83,6 +97,7 @@ const AddImages = props => {
     images,
     savedImageAltText,
     onRemoveImage,
+    onUpdateHeaderImage,
   } = props;
   const classes = classNames(css.root, className);
   return (
@@ -96,6 +111,7 @@ const AddImages = props => {
             className={thumbnailClassName}
             savedImageAltText={savedImageAltText}
             onRemoveImage={onRemoveImage}
+            onUpdateHeaderImage={onUpdateHeaderImage}
           />
         );
       })}
@@ -113,6 +129,7 @@ AddImages.propTypes = {
   thumbnailClassName: string,
   savedImageAltText: string.isRequired,
   onRemoveImage: func.isRequired,
+  onUpdateHeaderImage: func.isRequired,
 };
 
 export default AddImages;

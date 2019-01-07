@@ -41,6 +41,7 @@ export const UPLOAD_IMAGE_ERROR = 'app/EditListingPage/UPLOAD_IMAGE_ERROR';
 export const UPDATE_IMAGE_ORDER = 'app/EditListingPage/UPDATE_IMAGE_ORDER';
 
 export const REMOVE_LISTING_IMAGE = 'app/EditListingPage/REMOVE_LISTING_IMAGE';
+export const UPDATE_HEADER_IMAGE = 'app/EditListingPage/UPDATE_HEADER_IMAGE';
 
 // ================ Reducer ================ //
 
@@ -164,6 +165,10 @@ export default function reducer(state = initialState, action = {}) {
     case UPDATE_IMAGE_ORDER:
       return { ...state, imageOrder: payload.imageOrder };
 
+    case UPDATE_HEADER_IMAGE: {
+      const headerImageId = payload.imageId
+      return { ...state, headerImageId};
+    }
     case REMOVE_LISTING_IMAGE: {
       const id = payload.imageId;
 
@@ -206,6 +211,11 @@ export const updateImageOrder = imageOrder => ({
 
 export const removeListingImage = imageId => ({
   type: REMOVE_LISTING_IMAGE,
+  payload: { imageId },
+});
+
+export const onUpdateHeaderImage = imageId => ({
+  type: UPDATE_HEADER_IMAGE,
   payload: { imageId },
 });
 
