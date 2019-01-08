@@ -10,7 +10,7 @@
     since browsers support CSS Properties already.
  */
 
-  --SectionHero_desktopTitleMaxWidth: 625px;
+  --SectionHero_desktopTitleMaxWidth: 100%;
 
   --SectionHero_animation: {
     animation-name: animationTitle;
@@ -83,18 +83,12 @@
 }
 
 .heroSubTitle {
-  @apply --marketplaceBodyFontStyles;
+  @apply --marketplaceDefaultFontStyles;
 
-  color: var(--matterColorLight);
-  margin: 0 0 32px 0;
+  color: var(--ltActiveForegroundColor);
 
   @apply --SectionHero_animation;
   animation-delay: 0.65s;
-
-  @media (--viewportMedium) {
-    max-width: var(--SectionHero_desktopTitleMaxWidth);
-    margin: 0 0 63px 0;
-  }
 }
 
 .heroButton {
@@ -105,6 +99,6 @@
 
   @media (--viewportMedium) {
     display: block;
-    width: 260px;
+    width: 160px;
   }
 }

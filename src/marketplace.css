@@ -270,7 +270,7 @@
     cursor: pointer;
 
     @media (--viewportMedium) {
-      min-height: 65px;
+      min-height: 60px;
     }
   }
 
