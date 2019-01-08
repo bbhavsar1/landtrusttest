@@ -53,19 +53,7 @@ export const ListingCardComponent = props => {
 
   const { formattedPrice, priceTitle } = priceData(price, intl);
   const { category } = listing.attributes.publicData;
-  const { getCustomLabel, bigGameTypeMap, smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap, fishTypeMap } = config.custom;
-
-  const addSpecies = (cache, pubDataSpeciesType, speciesMap) => {
-    if (!pubDataSpeciesType) {
-      return;
-    }
-    pubDataSpeciesType.forEach(a => {
-      let label = getCustomLabel(speciesMap, a);
-      if (label) {
-        cache.push(label);
-      }
-    });
-  }
+  const { getCustomLabel, genericTabsMap, speciesProperties } = config.custom;
 
   const getSpecies = () => {
     let { publicData } = listing.attributes;
@@ -73,21 +61,23 @@ export const ListingCardComponent = props => {
     if (publicData.category === 'access') {
       return null;
     }
-    let res = [];
-    if (publicData.category === 'fish') {
-      addSpecies(res, publicData.fishTypes, fishTypeMap);
-    }
-    else {
-      addSpecies(res, publicData.bigGameTypes, bigGameTypeMap);
-      addSpecies(res, publicData.smallGameTypes, smallGameTypeMap);
-      addSpecies(res, publicData.uplandGameTypes, uplandGameTypeMap);
-      addSpecies(res, publicData.waterfowlTypes, waterfowlTypeMap);
-    }
 
-    if (res.length === 0) {
-      return null;
+    let value = null;
+    let count = 0;
+    speciesProperties.forEach(a => {
+      const props = publicData[a];
+      if (props) {
+        count += props.length;
+        if (props.length === 1){
+          value = getCustomLabel(genericTabsMap[a], props[0]);
+        }
+      }
+    });
+
+    if (count < 2){
+      return value;
     }
-    return res.toString();
+    return count + ' species'
   };
 
   const getTitle = () => {

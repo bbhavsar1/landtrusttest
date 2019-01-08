@@ -157,6 +157,8 @@ export const genericTabsMap = {
   fishMotTypes: fishMotMap,
 }
 
+export const speciesProperties = ['fishTypes','bigGameTypes','smallGameTypes','uplandGameTypes','waterfowlTypes'];
+
 export const categories = [
   { key: 'hunt', label: 'Hunting' },
   { key: 'fish', label: 'Fishing' },
