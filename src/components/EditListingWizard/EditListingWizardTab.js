@@ -10,6 +10,7 @@ import {
 import { ensureListing } from '../../util/data';
 import { createResourceLocatorString } from '../../util/routes';
 import {
+  EditListingAvailabilityPanel,
   EditListingDescriptionPanel,
   EditListingGenericListPanel,
   EditListingLocationPanel,
@@ -20,6 +21,7 @@ import {
 
 import css from './EditListingWizard.css';
 
+export const AVAILABILITY = 'availability';
 export const DESCRIPTION = 'description';
 export const PUBLIC_LANDS = 'publicLands'
 export const FISH_MOT_TYPES = 'fishMotTypes'
@@ -41,7 +43,7 @@ export const PHOTOS = 'photos';
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
 export const SUPPORTED_TABS = [DESCRIPTION, FISH_MOT_TYPES, HUNT_MOT_TYPES, FISH_TYPES, BIG_GAME_TYPES, SMALL_GAME_TYPES, UPLAND_GAME_TYPES,
-  WATERFOWL_TYPES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, PHOTOS];
+  WATERFOWL_TYPES, LAND_TYPES, PUBLIC_LANDS, AGRICULTURE_TYPES, WATER_TYPES, POLICY, LOCATION, PRICING, AVAILABILITY, PHOTOS];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
   const nextTabIndex = marketplaceTabs.findIndex(s => s === tab) + 1;
@@ -84,6 +86,7 @@ const EditListingWizardTab = props => {
     newListingPublished,
     history,
     images,
+    availability,
     listing,
     handleCreateFlowTabScrolling,
     handlePublishListing,
@@ -230,6 +233,18 @@ const EditListingWizardTab = props => {
         />
       );
     }
+    case AVAILABILITY: {
+      return (
+        <EditListingAvailabilityPanel
+          {...panelProps(AVAILABILITY)}
+          availability={availability}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
     case PHOTOS: {
       // newListingPublished and fetchInProgress are flags for the last wizard tab
       return (
@@ -282,6 +297,7 @@ EditListingWizardTab.propTypes = {
     replace: func.isRequired,
   }).isRequired,
   images: array.isRequired,
+  availability: object.isRequired,
 
   // We cannot use propTypes.listing since the listing might be a draft.
   listing: shape({

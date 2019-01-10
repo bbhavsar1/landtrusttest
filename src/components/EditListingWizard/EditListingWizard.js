@@ -14,6 +14,7 @@ import { PayoutDetailsForm } from '../../forms';
 import { Modal, NamedRedirect, Tabs } from '../../components';
 
 import EditListingWizardTab, {
+  AVAILABILITY,
   DESCRIPTION,
   FISH_MOT_TYPES,
   HUNT_MOT_TYPES,
@@ -37,7 +38,7 @@ import css from './EditListingWizard.css';
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
 export const TABS_PREFIX = [DESCRIPTION, LOCATION];
-export const TABS_SUFFIX = [PUBLIC_LANDS, POLICY, PRICING, PHOTOS,];
+export const TABS_SUFFIX = [PUBLIC_LANDS, POLICY, PRICING, AVAILABILITY, PHOTOS,];
 export const DEFAULT_TABS = TABS_PREFIX.concat(TABS_SUFFIX);
 export const HUNT_TABS = TABS_PREFIX.concat([
   HUNT_MOT_TYPES,
@@ -65,7 +66,14 @@ const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
  * @return true if tab / step is completed.
  */
 const tabCompleted = (tab, listing) => {
-  const { description, geolocation, price, title, publicData } = listing.attributes;
+  const {
+    availabilityPlan,
+    description,
+    geolocation,
+    price,
+    title,
+    publicData,
+  } = listing.attributes;
   const images = listing.images;
 
   if (!publicData) {
@@ -75,6 +83,8 @@ const tabCompleted = (tab, listing) => {
   switch (tab) {
     case DESCRIPTION:
       return !!(description && title);
+    case AVAILABILITY:
+      return !!availabilityPlan;
     case LOCATION:
       return !!(geolocation && publicData.location && publicData.location.address);
     case FISH_MOT_TYPES:
@@ -291,7 +301,7 @@ class EditListingWizard extends Component {
           onClose={this.handlePayoutModalClose}
           onManageDisableScrolling={onManageDisableScrolling}
         >
-          <div className={css.modalHeaderWrapper}>
+          <div className={css.modalPayoutDetailsWrapper}>
             <h1 className={css.modalTitle}>
               <FormattedMessage id="EditListingPhotosPanel.payoutModalTitleOneMoreThing" />
               <br />
@@ -300,14 +310,14 @@ class EditListingWizard extends Component {
             <p className={css.modalMessage}>
               <FormattedMessage id="EditListingPhotosPanel.payoutModalInfo" />
             </p>
+            <PayoutDetailsForm
+              className={css.payoutDetails}
+              inProgress={fetchInProgress}
+              createStripeAccountError={errors ? errors.createStripeAccountError : null}
+              onChange={onPayoutDetailsFormChange}
+              onSubmit={this.handlePayoutSubmit}
+            />
           </div>
-          <PayoutDetailsForm
-            className={css.payoutDetails}
-            inProgress={fetchInProgress}
-            createStripeAccountError={errors ? errors.createStripeAccountError : null}
-            onChange={onPayoutDetailsFormChange}
-            onSubmit={this.handlePayoutSubmit}
-          />
         </Modal>
       </div>
     );
@@ -366,4 +376,7 @@ EditListingWizard.propTypes = {
   intl: intlShape.isRequired,
 };
 
-export default compose(withViewport, injectIntl)(EditListingWizard);
+export default compose(
+  withViewport,
+  injectIntl
+)(EditListingWizard);

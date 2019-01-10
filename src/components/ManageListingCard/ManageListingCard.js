@@ -6,6 +6,8 @@ import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 import routeConfiguration from '../../routeConfiguration';
 import {
+  LINE_ITEM_NIGHT,
+  LINE_ITEM_DAY,
   LISTING_STATE_PENDING_APPROVAL,
   LISTING_STATE_CLOSED,
   LISTING_STATE_DRAFT,
@@ -68,8 +70,8 @@ const createListingURL = (routes, listing) => {
   const variant = isDraft
     ? LISTING_PAGE_DRAFT_VARIANT
     : isPendingApproval
-      ? LISTING_PAGE_PENDING_APPROVAL_VARIANT
-      : null;
+    ? LISTING_PAGE_PENDING_APPROVAL_VARIANT
+    : null;
 
   const linkProps =
     isPendingApproval || isDraft
@@ -151,6 +153,16 @@ export const ManageListingCardComponent = props => {
   const editListingLinkType = isDraft
     ? LISTING_PAGE_PARAM_TYPE_DRAFT
     : LISTING_PAGE_PARAM_TYPE_EDIT;
+
+  const unitType = config.bookingUnitType;
+  const isNightly = unitType === LINE_ITEM_NIGHT;
+  const isDaily = unitType === LINE_ITEM_DAY;
+
+  const unitTranslationKey = isNightly
+    ? 'ManageListingCard.perNight'
+    : isDaily
+    ? 'ManageListingCard.perDay'
+    : 'ManageListingCard.perUnit';
 
   return (
     <div className={classes}>
@@ -289,7 +301,7 @@ export const ManageListingCardComponent = props => {
                 {formattedPrice}
               </div>
               <div className={css.perUnit}>
-                <FormattedMessage id="ManageListingCard.perUnit" />
+                <FormattedMessage id={unitTranslationKey} />
               </div>
             </React.Fragment>
           ) : (
@@ -321,6 +333,16 @@ export const ManageListingCardComponent = props => {
             params={{ id, slug, type: editListingLinkType, tab: 'description' }}
           >
             <FormattedMessage id="ManageListingCard.editListing" />
+          </NamedLink>
+
+          <span className={css.manageLinksSeparator}>{' • '}</span>
+
+          <NamedLink
+            className={css.manageLink}
+            name="EditListingPage"
+            params={{ id, slug, type: 'edit', tab: 'availability' }}
+          >
+            <FormattedMessage id="ManageListingCard.manageAvailability" />
           </NamedLink>
         </div>
       </div>
@@ -359,4 +381,7 @@ ManageListingCardComponent.propTypes = {
   }).isRequired,
 };
 
-export default compose(withRouter, injectIntl)(ManageListingCardComponent);
+export default compose(
+  withRouter,
+  injectIntl
+)(ManageListingCardComponent);

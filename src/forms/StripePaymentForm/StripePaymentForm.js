@@ -45,7 +45,16 @@ const stripeErrorTranslation = (intl, stripeError) => {
   });
 };
 
-const stripeElementsOptions = {};
+const stripeElementsOptions = {
+  fonts: [
+    {
+      family: 'sofiapro',
+      fontSmoothing: 'antialiased',
+      src:
+        'local("sofiapro"), local("SofiaPro"), local("Sofia Pro"), url("https://assets-sharetribecom.sharetribe.com/webfonts/sofiapro/sofiapro-medium-webfont.woff2") format("woff2")',
+    },
+  ],
+};
 
 const cardStyles = {
   base: {
@@ -183,6 +192,7 @@ class StripePaymentForm extends Component {
       paymentInfo,
       onChange,
       authorDisplayName,
+      showInitialMessageInput,
       intl,
     } = this.props;
     const submitInProgress = this.state.submitting || inProgress;
@@ -216,6 +226,24 @@ class StripePaymentForm extends Component {
       </span>
     );
 
+    const initialMessage = showInitialMessageInput ? (
+      <div>
+        <h3 className={css.messageHeading}>
+          <FormattedMessage id="StripePaymentForm.messageHeading" />
+        </h3>
+        <label className={css.messageLabel} htmlFor={`${formId}-message`}>
+          <FormattedMessage id="StripePaymentForm.messageLabel" values={{ messageOptionalText }} />
+        </label>
+        <ExpandingTextarea
+          id={`${formId}-message`}
+          className={css.message}
+          placeholder={messagePlaceholder}
+          value={this.state.message}
+          onChange={handleMessageChange}
+        />
+      </div>
+    ) : null;
+
     return (
       <Form className={classes} onSubmit={this.handleSubmit}>
         <h3 className={css.paymentHeading}>
@@ -234,19 +262,7 @@ class StripePaymentForm extends Component {
         {this.state.error && !submitInProgress ? (
           <span style={{ color: 'red' }}>{this.state.error}</span>
         ) : null}
-        <h3 className={css.messageHeading}>
-          <FormattedMessage id="StripePaymentForm.messageHeading" />
-        </h3>
-        <label className={css.messageLabel} htmlFor={`${formId}-message`}>
-          <FormattedMessage id="StripePaymentForm.messageLabel" values={{ messageOptionalText }} />
-        </label>
-        <ExpandingTextarea
-          id={`${formId}-message`}
-          className={css.message}
-          placeholder={messagePlaceholder}
-          value={this.state.message}
-          onChange={handleMessageChange}
-        />
+        {initialMessage}
         <div className={css.submitContainer}>
           <p className={css.paymentInfo}>{paymentInfo}</p>
           <PrimaryButton
@@ -268,6 +284,7 @@ StripePaymentForm.defaultProps = {
   rootClassName: null,
   inProgress: false,
   onChange: () => null,
+  showInitialMessageInput: true,
 };
 
 const { bool, func, string } = PropTypes;
@@ -282,6 +299,7 @@ StripePaymentForm.propTypes = {
   onChange: func,
   paymentInfo: string.isRequired,
   authorDisplayName: string.isRequired,
+  showInitialMessageInput: bool,
 };
 
 export default injectIntl(StripePaymentForm);

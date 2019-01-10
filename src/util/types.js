@@ -146,6 +146,23 @@ const listingAttributes = shape({
   publicData: object.isRequired,
 });
 
+const AVAILABILITY_PLAN_DAY = 'availability-plan/day';
+const AVAILABILITY_PLAN_TIME = 'availability-plan/time';
+export const DAYS_OF_WEEK = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const availabilityPlan = shape({
+  type: oneOf([AVAILABILITY_PLAN_DAY, AVAILABILITY_PLAN_TIME]).isRequired,
+  timezone: string,
+  entries: arrayOf(
+    shape({
+      dayOfWeek: oneOf(DAYS_OF_WEEK).isRequired,
+      seats: number.isRequired,
+      start: string,
+      end: string,
+    })
+  ),
+});
+
 const ownListingAttributes = shape({
   title: string.isRequired,
   description: string,
@@ -153,6 +170,7 @@ const ownListingAttributes = shape({
   deleted: propTypes.value(false).isRequired,
   state: oneOf(LISTING_STATES).isRequired,
   price: propTypes.money,
+  availabilityPlan: availabilityPlan,
   publicData: object.isRequired,
 });
 
@@ -198,6 +216,17 @@ propTypes.timeSlot = shape({
   attributes: shape({
     type: oneOf([TIME_SLOT_DAY]).isRequired,
     end: instanceOf(Date).isRequired,
+    start: instanceOf(Date).isRequired,
+  }),
+});
+
+// Denormalised availability exception object
+propTypes.availabilityException = shape({
+  id: propTypes.uuid.isRequired,
+  type: propTypes.value('availabilityException').isRequired,
+  attributes: shape({
+    end: instanceOf(Date).isRequired,
+    seats: number.isRequired,
     start: instanceOf(Date).isRequired,
   }),
 });
@@ -446,6 +475,8 @@ export const ERROR_CODE_TRANSACTION_ALREADY_REVIEWED_BY_PROVIDER =
 export const ERROR_CODE_TRANSACTION_BOOKING_TIME_NOT_AVAILABLE =
   'transaction-booking-time-not-available';
 export const ERROR_CODE_PAYMENT_FAILED = 'transaction-payment-failed';
+export const ERROR_CODE_CHARGE_ZERO_PAYIN = 'transaction-charge-zero-payin';
+export const ERROR_CODE_CHARGE_ZERO_PAYOUT = 'transaction-charge-zero-payout';
 export const ERROR_CODE_EMAIL_TAKEN = 'email-taken';
 export const ERROR_CODE_EMAIL_NOT_FOUND = 'email-not-found';
 export const ERROR_CODE_EMAIL_NOT_VERIFIED = 'email-unverified';
@@ -463,6 +494,8 @@ const ERROR_CODES = [
   ERROR_CODE_TRANSACTION_ALREADY_REVIEWED_BY_CUSTOMER,
   ERROR_CODE_TRANSACTION_ALREADY_REVIEWED_BY_PROVIDER,
   ERROR_CODE_PAYMENT_FAILED,
+  ERROR_CODE_CHARGE_ZERO_PAYIN,
+  ERROR_CODE_CHARGE_ZERO_PAYOUT,
   ERROR_CODE_EMAIL_TAKEN,
   ERROR_CODE_EMAIL_NOT_FOUND,
   ERROR_CODE_EMAIL_NOT_VERIFIED,

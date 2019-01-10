@@ -3,9 +3,9 @@ import { string, func } from 'prop-types';
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 import { lazyLoadWithDimensions } from '../../util/contextHelpers';
-import { propTypes } from '../../util/types';
+import { LINE_ITEM_DAY, LINE_ITEM_NIGHT, propTypes } from '../../util/types';
 import { formatMoney } from '../../util/currency';
-import { ensureListing } from '../../util/data';
+import { ensureListing, ensureUser } from '../../util/data';
 import { richText } from '../../util/richText';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
@@ -48,12 +48,18 @@ export const ListingCardComponent = props => {
   const id = currentListing.id.uuid;
   const { title = '', price } = currentListing.attributes;
   const slug = createSlug(title);
+  const author = ensureUser(listing.author);
+  const authorName = author.attributes.profile.displayName;
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
 
   const { formattedPrice, priceTitle } = priceData(price, intl);
   const { category } = listing.attributes.publicData;
   const { getCustomLabel, genericTabsMap, speciesProperties } = config.custom;
+
+  const unitType = config.bookingUnitType;
+  const isNightly = unitType === LINE_ITEM_NIGHT;
+  const isDaily = unitType === LINE_ITEM_DAY;
 
   const getSpecies = () => {
     let { publicData } = listing.attributes;
@@ -68,13 +74,13 @@ export const ListingCardComponent = props => {
       const props = publicData[a];
       if (props) {
         count += props.length;
-        if (props.length === 1){
+        if (props.length === 1) {
           value = getCustomLabel(genericTabsMap[a], props[0]);
         }
       }
     });
 
-    if (count < 2){
+    if (count < 2) {
       return value;
     }
     return count + ' species'
@@ -88,6 +94,11 @@ export const ListingCardComponent = props => {
     }
     return res;
   }
+  const unitTranslationKey = isNightly
+    ? 'ListingCard.perNight'
+    : isDaily
+      ? 'ListingCard.perDay'
+      : 'ListingCard.perUnit';
 
   return (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
@@ -123,7 +134,7 @@ export const ListingCardComponent = props => {
             {formattedPrice}
           </div>
           <div className={css.perUnit}>
-            <FormattedMessage id="ListingCard.perUnit" />
+            <FormattedMessage id={unitTranslationKey} />
           </div>
         </div>
       </div>

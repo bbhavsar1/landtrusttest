@@ -44,9 +44,11 @@ export const withViewport = Component => {
     componentDidMount() {
       this.setViewport();
       window.addEventListener('resize', this.handleWindowResize);
+      window.addEventListener('orientationchange', this.handleWindowResize);
     }
     componentWillUnmount() {
       window.removeEventListener('resize', this.handleWindowResize);
+      window.removeEventListener('orientationchange', this.handleWindowResize);
     }
     handleWindowResize() {
       this.setViewport();
@@ -141,8 +143,8 @@ export const withDimensions = (Component, options = {}) => {
         clientWidth !== 0 && clientHeight !== 0
           ? { width: clientWidth, height: clientHeight }
           : width !== 0 && height !== 0
-            ? { width, height }
-            : {};
+          ? { width, height }
+          : {};
 
       const props = { ...this.props, dimensions: currentDimensions };
 
