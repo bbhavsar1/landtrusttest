@@ -160,8 +160,8 @@ export const genericTabsMap = {
 export const speciesProperties = ['fishTypes','bigGameTypes','smallGameTypes','uplandGameTypes','waterfowlTypes'];
 
 export const categories = [
-  { key: 'hunt', label: 'Hunting' },
-  { key: 'fish', label: 'Fishing' },
+  { key: 'hunt', label: 'Hunt' },
+  { key: 'fish', label: 'Fish' },
   { key: 'access', label: 'Access' },
 ];
 
