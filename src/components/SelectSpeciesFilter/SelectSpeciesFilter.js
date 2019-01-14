@@ -185,6 +185,7 @@ class SelectSpeciesFilter extends Component {
           options={this.generateOptions()}
           isClearable={true}
           onChange={this.onSelect}
+          placeholder='Species'
         />
       </div>
     );
