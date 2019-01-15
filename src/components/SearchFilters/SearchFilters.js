@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import omit from 'lodash/omit';
 
-import { SelectCategoryFilter, SelectSpeciesFilter, PriceFilter } from '../../components';
+import { SelectCategoryFilter, SelectSpeciesFilter, SelectMethodOfTakeFilter, PriceFilter } from '../../components';
 import routeConfiguration from '../../routeConfiguration';
 import { createResourceLocatorString } from '../../util/routes';
 import { propTypes } from '../../util/types';
@@ -21,17 +21,13 @@ const initialValue = (queryParams, paramName) => {
   return queryParams[paramName];
 };
 
-const getInitialSpecies = (queryParams, speciesFilters) => {
-  let obj = speciesFilters.find(a => queryParams[a.paramName]);
-  if (obj) {
-    return queryParams[obj.paramName];
+// get the value from the queryParams if it is a valid value from one of the related filters
+const getInitialRelatedFiltersValue = (queryParams, filtersGroup) => {
+  let filter = filtersGroup.find(a => queryParams[a.paramName]);
+  if (filter) {
+    return queryParams[filter.paramName];
   }
   return null;
-};
-
-// resolve initial values for a multi value filter
-const initialValues = (queryParams, paramName) => {
-  return !!queryParams[paramName] ? queryParams[paramName].split(',') : [];
 };
 
 const initialPriceRangeValue = (queryParams, paramName) => {
@@ -56,9 +52,8 @@ const SearchFiltersComponent = props => {
     searchInProgress,
     categoryFilter,
     priceFilter,
-    isSearchFiltersPanelOpen,
-    toggleSearchFiltersPanel,
-    searchFiltersPanelSelectedCount,
+    huntMotTypesFilter,
+    fishMotTypesFilter,
     history
   } = props;
 
@@ -67,9 +62,12 @@ const SearchFiltersComponent = props => {
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
 
-  const initialSpecies = getInitialSpecies(urlQueryParams, [
-    props.bigGameTypesFilter, props.smallGameTypesFilter, props.uplandGameTypesFilter,
+  const initialSpecies = getInitialRelatedFiltersValue(
+    urlQueryParams, [props.bigGameTypesFilter, props.smallGameTypesFilter, props.uplandGameTypesFilter,
     props.waterfowlTypesFilter, props.fishTypesFilter]);
+
+  const initialMethodOfTake = getInitialRelatedFiltersValue(
+    urlQueryParams, [huntMotTypesFilter, fishMotTypesFilter]);
 
   const activity = categoryFilter
     ? initialValue(urlQueryParams, categoryFilter.paramName)
@@ -79,27 +77,7 @@ const SearchFiltersComponent = props => {
     ? initialPriceRangeValue(urlQueryParams, priceFilter.paramName)
     : null;
 
-  const handleSelectOptions = (urlParam, options) => {
-    const queryParams =
-      options && options.length > 0
-        ? { ...urlQueryParams, [urlParam]: options.join(',') }
-        : omit(urlQueryParams, urlParam);
-
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  };
-
-
-  const handleSelectOption = (urlParam, option) => {
-    // query parameters after selecting the option
-    // if no option is passed, clear the selection for the filter
-    const queryParams = option
-      ? { ...urlQueryParams, [urlParam]: option }
-      : omit(urlQueryParams, urlParam);
-
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  };
-
-  const removeSpeciesSelectOption = () => {
+  const removeHuntFishSelectOptions = () => {
     const cleanUrlQueryParams = { ...urlQueryParams }
     delete cleanUrlQueryParams.pub_fishTypes;
     delete cleanUrlQueryParams.pub_bigGameTypes;
@@ -110,13 +88,13 @@ const SearchFiltersComponent = props => {
   }
 
   const handleCategorySelectOption = (urlParam, option) => {
-    const cleanUrlQueryParams = removeSpeciesSelectOption();
+    const cleanUrlQueryParams = removeHuntFishSelectOptions();
     delete cleanUrlQueryParams.pub_category;
     handleCategoryBasedSelectOption(urlParam, option, cleanUrlQueryParams);
   };
 
-  const handleSpeciesSelectOption = (urlParam, option) => {
-    const cleanUrlQueryParams = removeSpeciesSelectOption();
+  const handleHuntFishSelectOption = (urlParam, option) => {
+    const cleanUrlQueryParams = removeHuntFishSelectOptions();
     if (urlParam) {
       handleCategoryBasedSelectOption(urlParam, option, cleanUrlQueryParams);
       return;
@@ -151,15 +129,24 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
-  const isSpeciesFilterEnabled = activity &&
+  const isHuntFishFilterEnabled = activity &&
     (activity === 'hunt' || activity === 'fish') ? true : false;
 
-  const speciesFilterElement = isSpeciesFilterEnabled ? (
+  const speciesFilterElement = isHuntFishFilterEnabled ? (
     <SelectSpeciesFilter
       key={activity}
-      onSelect={handleSpeciesSelectOption}
+      onSelect={handleHuntFishSelectOption}
       activity={activity}
       initialValue={initialSpecies}
+    />
+  ) : null;
+
+  const motFilterElement = isHuntFishFilterEnabled ? (
+    <SelectMethodOfTakeFilter
+      key={activity}
+      onSelect={handleHuntFishSelectOption}
+      activity={activity}
+      initialValue={initialMethodOfTake}
     />
   ) : null;
 
@@ -175,28 +162,12 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
-  const toggleSearchFiltersPanelButtonClasses =
-    isSearchFiltersPanelOpen || searchFiltersPanelSelectedCount > 0
-      ? css.searchFiltersPanelOpen
-      : css.searchFiltersPanelClosed;
-  const toggleSearchFiltersPanelButton = toggleSearchFiltersPanel ? (
-    <button
-      className={toggleSearchFiltersPanelButtonClasses}
-      onClick={() => {
-        toggleSearchFiltersPanel(!isSearchFiltersPanelOpen);
-      }}
-    >
-      <FormattedMessage
-        id="SearchFilters.moreFiltersButton"
-        values={{ count: searchFiltersPanelSelectedCount }}
-      />
-    </button>
-  ) : null;
   return (
     <div className={classes}>
       <div className={css.filters}>
         {categoryFilterElement}
         {speciesFilterElement}
+        {motFilterElement}
         {priceFilterElement}
       </div>
 
@@ -229,7 +200,6 @@ SearchFiltersComponent.defaultProps = {
   resultsCount: null,
   searchingInProgress: false,
   categoryFilter: null,
-  bigGameTypesFilter: null,
   isSearchFiltersPanelOpen: false,
   toggleSearchFiltersPanel: null,
   searchFiltersPanelSelectedCount: 0,
@@ -244,11 +214,7 @@ SearchFiltersComponent.propTypes = {
   searchingInProgress: bool,
   onManageDisableScrolling: func.isRequired,
   categoriesFilter: propTypes.filterConfig,
-  bigGameTypesFilter: propTypes.filterConfig,
   priceFilter: propTypes.filterConfig,
-  isSearchFiltersPanelOpen: bool,
-  toggleSearchFiltersPanel: func,
-  searchFiltersPanelSelectedCount: number,
 
   // from withRouter
   history: shape({

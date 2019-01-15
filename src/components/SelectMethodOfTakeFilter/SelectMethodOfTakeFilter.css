@@ -1,0 +1,18 @@
+@import '../../marketplace.css';
+
+.root {
+  position: relative;
+  display: flex;
+}
+
+.label {
+  @apply --ltButtonStyle;
+  @apply --ltFilterButtonStyle;
+  background-color: 'red';
+  font-size: 10px;
+}
+
+.labelSelected {
+  @apply --ltButtonSelectedStyle;
+  @apply --ltFilterButtonStyle;
+}

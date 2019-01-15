@@ -98,6 +98,7 @@ export { default as SectionHowItWorks } from './SectionHowItWorks/SectionHowItWo
 export { default as SectionLocations } from './SectionLocations/SectionLocations';
 export { default as SectionThumbnailLinks } from './SectionThumbnailLinks/SectionThumbnailLinks';
 export { default as SelectCategoryFilter } from './SelectCategoryFilter/SelectCategoryFilter';
+export { default as SelectMethodOfTakeFilter } from './SelectMethodOfTakeFilter/SelectMethodOfTakeFilter';
 export { default as SelectMultipleFilter } from './SelectMultipleFilter/SelectMultipleFilter';
 export { default as SelectMultipleFilterPlain } from './SelectMultipleFilterPlain/SelectMultipleFilterPlain';
 export { default as SelectSingleFilter } from './SelectSingleFilter/SelectSingleFilter';

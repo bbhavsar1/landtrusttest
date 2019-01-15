@@ -53,12 +53,16 @@ export class SearchPageComponent extends Component {
 
   filters() {
     const { categories, priceFilterConfig } = this.props;
-    const { bigGameTypeMap, smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap, fishTypeMap, publicLandMap } = config.custom;
+    const { huntMotMap, bigGameTypeMap, smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap, fishMotMap, fishTypeMap, publicLandMap } = config.custom;
 
     return {
       categoryFilter: {
         paramName: 'pub_category',
         options: categories,
+      },
+      huntMotTypesFilter: {
+        paramName: 'pub_huntMotTypes',
+        options: huntMotMap,
       },
       bigGameTypesFilter: {
         paramName: 'pub_bigGameTypes',
@@ -74,7 +78,11 @@ export class SearchPageComponent extends Component {
       },
       waterfowlTypesFilter: {
         paramName: 'pub_waterfowlTypes',
-        options:waterfowlTypeMap,
+        options: waterfowlTypeMap,
+      },
+      fishMotTypesFilter: {
+        paramName: 'pub_fishMotTypes',
+        options: fishMotMap,
       },
       fishTypesFilter: {
         paramName: 'pub_fishTypes',
@@ -238,6 +246,8 @@ export class SearchPageComponent extends Component {
               waterfowlTypesFilter: filters.waterfowlTypesFilter,
               fishTypesFilter: filters.fishTypesFilter,
               publicLandsFilter: filters.publicLandsFilter,
+              huntMotTypesFilter: filters.huntMotTypesFilter,
+              fishMotTypesFilter: filters.fishMotTypesFilter,
             }}
           />
           <ModalInMobile
