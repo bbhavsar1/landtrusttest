@@ -84,6 +84,8 @@ const SearchFiltersComponent = props => {
     delete cleanUrlQueryParams.pub_smallGameTypes;
     delete cleanUrlQueryParams.pub_uplandGameTypes;
     delete cleanUrlQueryParams.pub_waterfowlGameTypes;
+    delete cleanUrlQueryParams.pub_fishMotTypes;
+    delete cleanUrlQueryParams.pub_huntMotTypes;
     return cleanUrlQueryParams;
   }
 
@@ -134,7 +136,7 @@ const SearchFiltersComponent = props => {
 
   const speciesFilterElement = isHuntFishFilterEnabled ? (
     <SelectSpeciesFilter
-      key={activity}
+      key={'species-' + activity}
       onSelect={handleHuntFishSelectOption}
       activity={activity}
       initialValue={initialSpecies}
@@ -143,7 +145,7 @@ const SearchFiltersComponent = props => {
 
   const motFilterElement = isHuntFishFilterEnabled ? (
     <SelectMethodOfTakeFilter
-      key={activity}
+      key={'mot-' + activity}
       onSelect={handleHuntFishSelectOption}
       activity={activity}
       initialValue={initialMethodOfTake}
