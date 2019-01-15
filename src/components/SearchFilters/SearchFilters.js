@@ -77,26 +77,41 @@ const SearchFiltersComponent = props => {
     ? initialPriceRangeValue(urlQueryParams, priceFilter.paramName)
     : null;
 
-  const removeHuntFishSelectOptions = () => {
-    const cleanUrlQueryParams = { ...urlQueryParams }
+  const deleteSpeciesUrlParams = (initUrlQueryParams) => {
+    const cleanUrlQueryParams = { ...initUrlQueryParams }
     delete cleanUrlQueryParams.pub_fishTypes;
     delete cleanUrlQueryParams.pub_bigGameTypes;
     delete cleanUrlQueryParams.pub_smallGameTypes;
     delete cleanUrlQueryParams.pub_uplandGameTypes;
     delete cleanUrlQueryParams.pub_waterfowlGameTypes;
+    return cleanUrlQueryParams;
+  }
+
+  const deleteMethodOfTakeUrlParams = (initUrlQueryParams) => {
+    const cleanUrlQueryParams = { ...initUrlQueryParams }
     delete cleanUrlQueryParams.pub_fishMotTypes;
     delete cleanUrlQueryParams.pub_huntMotTypes;
     return cleanUrlQueryParams;
   }
 
   const handleCategorySelectOption = (urlParam, option) => {
-    const cleanUrlQueryParams = removeHuntFishSelectOptions();
+    const cleanUrlQueryParamsNoSpecies = deleteSpeciesUrlParams(urlQueryParams);
+    const cleanUrlQueryParams = deleteMethodOfTakeUrlParams(cleanUrlQueryParamsNoSpecies);
     delete cleanUrlQueryParams.pub_category;
     handleCategoryBasedSelectOption(urlParam, option, cleanUrlQueryParams);
   };
 
-  const handleHuntFishSelectOption = (urlParam, option) => {
-    const cleanUrlQueryParams = removeHuntFishSelectOptions();
+  const handleSpeciesSelectOption = (urlParam, option) => {
+    const cleanUrlQueryParams = deleteSpeciesUrlParams(urlQueryParams);
+    if (urlParam) {
+      handleCategoryBasedSelectOption(urlParam, option, cleanUrlQueryParams);
+      return;
+    }
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, cleanUrlQueryParams));
+  };
+
+  const handleMethodOfTakeSelectOption = (urlParam, option) => {
+    const cleanUrlQueryParams = deleteMethodOfTakeUrlParams(urlQueryParams);
     if (urlParam) {
       handleCategoryBasedSelectOption(urlParam, option, cleanUrlQueryParams);
       return;
@@ -137,7 +152,7 @@ const SearchFiltersComponent = props => {
   const speciesFilterElement = isHuntFishFilterEnabled ? (
     <SelectSpeciesFilter
       key={'species-' + activity}
-      onSelect={handleHuntFishSelectOption}
+      onSelect={handleSpeciesSelectOption}
       activity={activity}
       initialValue={initialSpecies}
     />
@@ -146,7 +161,7 @@ const SearchFiltersComponent = props => {
   const motFilterElement = isHuntFishFilterEnabled ? (
     <SelectMethodOfTakeFilter
       key={'mot-' + activity}
-      onSelect={handleHuntFishSelectOption}
+      onSelect={handleMehodOfTakeSelectOption}
       activity={activity}
       initialValue={initialMethodOfTake}
     />
