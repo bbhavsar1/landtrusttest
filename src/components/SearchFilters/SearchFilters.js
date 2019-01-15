@@ -161,7 +161,7 @@ const SearchFiltersComponent = props => {
   const motFilterElement = isHuntFishFilterEnabled ? (
     <SelectMethodOfTakeFilter
       key={'mot-' + activity}
-      onSelect={handleMehodOfTakeSelectOption}
+      onSelect={handleMethodOfTakeSelectOption}
       activity={activity}
       initialValue={initialMethodOfTake}
     />
