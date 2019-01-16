@@ -146,7 +146,7 @@ export const EditListingPageComponent = props => {
     // make the header image the first image
     if (page.headerImageId && images) {
       const headerIdx = images.findIndex(a => a.id === page.headerImageId);
-      if (headerIdx != 0) {
+      if (headerIdx !== 0) {
         const tmp = images[headerIdx];
         images[headerIdx] = images[0];
         images[0] = tmp;
