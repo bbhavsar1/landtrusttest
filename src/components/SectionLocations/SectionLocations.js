@@ -8,9 +8,9 @@ import { NamedLink } from '../../components';
 
 import css from './SectionLocations.css';
 
-import helsinkiImage from './images/location_helsinki.jpg';
-import rovaniemiImage from './images/location_rovaniemi.jpg';
-import rukaImage from './images/location_ruka.jpg';
+import huntImage from './images/hunt.jpg';
+import fishImage from './images/fish.jpg';
+import accessImage from './images/access.jpg';
 
 class LocationImage extends Component {
   render() {
@@ -29,12 +29,7 @@ const locationLink = (name, image, searchQuery) => {
           <LazyImage src={image} alt={name} className={css.locationImage} />
         </div>
       </div>
-      <div className={css.linkText}>
-        <FormattedMessage
-          id="SectionLocations.listingsInLocation"
-          values={{ location: nameText }}
-        />
-      </div>
+      <div className={css.linkText}>{nameText }</div>
     </NamedLink>
   );
 };
@@ -51,19 +46,19 @@ const SectionLocations = props => {
       </div>
       <div className={css.locations}>
         {locationLink(
-          'Montana',
-          helsinkiImage,
-          '?address=Montana%2C%20United%20States&bounds=51.13149033%2C-102.77800001%2C41.93706984%2C-117.31111399'
+          'Hunt',
+          huntImage,
+          '?address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9&pub_category=hunt'
         )}
         {locationLink(
-          'Wyoming',
-          rovaniemiImage,
-          '?address=Wyoming%2C%20United%20States&bounds=45.005886%2C-104.052585%2C40.99461%2C-111.056889'
+          'Fish',
+          fishImage,
+          '?address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9&pub_category=fish'
         )}
         {locationLink(
-          'Washington',
-          rukaImage,
-          '?address=Washington%2C%20United%20States&bounds=49.002418%2C-116.91568%2C45.543541%2C-124.948858'
+          'Access',
+          accessImage,
+          '?address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9&pub_category=access'
         )}
       </div>
     </div>

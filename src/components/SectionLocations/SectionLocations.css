@@ -96,5 +96,6 @@
 }
 
 .locationName {
-  color: var(--marketplaceColor);
+  color: var(--ltForegroundColor);
+  @apply --marketplaceH2FontStyles;
 }
