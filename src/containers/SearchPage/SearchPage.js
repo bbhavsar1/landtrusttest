@@ -56,46 +56,16 @@ export class SearchPageComponent extends Component {
     const { huntMotMap, bigGameTypeMap, smallGameTypeMap, uplandGameTypeMap, waterfowlTypeMap, fishMotMap, fishTypeMap, publicLandMap } = config.custom;
 
     return {
-      categoryFilter: {
-        paramName: 'pub_category',
-        options: categories,
-      },
-      huntMotTypesFilter: {
-        paramName: 'pub_huntMotTypes',
-        options: huntMotMap,
-      },
-      bigGameTypesFilter: {
-        paramName: 'pub_bigGameTypes',
-        options: bigGameTypeMap,
-      },
-      smallGameTypesFilter: {
-        paramName: 'pub_smallGameTypes',
-        options: smallGameTypeMap,
-      },
-      uplandGameTypesFilter: {
-        paramName: 'pub_uplandGameTypes',
-        options: uplandGameTypeMap,
-      },
-      waterfowlTypesFilter: {
-        paramName: 'pub_waterfowlTypes',
-        options: waterfowlTypeMap,
-      },
-      fishMotTypesFilter: {
-        paramName: 'pub_fishMotTypes',
-        options: fishMotMap,
-      },
-      fishTypesFilter: {
-        paramName: 'pub_fishTypes',
-        options: fishTypeMap,
-      },
-      publicLandsFilter: {
-        paramName: 'pub_publicLands',
-        options: publicLandMap,
-      },
-      priceFilter: {
-        paramName: 'price',
-        config: priceFilterConfig,
-      },
+      categoryFilter: { paramName: 'pub_category', options: categories, },
+      huntMotTypesFilter: { paramName: 'pub_huntMotTypes', options: huntMotMap, },
+      bigGameTypesFilter: { paramName: 'pub_bigGameTypes', options: bigGameTypeMap, },
+      smallGameTypesFilter: { paramName: 'pub_smallGameTypes', options: smallGameTypeMap, },
+      uplandGameTypesFilter: { paramName: 'pub_uplandGameTypes', options: uplandGameTypeMap, },
+      waterfowlTypesFilter: { paramName: 'pub_waterfowlTypes', options: waterfowlTypeMap, },
+      fishMotTypesFilter: { paramName: 'pub_fishMotTypes', options: fishMotMap, },
+      fishTypesFilter: { paramName: 'pub_fishTypes', options: fishTypeMap, },
+      publicLandsFilter: { paramName: 'pub_publicLands', options: publicLandMap, },
+      priceFilter: { paramName: 'price', config: priceFilterConfig, },
     };
   }
 

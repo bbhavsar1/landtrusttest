@@ -183,9 +183,9 @@ const SearchFiltersComponent = props => {
     <div className={classes}>
       <div className={css.filters}>
         {categoryFilterElement}
+        {priceFilterElement}
         {speciesFilterElement}
         {motFilterElement}
-        {priceFilterElement}
       </div>
 
       {listingsAreLoaded && resultsCount > 0 ? (

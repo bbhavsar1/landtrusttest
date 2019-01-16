@@ -664,6 +664,7 @@
   "SearchFilters.noResults": "Could not find any listings.",
   "SearchFilters.noResultsMobile": "No results.",
   "SearchFilters.openMapView": "Map",
+  "SearchFiltersMobile.bigGameTypesLabel": "Big Game",
   "SearchFiltersMobile.publicLandsLabel": "Public Lands",
   "SearchFiltersMobile.cancel": "CANCEL",
   "SearchFiltersMobile.categoryLabel": "Category",

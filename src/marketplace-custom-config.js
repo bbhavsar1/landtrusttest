@@ -132,7 +132,7 @@ export const publicLandMap = [
 export const huntMotMap = [
   { key: 'archery', label: 'Archery', },
   { key: 'shotgun', label: 'Shotgun', },
-  { key: 'rifle', label: 'rifle', },
+  { key: 'rifle', label: 'Rifle', },
   { key: 'rimfire', label: 'Rimfire (.22 calibre)', },
 ]
 
@@ -176,4 +176,99 @@ export const priceFilterConfig = {
 export const getCustomLabel = (customArray, key) => {
   const pair = customArray.find(c => c.key === key);
   return pair ? pair.label : key;
+};
+
+const searchFilterCssStylesDefault = {
+  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontSize: '12px',
+  color: '#000000',
+};
+export const searchFilterCssStyles = {
+  control: (styles, state) => ({
+    ...styles,
+    ...searchFilterCssStylesDefault,
+    width: '204px',
+    margin: '4px 4px 4px 0px',
+    minHeight: '30px',
+    height: '30px',
+    boxShadow: 'none', // removes the blue border
+    borderColor: state.hasValue ? ltActiveBackgroundColor : ltBorderColor,
+    '&:hover': {
+      borderColor: state.hasValue ? ltActiveBackgroundColor : ltFocusBorderColor
+    },
+    backgroundColor: state.hasValue ? ltActiveBackgroundColor : ltBackgroundColor
+  }),
+  valueContainer: (styles, state) => ({
+    ...styles,
+    ...searchFilterCssStylesDefault,
+    padding: '0px 0px 0px 6px',
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      ...searchFilterCssStylesDefault,
+      padding: '0px 0px 0px 8px',
+      backgroundColor: isSelected ? ltActiveBackgroundColor : ltBackgroundColor,
+      color: isSelected ? ltActiveForegroundColor : ltForegroundColor,
+      '&:hover': {
+        color: ltHoverForegroundColor,        
+        fontWeight: 'bold'
+      },
+      '&:active': {
+        backgroundColor: ltActiveBackgroundColor,
+        color: ltActiveForegroundColor,
+      },
+    };
+  },
+  input: (styles, state) => ({
+    ...styles,
+    ...searchFilterCssStylesDefault,
+    padding: '0px',
+    color: state.hasValue ? ltActiveForegroundColor : ltForegroundColor
+  }),
+  placeholder: styles => ({
+    ...styles,
+    ...searchFilterCssStylesDefault,
+    fontWeight: 600,
+  }),
+  groupHeading: (styles, { data }) => ({
+    ...styles,
+    ...searchFilterCssStylesDefault,
+    fontWeight: 600,
+    padding: '0px 0px 0px 8px',
+  }),
+  singleValue: (styles, { data }) => ({
+    ...styles,
+    ...searchFilterCssStylesDefault,
+    fontWeight: 600,
+    color: ltActiveForegroundColor
+  }),
+  clearIndicator: (styles, state) => ({
+    ...styles,
+    padding: '2px',
+    color: ltActiveForegroundColor,
+    '&:hover': {
+      color: ltActiveForegroundColor
+    },
+  }),
+  dropdownIndicator: (styles, state) => ({
+    ...styles,
+    padding: '2px',
+    color: state.hasValue ? ltActiveForegroundColor : ltForegroundColor,
+    '&:hover': {
+      color: state.hasValue ? ltActiveForegroundColor : ltForegroundColor
+    },
+  }),
+  indicatorSeparator: (styles, state) => ({
+    ...styles,
+    backgroundColor: state.hasValue ? ltActiveForegroundColor : ltBorderColor
+  }),
+  loadingMessage: (styles) => ({
+    ...styles,
+    ...searchFilterCssStylesDefault
+  }),
+  noOptionsMessage: (styles) => ({
+    ...styles,
+    ...searchFilterCssStylesDefault
+  }),
 };
