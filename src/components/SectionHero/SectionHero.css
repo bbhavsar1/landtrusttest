@@ -49,6 +49,24 @@
   /* Text positioning is done with paddings */
 }
 
+/* Search */
+.searchLink {
+  flex-grow: 1;
+  height: 100%;
+  border: solid;
+  border-width: 1px;
+  border-color: var(--ltFocusBorderColor);
+}
+
+.topbarSearchWithLeftPadding {
+  padding-left: 24px;
+  height: var(--topbarHeightDesktop);
+
+  @media (min-width: 1024px) {
+    padding-left: 34px;
+  }
+}
+
 .heroContent {
   margin: 0 24px 0 24px;
 

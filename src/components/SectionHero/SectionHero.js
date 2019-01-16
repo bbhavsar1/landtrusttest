@@ -2,14 +2,31 @@ import React from 'react';
 import { string } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
-import { NamedLink } from '../../components';
+import { TopbarSearchForm } from '../../forms';
+import { createResourceLocatorString } from '../../util/routes';
 
+import config from '../../config';
+import routeConfiguration from '../../routeConfiguration';
 import css from './SectionHero.css';
 
 const SectionHero = props => {
-  const { rootClassName, className } = props;
+  const { rootClassName, className, history, currentSearchParams } = props;
 
   const classes = classNames(rootClassName || css.root, className);
+
+  const handleSubmit = (values) => {
+    const { search, selectedPlace } = values.location;
+    const { } = props;
+    const { origin, bounds } = selectedPlace;
+    const originMaybe = config.sortSearchByDistance ? { origin } : {};
+    const searchParams = {
+      ...currentSearchParams,
+      ...originMaybe,
+      address: search,
+      bounds,
+    };
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, searchParams));
+  }
 
   return (
     <div className={classes}>
@@ -20,16 +37,12 @@ const SectionHero = props => {
         <h2 className={css.heroSubTitle}>
           <FormattedMessage id="SectionHero.subTitle" />
         </h2>
-        <NamedLink
-          name="SearchPage"
-          to={{
-            search:
-              'address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9',
-          }}
-          className={css.heroButton}
-        >
-          <FormattedMessage id="SectionHero.browseButton" />
-        </NamedLink>
+        <TopbarSearchForm
+          className={css.searchLink}
+          desktopInputRoot={css.topbarSearchWithLeftPadding}
+          form="TopbarSearchFormDesktop"
+          onSubmit={handleSubmit}
+        />
       </div>
     </div>
   );
