@@ -20,8 +20,9 @@ class LocationImage extends Component {
 }
 const LazyImage = lazyLoadWithDimensions(LocationImage);
 
-const locationLink = (name, image, searchQuery) => {
+const locationLink = (name, desc, image, searchQuery) => {
   const nameText = <span className={css.locationName}>{name}</span>;
+  const descText = <span className={css.locationDesc}>{desc}</span>;
   return (
     <NamedLink name="SearchPage" to={{ search: searchQuery }} className={css.location}>
       <div className={css.imageWrapper}>
@@ -29,7 +30,8 @@ const locationLink = (name, image, searchQuery) => {
           <LazyImage src={image} alt={name} className={css.locationImage} />
         </div>
       </div>
-      <div className={css.linkText}>{nameText }</div>
+      <div className={css.linkText}>{nameText}</div>
+      <div className={css.descText}>{descText}</div>
     </NamedLink>
   );
 };
@@ -47,16 +49,19 @@ const SectionLocations = props => {
       <div className={css.locations}>
         {locationLink(
           'Hunt',
+          'Find properties for hunting big game, small game, upland birds, & waterfowl.',
           huntImage,
           '?address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9&pub_category=hunt'
         )}
         {locationLink(
           'Fish',
+          'Find properties for fishing streams, rivers, & ponds.',
           fishImage,
           '?address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9&pub_category=fish'
         )}
         {locationLink(
           'Access',
+          'Find properties through which you can access "landlocked" public lands.',
           accessImage,
           '?address=United%20States&bounds=71.540724%2C-64.464198%2C-14.6528%2C-179.9&pub_category=access'
         )}
