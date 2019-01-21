@@ -32,7 +32,6 @@
   @apply --marketplaceH5FontStyles;
   font-weight: var(--fontWeightSemiBold);
   color: var(--matterColor);
-  letter-spacing: 0.1px;
 
   background-color: var(--matterColorLight);
 

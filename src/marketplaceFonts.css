@@ -23,7 +23,6 @@
     font-weight: var(--fontWeightMedium);
     font-size: 18px;
     line-height: 24px;
-    letter-spacing: -0.1px;
     /* No margins for default font */
 
     @media (--viewportMedium) {
@@ -39,7 +38,6 @@
     font-weight: var(--fontWeightMedium);
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: -0.1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 12px;
     margin-bottom: 12px;
@@ -51,7 +49,6 @@
     font-weight: var(--fontWeightBold);
     font-size: 42px;
     line-height: 42px;
-    letter-spacing: -1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 25px;
     margin-bottom: 20px;
@@ -59,7 +56,6 @@
     @media (--viewportMedium) {
       font-size: 72px;
       line-height: 72px;
-      letter-spacing: -1.5px;
       /* margin-top + n * line-height + margin-bottom => x * 8px */
       margin-top: 25px;
       margin-bottom: 31px;
@@ -68,7 +64,6 @@
     @media (min-width: 1681px) {
       font-size: 84px;
       line-height: 84px;
-      letter-spacing: -2px;
     }
   }
 
@@ -78,14 +73,12 @@
     font-weight: var(--fontWeightSemiBold);
     font-size: 30px;
     line-height: 36px;
-    letter-spacing: -0.5px;
     margin: 0;
     font-weight: var(--fontWeightBold);
 
     @media (--viewportMedium) {
       font-weight: var(--fontWeightSemiBold);
       line-height: 40px;
-      letter-spacing: -0.9px;
       margin: 0;
     }
   }
@@ -96,7 +89,6 @@
     font-weight: var(--fontWeightBold);
     font-size: 30px;
     line-height: 36px;
-    letter-spacing: -1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 18px;
     margin-bottom: 18px;
@@ -105,7 +97,6 @@
       font-size: 48px;
       font-weight: var(--fontWeightSemiBold);
       line-height: 56px;
-      letter-spacing: -2px;
       /* margin-top + n * line-height + margin-bottom => x * 8px */
       margin-top: 24px;
       margin-bottom: 24px;
@@ -116,7 +107,6 @@
     font-weight: var(--fontWeightSemiBold);
     font-size: 24px;
     line-height: 30px;
-    letter-spacing: -0.3px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 21px;
     margin-bottom: 17px;
@@ -133,7 +123,6 @@
     font-weight: var(--fontWeightSemiBold);
     font-size: 20px;
     line-height: 24px;
-    letter-spacing: -0.2px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 16px;
     margin-bottom: 14px;
@@ -149,7 +138,6 @@
     font-weight: var(--fontWeightMedium);
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 12px;
     margin-bottom: 12px;
@@ -166,7 +154,6 @@
     font-weight: var(--fontWeightRegular);
     font-size: 14px;
     line-height: 18px;
-    letter-spacing: 0;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 10px;
     margin-bottom: 8px;
@@ -183,7 +170,6 @@
     font-weight: var(--fontWeightBold);
     font-size: 12px;
     line-height: 18px;
-    letter-spacing: 1.5px;
     text-transform: uppercase;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 10px;
@@ -204,7 +190,6 @@
     font-weight: var(--fontWeightRegular);
     font-size: 13px;
     line-height: 18px;
-    letter-spacing: -0.1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 9.5px;
     margin-bottom: 8.5px;
@@ -229,7 +214,6 @@
     font-weight: var(--fontWeightRegular);
     font-size: 13px;
     line-height: 18px;
-    letter-spacing: -0.1px;
 
     @media (--viewportMedium) {
       font-weight: var(--fontWeightMedium);
@@ -283,7 +267,6 @@
     font-weight: var(--fontWeightMedium);
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0;
 
     @media (--viewportLarge) {
       font-weight: var(--fontWeightSemiBold);
@@ -296,6 +279,5 @@
     font-weight: var(--fontWeightMedium);
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0;
   }
 }

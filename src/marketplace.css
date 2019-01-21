@@ -171,7 +171,6 @@
     font-weight: var(--fontWeightRegular);
     font-size: 18px;
     line-height: 24px;
-    letter-spacing: -0.3px;
     
     @media (--viewportMedium) {
       /* TODO: Make sure button text aligns with the baseline */
@@ -183,7 +182,6 @@
     font-weight: var(--fontWeightSemiBold);
     font-size: 12px;
     line-height: 18px;
-    letter-spacing: -0.3px;
     
     @media (--viewportMedium) {
       /* TODO: Make sure button text aligns with the baseline */
@@ -482,14 +480,12 @@
     font-weight: var(--fontWeightSemiBold);
     font-size: 30px;
     line-height: 36px;
-    letter-spacing: -0.5px;
     margin: 0;
     font-weight: var(--fontWeightBold);
 
     @media (--viewportMedium) {
       font-weight: var(--fontWeightSemiBold);
       line-height: 40px;
-      letter-spacing: -0.9px;
       margin: 0;
     }
   }
