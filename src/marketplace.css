@@ -153,7 +153,7 @@
     border: none;
 
     /* Colors */
-    color: var(--marketplaceColor);
+    color: var(--ltForegroundColor);
 
     /* Text size should be inherited */
     text-decoration: none;
@@ -195,7 +195,7 @@
     margin: 0;
     white-space: nowrap;
 
-    padding: 4px 24px;
+    padding: 4px 20px;
 
     /* Borders */
     border-style: solid;

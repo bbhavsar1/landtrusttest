@@ -21,8 +21,8 @@ class LocationImage extends Component {
 const LazyImage = lazyLoadWithDimensions(LocationImage);
 
 const locationLink = (name, desc, image, searchQuery) => {
-  const nameText = <span className={css.locationName}>{name}</span>;
-  const descText = <span className={css.locationDesc}>{desc}</span>;
+  const nameText = <span>{name}</span>;
+  const descText = <span>{desc}</span>;
   return (
     <NamedLink name="SearchPage" to={{ search: searchQuery }} className={css.location}>
       <div className={css.imageWrapper}>

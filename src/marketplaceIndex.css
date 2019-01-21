@@ -61,7 +61,7 @@ pre {
 
 html {
   @apply --marketplaceDefaultFontStyles;
-  color: var(--matterColor);
+  color: var(--ltForegroundColor);
   padding: 0;
   margin: 0;
 }
