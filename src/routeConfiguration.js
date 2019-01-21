@@ -6,6 +6,7 @@ import {
   ContactDetailsPage,
   EditListingPage,
   EmailVerificationPage,
+  FAQLandownersPage,
   InboxPage,
   LandingPage,
   ListingPage,
@@ -49,6 +50,11 @@ const routeConfiguration = () => {
       path: '/',
       name: 'LandingPage',
       component: props => <LandingPage {...props} />,
+    },
+    {
+      path: '/faq/landowners',
+      name: 'FAQLandownersPage',
+      component: props => <FAQLandownersPage {...props} />,
     },
     {
       path: '/about',

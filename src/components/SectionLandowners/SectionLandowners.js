@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
+import { NamedLink } from '../../components';
 import { lazyLoadWithDimensions } from '../../util/contextHelpers';
 import css from './SectionLandowners.css';
 import image1 from './images/1.jpg';
@@ -16,7 +17,7 @@ class LocationImage extends Component {
 }
 const LazyImage = lazyLoadWithDimensions(LocationImage);
 
-const locationLink = (name, desc, image, buttonDesc, buttonClass) => { 
+const locationLink = (name, desc, image, buttonDesc, buttonClass) => {
   return (
     <div className={css.column}>
       <div className={css.imageWrapper}>
@@ -26,9 +27,11 @@ const locationLink = (name, desc, image, buttonDesc, buttonClass) => {
       </div>
       <div className={css.linkText}><FormattedMessage id={name} /></div>
       <div className={css.descText}><FormattedMessage id={desc} /></div>
-      <button className={buttonClass} onClick="">
-        <FormattedMessage id={buttonDesc} />
-      </button>
+      <NamedLink name="FAQLandownersPage">
+        <button className={buttonClass}>
+          <FormattedMessage id={buttonDesc} />
+        </button>
+      </NamedLink>
     </div>
   );
 };

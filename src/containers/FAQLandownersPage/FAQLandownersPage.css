@@ -1,0 +1,220 @@
+@import '../../marketplace.css';
+
+:root {
+  /*
+    These variables are available in global scope through ":root"
+    element (<html> tag). Variables with the same names are going to
+    overwrite each other if CSS Properties' (PostCSS plugin)
+    configuration "preserve: true" is used - meaning that variables
+    are left to CSS bundle. We are planning to enable it in the future
+    since browsers support CSS Properties already.
+ */
+
+  --LandingPage_sectionMarginTop: 40px;
+  --LandingPage_sectionMarginTopMedium: 60px;
+}
+
+
+/* heroContainer gives the height for SectionHero */
+/* Safari has a bug with vw padding inside flexbox. Therefore we need an extra div (container) */
+/* If you've lot of content for the hero, multiple lines of text, make sure to adjust min-heights for each media breakpoint accordingly */
+.heroContainer {
+  /* Gradient direction and overlaying the black color on top of the image for better readability */
+  background: url('./images/hero.jpg');
+
+  /* Cover the whole screen with the background image */
+  background-size: cover;
+
+  /* Align the image within the container */
+  background-position: center center;
+    
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 300px;
+  height: 67.5vh;
+  max-height: 400px;
+  padding: 0;
+}
+
+.hero {
+  flex-grow: 1;
+  justify-content: center;
+  padding-bottom: 32px;
+}
+
+.heroContent {
+  width: 100%;
+  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
+
+  @media (--viewportMedium) {
+    margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 60px 7.5vw;
+  }
+
+  @media (--viewportLarge) {
+    max-width: calc(1200px + 36px + 36px);
+    margin: var(--LandingPage_sectionMarginTopMedium) auto 60px auto;
+    padding: 0 36px 0 36px;
+  }
+}
+
+.heroMainTitle {
+  @apply --marketplaceHeroTitleFontStyles;
+  color: var(--matterColorLight);
+  margin-bottom: 0px;
+
+  @media (--viewportMedium) {
+    max-width: var(--SectionHero_desktopTitleMaxWidth);
+  }
+}
+
+.heroSubTitle {
+  @apply --marketplaceDefaultFontStyles;
+  font-size: 24px;
+  color: var(--ltActiveForegroundColor);
+}
+
+.sections {
+  margin: 0;
+  padding-top: 1px;
+}
+
+.section {
+  overflow: auto;
+}
+
+.sectionContent {
+  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
+
+  @media (--viewportMedium) {
+    margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 60px 7.5vw;
+  }
+
+  @media (--viewportLarge) {
+    max-width: calc(1200px + 36px + 36px);
+    margin: var(--LandingPage_sectionMarginTopMedium) auto 60px auto;
+    padding: 0 36px 0 36px;
+  }
+}
+
+.sectionTitle {
+  @apply --marketplaceH1FontStyles;
+  margin-top: 0;
+  
+  padding: 0px 10px;
+}
+
+.sectionSteps {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionStep {
+  display: flex;
+}
+
+.sectionStepDescriptionContainer {
+  display: flex;
+  flex: 50%;
+  flex-direction: column;
+  
+  padding: 0px 10px;
+}
+
+.sectionStepDescriptionText{
+  display: flex;  
+  flex-direction: column;
+  @apply --marketplaceBodyFontStyles;
+}
+
+.sectionStepTitleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border-top: solid;
+  border-top-color: var(--ltFocusBorderColor);
+}
+
+.sectionStepTitle {
+  display: flex;
+  margin: 10px 0px;
+}
+
+.sectionStepCount {
+  color: var(--ltColor);
+  align-self: flex-end;
+  text-align: right;
+  margin-left:auto;
+}
+
+/* A wrapper for a responsive image that holds it's aspect ratio */
+.imageWrapper {
+  flex: 50%;
+  position: relative;
+  width: 100%;
+  transition: var(--transitionStyleButton);
+}
+
+/* An image wrapper that defines the images aspect ratio */
+.aspectWrapper {
+  padding-bottom: calc(6 / 13 * 100%); /* 13:6 Aspect Ratio */
+
+  @media (--viewportMedium) {
+    padding-bottom: calc(2 / 3 * 100%); /* 3:2 Aspect Ratio */
+  }
+}
+
+.locationImage {
+  /* Layout - image will take space defined by aspect ratio wrapper */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  object-fit: cover;
+  
+  padding: 0px 10px;
+}
+
+.imageWrapper2 {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  transition: var(--transitionStyleButton);
+  margin-bottom: 60px;
+}
+
+.locationImage2 {
+  /* Layout - image will take space defined by aspect ratio wrapper */
+  position: absolute;
+  top: -0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0px 10px;
+}
+
+.helpButton {
+  @apply --ltButtonStyle;
+  @apply --marketplaceBodyFontStyles;
+  border-color: var(--ltForegroundColor);
+  width: 120px;
+}
+
+.divider {
+  width: 100%;
+  height: 3px;
+  background-color: var(--ltFocusBorderColor);
+  border: none;
+}
+
+.boldH4 {
+  @apply --marketplaceH4FontStyles;
+  font-weight: var(--fontWeightSemiBold);
+  margin: 0px;
+}
