@@ -12,7 +12,6 @@
 
   --LandingPage_sectionMarginTop: 40px;
   --LandingPage_sectionMarginTopMedium: 60px;
-  --LandingPage_sectionMarginTopLarge: 94px;
 }
 
 .root {
@@ -80,8 +79,8 @@
   }
 
   @media (--viewportLarge) {
-    max-width: calc(1052px + 36px + 36px);
-    margin: var(--LandingPage_sectionMarginTopLarge) auto 93px auto;
+    max-width: calc(1200px + 36px + 36px);
+    margin: var(--LandingPage_sectionMarginTopMedium) auto 60px auto;
     padding: 0 36px 0 36px;
   }
 }
@@ -89,27 +88,4 @@
 .sectionContentFirstChild {
   composes: sectionContent;
   margin-top: 3vh;
-}
-
-/* A bar on top of light sections */
-.section:nth-of-type(2n) .sectionContent::before {
-  background: var(--marketplaceColor);
-  content: '';
-  display: block;
-  width: 109px;
-  height: 6px;
-
-  /* Place the bar on top of .sectionContent top margin */
-  position: relative;
-  top: calc(-1 * var(--LandingPage_sectionMarginTop));
-
-  @media (--viewportMedium) {
-    width: 192px;
-    height: 8px;
-    top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
-  }
-
-  @media (--viewportLarge) {
-    top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
-  }
 }
