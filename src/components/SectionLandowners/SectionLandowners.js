@@ -16,7 +16,7 @@ class LocationImage extends Component {
 }
 const LazyImage = lazyLoadWithDimensions(LocationImage);
 
-const locationLink = (name, desc, image, buttonDesc) => { 
+const locationLink = (name, desc, image, buttonDesc, buttonClass) => { 
   return (
     <div className={css.column}>
       <div className={css.imageWrapper}>
@@ -26,7 +26,7 @@ const locationLink = (name, desc, image, buttonDesc) => {
       </div>
       <div className={css.linkText}><FormattedMessage id={name} /></div>
       <div className={css.descText}><FormattedMessage id={desc} /></div>
-      <button className={css.faqButton} onClick="">
+      <button className={buttonClass} onClick="">
         <FormattedMessage id={buttonDesc} />
       </button>
     </div>
@@ -49,18 +49,21 @@ const SectionLocations = props => {
           'SectionLandowners.desc1',
           image1,
           'SectionLandowners.button1',
+          css.faqButton
         )}
         {locationLink(
           'SectionLandowners.title2',
           'SectionLandowners.desc2',
           image2,
           'SectionLandowners.button2',
+          css.faqButton
         )}
         {locationLink(
           'SectionLandowners.title3',
           'SectionLandowners.desc3',
           image3,
           'SectionLandowners.button3',
+          css.signupButton
         )}
       </div>
     </div>

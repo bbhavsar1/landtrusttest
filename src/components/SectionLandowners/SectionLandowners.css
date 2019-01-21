@@ -94,15 +94,14 @@
 }
 
 .faqButton {
-  @apply --ltButtonStyle;  
+  @apply --ltButtonStyle;
   @apply --marketplaceBodyFontStyles;
   border-color: var(--ltForegroundColor);
   width: 120px;
 }
 
 .signupButton {
-  @apply --ltButtonStyle;  
+  @apply --ltCallToActionButtonStyle;  
   @apply --marketplaceBodyFontStyles;
-  border-color: var(--ltForegroundColor);
   width: 120px;
 }

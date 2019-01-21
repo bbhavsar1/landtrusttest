@@ -220,6 +220,17 @@
     }
   }
 
+  --ltCallToActionButtonStyle {
+    @apply --ltButtonStyle;
+    font-weight: var(--fontWeightSemiBold);
+    border-color: var(--ltColor);
+    color: var(--ltColor);
+    &:hover,
+    &:focus {
+      border-color: var(--ltActiveBackgroundColor);
+    }
+  }
+
   --ltButtonSelectedStyle {
     @apply --ltButtonStyle;
     font-weight: var(--fontWeightSemiBold);
