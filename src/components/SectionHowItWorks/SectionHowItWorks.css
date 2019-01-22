@@ -14,8 +14,9 @@
   }
 }
 
-.step {
+.step { 
   border-top: solid;
+  border-width: 1px;
   border-top-color: var(--ltFocusBorderColor);
   @media (--viewportMedium) {
     width: 324px;
