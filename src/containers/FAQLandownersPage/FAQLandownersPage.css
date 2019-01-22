@@ -99,8 +99,7 @@
 
 .sectionTitle {
   @apply --marketplaceH1FontStyles;
-  margin-top: 0;
-  
+  margin: 40px 0px 0px 0px;  
   padding: 0px 10px;
 }
 
@@ -111,6 +110,7 @@
 
 .sectionStep {
   display: flex;
+  margin-top: 50px;
 }
 
 .sectionStepDescriptionContainer {
