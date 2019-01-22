@@ -229,7 +229,7 @@
   @apply --TopbarDesktop_linkHover;
   flex-shrink: 0;
   height: 100%;
-  padding: 0 12px 0 12px;
+  padding: 0 6px 0 6px;
   color: var(--ltTopbarForegroundColor);
 }
 
@@ -241,10 +241,20 @@
   color: var(--ltTopbarForegroundColor);
 }
 
-.signup,
 .login {
   @apply --marketplaceH4FontStyles;
   @apply --TopbarDesktop_label;
+}
+
+.signup {
+  @apply --marketplaceH4FontStyles;
+  @apply --TopbarDesktop_label;
+  border: solid;
+  border-color: var(--ltColor);
+  border-width: 1px;
+  color: var(--ltColor);
+  margin: 14px 0;
+  padding: 10px;
 }
 
 /* left animated "border" like hover element */
