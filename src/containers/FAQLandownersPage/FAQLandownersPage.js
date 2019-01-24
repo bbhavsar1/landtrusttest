@@ -108,13 +108,13 @@ export const FAQLandownersPageComponent = props => {
             </div>
           </div>
           <ul className={css.sections}>
-            <li className={css.section}>
+            <li>
               <div className={css.sectionContent}>
                 <div className={css.sectionTitle}>
                   <FormattedMessage id="FAQLandownersPage.section1Title" />
                 </div>
                 <div className={css.sectionSteps}>
-                  <div className={css.sectionStep}>
+                  <div className={css.sectionStepReverse}>
                     <div className={css.sectionStepDescriptionContainer}>
                       <div className={css.sectionStepTitleContainer}>
                         <h2 className={css.sectionStepTitle}>
@@ -164,7 +164,10 @@ export const FAQLandownersPageComponent = props => {
                     </div>
                   </div>
                 </div>
-
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContent}>
                 <div className={css.sectionTitle}>
                   <FormattedMessage id="FAQLandownersPage.section2Title" />
                 </div>
@@ -204,7 +207,10 @@ export const FAQLandownersPageComponent = props => {
                   </div>
                   </div>
                 </div>
-
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContent}>
                 <div className={css.sectionTitle}>
                   <FormattedMessage id="FAQLandownersPage.section3Title" />
                 </div>

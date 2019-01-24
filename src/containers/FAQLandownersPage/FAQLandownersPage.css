@@ -1,19 +1,5 @@
 @import '../../marketplace.css';
 
-:root {
-  /*
-    These variables are available in global scope through ":root"
-    element (<html> tag). Variables with the same names are going to
-    overwrite each other if CSS Properties' (PostCSS plugin)
-    configuration "preserve: true" is used - meaning that variables
-    are left to CSS bundle. We are planning to enable it in the future
-    since browsers support CSS Properties already.
- */
-
-  --LandingPage_sectionMarginTop: 40px;
-  --LandingPage_sectionMarginTopMedium: 60px;
-}
-
 
 /* heroContainer gives the height for SectionHero */
 /* Safari has a bug with vw padding inside flexbox. Therefore we need an extra div (container) */
@@ -34,7 +20,10 @@
   min-height: 300px;
   height: 67.5vh;
   max-height: 400px;
-  padding: 0;
+
+  @media (--viewportMedium) {
+    margin-bottom: 20px;
+  }
 }
 
 .hero {
@@ -45,16 +34,16 @@
 
 .heroContent {
   width: 100%;
-  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
+  padding: 40px 30px;
 
   @media (--viewportMedium) {
-    margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 60px 7.5vw;
+    padding: 60px 7.5vw 60px 7.5vw;
   }
 
   @media (--viewportLarge) {
     max-width: calc(1200px + 36px + 36px);
-    margin: var(--LandingPage_sectionMarginTopMedium) auto 60px auto;
-    padding: 0 36px 0 36px;
+    margin: 60px auto;
+    padding: 0 36px;
   }
 }
 
@@ -76,30 +65,25 @@
 
 .sections {
   margin: 0;
-  padding-top: 1px;
-}
-
-.section {
-  overflow: auto;
 }
 
 .sectionContent {
-  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
+  margin: 51px 24px;
 
   @media (--viewportMedium) {
-    margin: var(--LandingPage_sectionMarginTopMedium) 7.5vw 60px 7.5vw;
+    margin: 40px 7.5vw;
   }
 
   @media (--viewportLarge) {
     max-width: calc(1200px + 36px + 36px);
-    margin: var(--LandingPage_sectionMarginTopMedium) auto 60px auto;
-    padding: 0 36px 0 36px;
+    margin: 40px auto;
+    padding: 0 36px;
   }
 }
 
 .sectionTitle {
   @apply --marketplaceH1FontStyles;
-  margin: 40px 0px 0px 0px;  
+  margin: 30px 0px;  
   padding: 0px 10px;
 }
 
@@ -108,10 +92,15 @@
   flex-direction: column;
 }
 
-.sectionStep {
+.sectionStep,
+.sectionStepReverse {
   display: flex;
-  margin-top: 50px;
   flex-wrap: wrap;
+}
+
+.sectionStepReverse {
+  flex-wrap: wrap-reverse;
+  margin: 0px 0px 40px 0px;
 }
 
 .sectionStepDescriptionContainer {
@@ -136,6 +125,7 @@
   border-top: solid;
   border-top-color: var(--ltFocusBorderColor);
   border-width: 1px;
+  margin-top: 20px;
 }
 
 .sectionStepTitle {
@@ -158,13 +148,17 @@
   transition: var(--transitionStyleButton);
 }
 
+.imageWrapper2 {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  transition: var(--transitionStyleButton);
+  margin-bottom: 20px;
+}
+
 /* An image wrapper that defines the images aspect ratio */
 .aspectWrapper {
-  padding-bottom: calc(6 / 13 * 100%); /* 13:6 Aspect Ratio */
-
-  @media (--viewportMedium) {
-    padding-bottom: calc(2 / 3 * 100%); /* 3:2 Aspect Ratio */
-  }
+  padding-bottom: calc(2 / 3 * 100%); /* 3:2 Aspect Ratio */
 }
 
 .locationImage {
@@ -177,15 +171,7 @@
   width: 100%;
   object-fit: cover;
   
-  padding: 0px 10px;
-}
-
-.imageWrapper2 {
-  position: relative;
-  height: 300px;
-  width: 100%;
-  transition: var(--transitionStyleButton);
-  margin-bottom: 60px;
+  padding: 20px 10px;
 }
 
 .locationImage2 {
@@ -205,7 +191,7 @@
   @apply --ltButtonStyle;
   @apply --marketplaceBodyFontStyles;
   border-color: var(--ltForegroundColor);
-  width: 120px;
+  width: 140px;
 }
 
 .divider {
@@ -213,6 +199,7 @@
   height: 1px;
   background-color: var(--ltFocusBorderColor);
   border: none;
+  margin: 20px 0px;
 }
 
 .boldH4 {
