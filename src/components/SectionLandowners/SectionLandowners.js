@@ -61,13 +61,20 @@ const SectionLocations = props => {
           'SectionLandowners.button2',
           css.faqButton
         )}
-        {locationLink(
-          'SectionLandowners.title3',
-          'SectionLandowners.desc3',
-          image3,
-          'SectionLandowners.button3',
-          css.signupButton
-        )}
+        <div className={css.column}>
+          <div className={css.imageWrapper}>
+            <div className={css.aspectWrapper}>
+              <LazyImage src={image3} alt="SectionLandowners.title3" className={css.locationImage} />
+            </div>
+          </div>
+          <div className={css.linkText}><FormattedMessage id="SectionLandowners.title3" /></div>
+          <div className={css.descText}><FormattedMessage id="SectionLandowners.desc3" /></div>
+          <NamedLink name="SignupPage" >
+            <button className={css.signupButton}>
+              <FormattedMessage id="SectionLandowners.button3" />
+            </button>
+          </NamedLink>
+        </div>
       </div>
     </div>
   );
