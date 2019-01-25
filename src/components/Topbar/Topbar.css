@@ -49,6 +49,7 @@
   width: 100%;
   align-items: center;
   background-color: var(--ltTopbarBackgroundColor);
+  padding-right: 66px;
 }
 
 .logoutButton {
@@ -56,8 +57,7 @@
 }
 
 /* Child component's size (and positioning) should be given here */
-.menu,
-.searchMenu {
+.menu {
   /* Font */
   @apply --marketplaceH5FontStyles;
   color: var(--ltTopbarForegroundColor);
@@ -88,12 +88,8 @@
   padding: 15px 24px;
   position: relative;
 }
-.searchMenu {
-  padding: 12px 24px;
-}
 
-.menuIcon,
-.searchMenuIcon {
+.menuIcon {
   margin: 9px 0;
 }
 
@@ -144,15 +140,6 @@
 /* Icon component styles */
 .rootMenuIcon {
   fill: var(--ltTopbarForegroundColor);
-}
-.rootSearchIcon {
-  stroke: var(--ltTopbarForegroundColor);
-}
-
-.searchContainer {
-  position: relative;
-  height: 100%;
-  margin-top: 94px;
 }
 
 .mobileHelp {

@@ -77,6 +77,7 @@
   flex-grow: 1;
   /* Font */
   @apply --marketplaceH4FontStyles;
+  color: var(--ltTopbarForegroundColor);
   height: var(--topbarHeightDesktop);
   line-height: unset;
   border: none;
