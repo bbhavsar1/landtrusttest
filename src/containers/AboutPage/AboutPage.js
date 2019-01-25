@@ -8,6 +8,7 @@ import { isScrollingDisabled } from '../../ducks/UI.duck';
 import config from '../../config';
 import ownership from './images/ownership.jpg';
 import purpose from './images/purpose.jpg';
+import facebookImage from '../../assets/fb-1200x630.jpg';
 
 import { FormattedMessage } from 'react-intl';
 import {
@@ -33,7 +34,7 @@ export const AboutPageComponent = props => {
   const siteTitle = config.siteTitle;
   const schemaTitle = intl.formatMessage({ id: 'AboutPage.schemaTitle' }, { siteTitle });
   const schemaDescription = intl.formatMessage({ id: 'AboutPage.schemaDescription' });
-  const schemaImage = `${config.canonicalRootURL}${ownership}`;
+  const schemaImage = `${config.canonicalRootURL}${facebookImage}`;
 
   class LocationImage extends Component {
     render() {
