@@ -20,8 +20,7 @@ import {
 } from '../../components';
 import { TopbarContainer } from '../../containers';
 
-import facebookImage from '../../assets/background-1440.jpg';
-import twitterImage from '../../assets/background-1440.jpg';
+import facebookImage from '../../assets/fb-1200x630.jpg';
 import css from './LandingPage.css';
 
 export const LandingPageComponent = props => {
@@ -43,9 +42,6 @@ export const LandingPageComponent = props => {
       description={schemaDescription}
       title={schemaTitle}
       facebookImages={[{ url: facebookImage, width: 1200, height: 630 }]}
-      twitterImages={[
-        { url: `${config.canonicalRootURL}${twitterImage}`, width: 600, height: 314 },
-      ]}
       schema={{
         '@context': 'http://schema.org',
         '@type': 'WebPage',

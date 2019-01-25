@@ -24,8 +24,7 @@ import {
 import { lazyLoadWithDimensions } from '../../util/contextHelpers';
 import { TopbarContainer } from '../../containers';
 
-import facebookImage from '../../assets/saunatimeFacebook-1200x630.jpg';
-import twitterImage from '../../assets/saunatimeTwitter-600x314.jpg';
+import facebookImage from '../../assets/fb-1200x630.jpg';
 import css from './FAQLandownersPage.css';
 
 export const FAQLandownersPageComponent = props => {
@@ -81,9 +80,6 @@ export const FAQLandownersPageComponent = props => {
       description={schemaDescription}
       title={schemaTitle}
       facebookImages={[{ url: facebookImage, width: 1200, height: 630 }]}
-      twitterImages={[
-        { url: `${config.canonicalRootURL}${twitterImage}`, width: 600, height: 314 },
-      ]}
       schema={{
         '@context': 'http://schema.org',
         '@type': 'WebPage',
