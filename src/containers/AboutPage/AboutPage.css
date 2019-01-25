@@ -1,69 +1,194 @@
 @import '../../marketplace.css';
 
-.pageTitle {
-  text-align: center;
-  vertical-align: middle;
-  margin-top: -240px;
-  margin-left: 40px;
-  color: white;
-  font-size: 40px;
+
+/* heroContainer gives the height for SectionHero */
+/* Safari has a bug with vw padding inside flexbox. Therefore we need an extra div (container) */
+/* If you've lot of content for the hero, multiple lines of text, make sure to adjust min-heights for each media breakpoint accordingly */
+.heroContainer {
+  /* Gradient direction and overlaying the black color on top of the image for better readability */
+  background: url('./images/hero.jpg');
+
+  /* Cover the whole screen with the background image */
+  background-size: cover;
+
+  /* Align the image within the container */
+  background-position: center center;
+    
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 300px;
+  height: 67.5vh;
+  max-height: 400px;
 
   @media (--viewportMedium) {
-    font-size: 60px;
-    margin-left: 80px;
+    margin-bottom: 20px;
+  }
+}
+
+.hero {
+  flex-grow: 1;
+  justify-content: center;
+  padding-bottom: 32px;
+}
+
+.heroContent {
+  width: 100%;
+  padding: 40px 30px;
+
+  @media (--viewportMedium) {
+    padding: 60px 7.5vw 60px 7.5vw;
   }
 
   @media (--viewportLarge) {
-    font-size: 80px;    
-    margin-left: 120px;
+    max-width: calc(1200px + 36px + 36px);
+    margin: 60px auto;
+    padding: 0 36px;
   }
 }
 
-.staticPageWrapper {
-  width: 100%;
-  margin: 0px auto;
-}
+.heroMainTitle {
+  @apply --marketplaceHeroTitleFontStyles;
+  color: var(--matterColorLight);
+  margin-bottom: 0px;
 
-.coverImage {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
-
-.contentImage {
-  width: 300px;
-  height: 300px;
   @media (--viewportMedium) {
-    width: 400px;
-    height: 400px;
-  }
-  @media (--viewportLarge) {
-    width: 600px;
-    height: 600px;
+    max-width: var(--SectionHero_desktopTitleMaxWidth);
   }
 }
 
+.sections {
+  margin: 0;
+}
+
+.sectionContent {
+  margin: 51px 24px;
+
+  @media (--viewportMedium) {
+    margin: 40px 7.5vw;
+  }
+
+  @media (--viewportLarge) {
+    max-width: calc(1200px + 36px + 36px);
+    margin: 40px auto;
+    padding: 0 36px;
+  }
+}
+
+.sectionTitle {
+  @apply --marketplaceH1FontStyles;
+  margin: 30px 0px 20px 0px;  
+  padding: 0px 10px;
+}
+
+.sectionSteps {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionStep,
+.sectionStepReverse {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sectionStepReverse {
+  flex-wrap: wrap-reverse;
+}
+
+.sectionStepDescriptionContainer,
+.sectionStepDescriptionContainerThirds {
+  display: flex;
+  flex: 50%;
+  flex-direction: column;
+  min-width: 300px;
+  padding: 0px 10px;
+}
+
+.sectionStepDescriptionContainerThirds {
+  flex: 33%;
+}
+
+.sectionStepDescriptionText{
+  display: flex;  
+  flex-direction: column;
+  @apply --marketplaceBodyFontStyles;
+}
+
+.sectionStepTitle {
+  padding: 10px 0px 0px 0px;
+
+  border-top: solid;
+  border-top-color: var(--ltFocusBorderColor);
+  border-width: 1px;
+  margin-top: 20px;
+}
+
+/* A wrapper for a responsive image that holds it's aspect ratio */
 .imageWrapper {
-  display: flex;
-  flex-wrap: wrap;
+  flex: 50%;
+  position: relative;
+  width: 100%;
+  transition: var(--transitionStyleButton);
 }
 
-.contentWrapper {
-  display: flex;
-  flex-wrap: wrap;
+.imageWrapper2 {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  transition: var(--transitionStyleButton);
+  margin-bottom: 20px;
+}
+
+/* An image wrapper that defines the images aspect ratio */
+.aspectWrapper {
+  padding-bottom: calc(6 / 13 * 100%); /* 13:6 Aspect Ratio */
 
   @media (--viewportMedium) {
-    flex-wrap: nowrap;
+    padding-bottom: calc(2 / 3 * 100%); /* 3:2 Aspect Ratio */
   }
 }
 
-.contentMain {
+.locationImage {
+  /* Layout - image will take space defined by aspect ratio wrapper */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  margin: 0px 20px;
+  object-fit: cover;
+  
+  padding: 20px 10px;
 }
 
-.subtitle {
-  @apply --marketplaceH3FontStyles;
-  margin-top: 48px;
-  margin-bottom: 24px;
+.locationImage2 {
+  /* Layout - image will take space defined by aspect ratio wrapper */
+  position: absolute;
+  top: -0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0px 10px;
+}
+
+.helpButton {
+  @apply --ltButtonStyle;
+  @apply --marketplaceBodyFontStyles;
+  border-color: var(--ltForegroundColor);
+  width: 140px;
+}
+
+.boldH4 {
+  @apply --marketplaceH4FontStyles;
+  font-weight: var(--fontWeightSemiBold);
+  margin: 0px;
+}
+
+.email {
+  @apply --marketplaceModalHighlightEmail;
+  color: var(--ltColor);
 }
